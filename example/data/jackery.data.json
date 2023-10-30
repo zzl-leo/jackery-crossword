@@ -1,0 +1,15 @@
+[{
+	"clue": "露营帐篷", "answer": "Camping", "direction": "across", "x": 11, "y": 4, "uncheck": [1]
+},{
+	"clue": "NO.1", "answer": "GlobalLeadingBrand", "direction": "across", "x": 0, "y": 6, "uncheck": [1,2,3,4,5,6, 14,15,16,17,18]
+},{
+	"clue": "电池护盾", "answer": "Chargeshield", "direction": "across", "x": 6, "y": 1, "uncheck": [1]
+},
+{
+	"clue": "电池快充", "answer": "Fastcharging", "direction": "down", "x": 8, "y": 0, "uncheck": [5,6,7,8,9,10,11,12]
+},
+{
+	"clue": "家庭", "answer": "Homebackup", "direction": "down", "x": 3, "y": 2, "uncheck": [5,6,7,8,9,10]
+},{
+	"clue": "Jackery产品", "answer": "SolarGenerator", "direction": "down", "x": 12, "y": 1, "uncheck": [1, 6]
+}]

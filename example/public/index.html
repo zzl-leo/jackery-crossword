@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Svelte Crossword</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+	<meta name='twitter:card' content='summary_large_image' />
+	<meta name='twitter:creator' content='codenberg' />
+	<meta name='twitter:title' content='Svelte Crossword' />
+	<meta name='twitter:description' content='Svelte crossword puzzle component' />
+	<meta name='twitter:image:src' content='https://russellsamora.github.io/svelte-crossword/og.png' />
+
+	<link rel="stylesheet" href="global.css" />
+	<link rel="stylesheet" href="build/bundle.css" />
+	<!-- 1f9a8700-1de1-11eb-9af0-ffe3209cc5bb.png -->
+	<style>
+		body {
+			font-size: 18px;
+			overflow-x: hidden;
+			background: linear-gradient(180deg, #F4F4F4 0%, #F4F4F4 100%);
+		}
+
+		.is-revealed .cell.man rect {
+			fill: yellow;
+		}
+
+		.is-revealed .cell.woman rect {
+			fill: cyan;
+		}
+
+		.is-revealed .cell.woman.man rect {
+			fill: greenyellow;
+		}
+
+
+		body.modal-active,
+		body.modal-active {
+		overflow: hidden;
+		}
+		.modal-container.modal {
+			position: fixed;
+			z-index: 9999999999;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #12121280;
+			animation: fadeIn 0.2s ease-in-out forwards;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			visibility: visible;
+		}
+
+		.modal-container.modal .modal-content {
+			max-height: 80vh;
+			overflow-y: scroll;
+			width: 960px;
+			transform: translateY(-60px);
+			background-color: white;
+			padding-bottom: 20px;
+			border: 1px solid #888;
+			animation: scale-in-center 0.3s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+		}
+
+		.modal-container.modal .moadal-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			text-align: center;
+			border-bottom: 1px solid #f0f1f2;
+			padding: 0 16px;
+			height: 56px;
+			position: sticky;
+			top: 0;
+			font-size: 18px;
+			font-weight: 500;
+		}
+
+		.modal-container.modal .moadal-header-content {
+			flex: 1;
+		}
+
+		.modal-container.modal .close {
+			font-size: 32px;
+			line-height: 1;
+			cursor: pointer;
+			font-weight: 300;
+		}
+
+		.modal-container.modal .modal-content-body {
+			padding: 32px;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes slideIn {
+			from {
+				transform: translateY(-50px);
+			}
+
+			to {
+				transform: translateY(0);
+			}
+		}
+
+		.modal-container.modal #confirmBtn {
+			margin-top: 10px;
+		}
+
+		.modal-container.modal .modal.fade-out {
+			animation: fadeOut 0.3s ease-in-out forwards;
+		}
+
+		.modal-container.modal .modal-content.slide-out {
+			animation: scale-out-center 0.3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+		}
+
+		@keyframes fadeOut {
+			from {
+				opacity: 1;
+			}
+
+			to {
+				opacity: 0;
+			}
+		}
+
+		/**
+		* ----------------------------------------
+		* animation scale-out-center
+		* ----------------------------------------
+		*/
+		@-webkit-keyframes scale-out-center {
+			0% {
+				-webkit-transform: scale(1);
+						transform: scale(1);
+				opacity: 1;
+			}
+			100% {
+				-webkit-transform: scale(0);
+						transform: scale(0);
+				opacity: 1;
+			}
+		}
+		@keyframes scale-out-center {
+			0% {
+				-webkit-transform: scale(1);
+						transform: scale(1);
+				opacity: 1;
+			}
+			100% {
+				-webkit-transform: scale(0);
+						transform: scale(0);
+				opacity: 1;
+			}
+		}
+
+
+		@-webkit-keyframes scale-in-center {
+			0% {
+				-webkit-transform: scale(0);
+						transform: scale(0);
+				opacity: 1;
+			}
+			100% {
+				-webkit-transform: scale(1);
+						transform: scale(1);
+				opacity: 1;
+			}
+		}
+		@keyframes scale-in-center {
+			0% {
+				-webkit-transform: scale(0);
+						transform: scale(0);
+				opacity: 1;
+			}
+			100% {
+				-webkit-transform: scale(1);
+						transform: scale(1);
+				opacity: 1;
+			}
+		}
+
+
+
+		@media (max-width: 1024px) {
+			.modal-container.header__changeLocal.modal .moadal-header {
+				padding-top: 60px;
+				height: 112px;
+			}
+
+			.modal-container.modal .modal-content {
+				max-height: 100vh;
+				width: 100%;
+				transform: translateY(0);
+				padding-bottom: 12px;
+				border: none;
+			}
+
+			.modal-container.modal .moadal-header {
+				padding: 0 12px;
+				height: 52px;
+				background: #fff;
+			}
+
+			.modal-container.modal .modal-content-body {
+				padding: 18px;
+			}
+		}
+	</style>
+
+	<style>
+		.title-block {
+			text-align: center;
+			margin: 60px auto;
+			color: #333;
+			max-width: 1200px;
+		}
+		.game-title {
+			font-weight: bold;
+			display: inline-block;
+			background: linear-gradient(91deg, #FF5000 2.26%, #FFC700 100%);
+			-webkit-background-clip: text;
+    		background-clip: text;
+			-webkit-text-fill-color: transparent;
+			font-size: 96px;
+			letter-spacing: 1.92px;
+			text-transform: uppercase;
+		}
+		.game-subtitle {
+			color: #000;
+			text-align: center;
+			font-family: Gilroy;
+			font-size: 36px;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 1.1;
+			margin-top: 30px;
+		}
+		.game-subtitle strong {
+			color: #EB8D21;
+			font-size: 58px;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 1.1;
+		}
+		
+		@media only screen and (max-width: 1024px) {
+			.title-block {
+				margin: 70px auto 32px;
+				max-width: 90%;
+			}
+			.game-title {
+				font-size: 40px;
+				letter-spacing: 0.8px;
+			}
+			.game-subtitle {
+				font-size: 14px;
+				margin-top: 25px;
+			}
+			.game-subtitle strong {
+				font-size: 28px;
+				line-height: 1.11;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="title-block">
+		<div class="game-title">LIGHTING FESTIVE JOY</div>
+		<div class="game-subtitle">
+			Complete the crossword game with the help of the hints in the picture and win up to a <strong>52%</strong>discount
+		</div>
+	</div>
+
+	<main>
+		<!-- HTML -->
+	</main>
+	<script type="text/javascript" src="build/bundle.js" defer></script>
+
+	<div class="how-to-play">
+		<div class="title">How to Play</div>
+		<ul>
+			<li>1. Use the hints to ..............</li>
+			<li>1. Use the hints to ..............</li>
+			<li>1. Use the hints to ..............</li>
+			<li>1. Use the hints to ..............</li>
+			<li>1. Use the hints to ..............</li>
+			<li>1. Use the hints to ..............</li>
+			<li>1. Use the hints to ..............</li>
+		</ul>
+	</div>
+</body>
+
+</html>
