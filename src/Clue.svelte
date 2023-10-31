@@ -25,9 +25,40 @@
     }, 2000);
   }
 
-  function handleOpenHelp() {
-    ZModle.getInstance(`<h1 id="xxl">345</h1>`, {
-      header: "想要解锁活动提示？您需要点击下列按钮分享这个游戏到社媒",
+  function createSocialDom() {
+    return `<h3 id="xxl" class="tips_modal__title">Need more hints?</h3>
+    <div class="tips_modal__subtitle">Click the button below to share this game on social media and get the answers.</div>
+    <ul class="tips_modal__socials">
+      <li>
+        <div data-url="/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="50" viewBox="0 0 52 50" fill="none">
+          <path d="M48.44 0.755127H3.57691C2.49673 0.755127 1.6246 1.62064 1.6246 2.69478V47.3069C1.6246 48.3793 2.49673 49.2465 3.57517 49.2465H48.4383C49.5185 49.2465 50.3889 48.3793 50.3889 47.3069V2.69478C50.3889 1.62064 49.5185 0.755127 48.4383 0.755127H48.44ZM42.8068 14.9069H38.9126C35.8576 14.9069 35.2663 16.35 35.2663 18.4724V23.1448H42.5571L41.6052 30.462H35.2663V49.2465H27.6652V30.4655H21.3089V23.1431H27.6652V17.7482C27.6652 11.4879 31.5126 8.07582 37.1319 8.07582C39.8263 8.07582 42.1358 8.27409 42.8137 8.36547V14.9051H42.8068V14.9069Z" fill="#2477E1"/>
+          </svg>
+        </div>    
+      </li>
+      <li>
+        <div data-url="/">
+          <svg t="1698732095750" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2783" width="200" height="200"><path d="M281.6 281.6l188.8 249.6L281.6 736h41.6l166.4-179.2 134.4 179.2H768l-198.4-265.6 176-188.8H704l-153.6 163.2-121.6-163.2H281.6z m64 32h67.2L704 704h-64L345.6 313.6z" fill="#1D1D1B" p-id="2784"></path></svg>
+        </div>  
+      </li>  
+      <li>
+        <div data-url="/">
+          <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/f01bcca8403a21bffff4e86dc1f517c0.png?v=1698731889" alt="whatsapp" />
+        </div>
+      </li>  
+
+      <li>
+        <div data-url="/">
+          <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/597349547b5720f8827002705db04931.jpg?v=1698731889" alt="message" />
+        </div>
+      </li>  
+    </ul>`
+  }
+
+  function handleOpenHelp(v) {
+    console.log(v)
+    ZModle.getInstance(createSocialDom(), {
+      header: "",
       id: `cell_modal_${clueClass}`,
       class: "",
       cb: (el) => {
@@ -49,11 +80,10 @@
     class:is-number-focused="{isNumberFocused}"
     class:is-direction-focused="{isDirectionFocused}"
     class:is-filled="{isFilled}"
-    on:click="{handleOpenHelp}"
+    on:click="{(clue) => {handleOpenHelp(clue)}}"
     >
     <!-- <strong>{number}</strong> -->
     <!-- {clue} -->
-    <!-- <svg class="modal_icon" viewBox="64 64 896 896" focusable="false" data-icon="question" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M764 280.9c-14-30.6-33.9-58.1-59.3-81.6C653.1 151.4 584.6 125 512 125s-141.1 26.4-192.7 74.2c-25.4 23.6-45.3 51-59.3 81.7-14.6 32-22 65.9-22 100.9v27c0 6.2 5 11.2 11.2 11.2h54c6.2 0 11.2-5 11.2-11.2v-27c0-99.5 88.6-180.4 197.6-180.4s197.6 80.9 197.6 180.4c0 40.8-14.5 79.2-42 111.2-27.2 31.7-65.6 54.4-108.1 64-24.3 5.5-46.2 19.2-61.7 38.8a110.85 110.85 0 00-23.9 68.6v31.4c0 6.2 5 11.2 11.2 11.2h54c6.2 0 11.2-5 11.2-11.2v-31.4c0-15.7 10.9-29.5 26-32.9 58.4-13.2 111.4-44.7 149.3-88.7 19.1-22.3 34-47.1 44.3-74 10.7-27.9 16.1-57.2 16.1-87 0-35-7.4-69-22-100.9zM512 787c-30.9 0-56 25.1-56 56s25.1 56 56 56 56-25.1 56-56-25.1-56-56-56z"></path></svg> -->
 
     <svg class="modal_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 29" fill="none">
       <g clip-path="url(#clip0_1554_302)">
