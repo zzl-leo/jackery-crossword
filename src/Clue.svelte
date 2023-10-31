@@ -1,6 +1,7 @@
 <script>
   import scrollTo from "./helpers/scrollTo.js";
   import ZModle from './themes/modal.js'
+  import tips from '../example/data/tips.json'
 
   export let number;
   export let direction;
@@ -17,55 +18,107 @@
   $: isFocused = isNumberFocused;
   $: clueClass = `clue--${direction}--${number}`;
 
-  function handleShare(el) {
+  function handleShare(params) {
     console.log("分享了。。。")
-    console.log(el)
+    console.log("eeee")
+    console.log(tips[params.number - 1])
+    console.log(params)
+    console.log(params.item.getAttribute("data-url"))
+    // const share__url = params.item.getAttribute("data-url")
+    const share__type = params.item.getAttribute("data-type")
+
+
+    let _url = ''
+    switch (share__type) {
+      case 'facebook':
+        _url = `https://www.facebook.com/sharer/sharer.php?u=https://jackery-crossword.vercel.app/`
+        break;
+      case 'twitter':
+        _url = `https://twitter.com/intent/tweet?url=https://jackery-crossword.vercel.app&text=${encodeURIComponent("jackery cccrossword game!")}`
+        break;
+      case 'whatsapp':
+        _url = `https://api.whatsapp.com/send?text=${encodeURIComponent("jackery cccrossword game!")}&url=https://jackery-crossword.vercel.app`
+        break;
+      default:
+        _url = 'https://jackery-crossword.vercel.app/'
+        break;
+    }
+
     setTimeout(() => {
-      el.querySelector(".modal-content-body").innerHTML = `<h1>提示答案是：xxxx</h1>`
+      window.localStorage.setItem(`__jky_shared__${params.number}`, "true")
+      params.el.querySelector(".modal-content-body").innerHTML = createSocialDom(true, params.number)
     }, 2000);
+
+    console.log("8888888")
+    console.log(share__type)
+    window.open(
+      _url,
+      '单独窗口',
+      'height=300,width=600,top=30,left=20,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no'
+    );
   }
 
-  function createSocialDom() {
-    return `<h3 id="xxl" class="tips_modal__title">Need more hints?</h3>
+  function createSocialDom(flag, num) {
+    const shareDom = `<h3 id="xxl" class="tips_modal__title">Need more hints?</h3>
     <div class="tips_modal__subtitle">Click the button below to share this game on social media and get the answers.</div>
     <ul class="tips_modal__socials">
       <li>
-        <div data-url="/">
+        <div data-url="/" data-type="facebook">
                 <svg xmlns="http://www.w3.org/2000/svg" width="52" height="50" viewBox="0 0 52 50" fill="none">
           <path d="M48.44 0.755127H3.57691C2.49673 0.755127 1.6246 1.62064 1.6246 2.69478V47.3069C1.6246 48.3793 2.49673 49.2465 3.57517 49.2465H48.4383C49.5185 49.2465 50.3889 48.3793 50.3889 47.3069V2.69478C50.3889 1.62064 49.5185 0.755127 48.4383 0.755127H48.44ZM42.8068 14.9069H38.9126C35.8576 14.9069 35.2663 16.35 35.2663 18.4724V23.1448H42.5571L41.6052 30.462H35.2663V49.2465H27.6652V30.4655H21.3089V23.1431H27.6652V17.7482C27.6652 11.4879 31.5126 8.07582 37.1319 8.07582C39.8263 8.07582 42.1358 8.27409 42.8137 8.36547V14.9051H42.8068V14.9069Z" fill="#2477E1"/>
           </svg>
         </div>    
       </li>
       <li>
-        <div data-url="/">
+        <div data-url="/" data-type="twitter">
           <svg t="1698732095750" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2783" width="200" height="200"><path d="M281.6 281.6l188.8 249.6L281.6 736h41.6l166.4-179.2 134.4 179.2H768l-198.4-265.6 176-188.8H704l-153.6 163.2-121.6-163.2H281.6z m64 32h67.2L704 704h-64L345.6 313.6z" fill="#1D1D1B" p-id="2784"></path></svg>
         </div>  
       </li>  
       <li>
-        <div data-url="/">
+        <div data-url="/" data-type="whatsapp">
           <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/f01bcca8403a21bffff4e86dc1f517c0.png?v=1698731889" alt="whatsapp" />
         </div>
       </li>  
 
       <li>
-        <div data-url="/">
+        <div data-url="/" data-type="unknow">
           <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/597349547b5720f8827002705db04931.jpg?v=1698731889" alt="message" />
         </div>
       </li>  
     </ul>`
+    const answerDom = `<h3 class="tips_modal__title">${tips[num-1].title}</h3>
+    <div class="tips_modal__des">${tips[num-1].des}</div>
+    `
+    return flag ? answerDom : shareDom
   }
 
-  function handleOpenHelp(v) {
-    console.log(v)
-    ZModle.getInstance(createSocialDom(), {
+  function handleOpenHelp(clue_name, number) {
+    console.log(tips)
+    const hasShared = window.localStorage.getItem(`__jky_shared__${number}`) || false
+
+    console.log(clue_name)
+    console.log(number)
+    const params = {
+      number,
+      clue_name
+    }
+    ZModle.getInstance(createSocialDom(hasShared, number), {
       header: "",
       id: `cell_modal_${clueClass}`,
       class: "",
       cb: (el) => {
-        el.querySelector("#xxl").removeEventListener("click", () => {handleShare(el)})
+        if(hasShared) {
+          el.querySelector(".modal-content-body").innerHTML = createSocialDom(hasShared, number)
+        }
+
+        el.querySelectorAll(".tips_modal__socials li>div").forEach(item => {
+          item.removeEventListener("click", () => {handleShare({...params, item, el})})
+        })
 
         setTimeout(() => {
-          el.querySelector("#xxl").addEventListener("click", () => {handleShare(el)})
+          el.querySelectorAll(".tips_modal__socials li>div").forEach(item => {
+            item.addEventListener("click", () => {handleShare({...params, item, el})})
+          })
         }, 0);
       }
     })
@@ -80,7 +133,7 @@
     class:is-number-focused="{isNumberFocused}"
     class:is-direction-focused="{isDirectionFocused}"
     class:is-filled="{isFilled}"
-    on:click="{(clue) => {handleOpenHelp(clue)}}"
+    on:click="{() => {handleOpenHelp(clue, number)}}"
     >
     <!-- <strong>{number}</strong> -->
     <!-- {clue} -->

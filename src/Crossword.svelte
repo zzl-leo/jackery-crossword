@@ -5,6 +5,7 @@
   import Clues from "./Clues.svelte";
   import CompletedMessage from "./CompletedMessage.svelte";
   import CheckModal from "./CheckModal.svelte";
+  import {footerPhoneSubs} from "./themes/fetch.js"
 
   import createClues from "./helpers/createClues.js";
   import createCells from "./helpers/createCells.js";
@@ -47,6 +48,7 @@
   let subscribe_email = ''
   let subscribe_error = false
   let subscribeModalClose = false
+  let subscribeLoading = false
 
   const onDataUpdate = () => {
     originalClues = createClues(data);
@@ -173,9 +175,16 @@
   function handSubscribe() {
     subscribe_error = !verifyEmail(subscribe_email)
     if(!subscribe_error) {
-      console.log('goood')
-      subscribeModalClose = true
-      window.localStorage.setItem("__jky_cwd", '1')
+      subscribeLoading = true
+      footerPhoneSubs({
+        email: subscribe_email,
+        tags: "CP_games"
+      }).then(res => {
+        console.log(res)
+        subscribeModalClose = true
+        subscribeLoading = false
+        window.localStorage.setItem("__jky_cwd", '1')
+      })
     }
   }
 </script>
@@ -243,8 +252,17 @@
             <div class="error__tips" class:active="{subscribe_error}">请输入正确的邮箱</div>
             <div 
               class="crossword_subscribe_submit" 
+              class:loading="{subscribeLoading}"
               on:click="{handSubscribe}"
-            >PLAY NOW</div>
+            >
+              PLAY NOW
+              {#if subscribeLoading}
+              <span class="crossword_submit_loading">
+                <svg class="anticon-loading" viewBox="0 0 1024 1024" focusable="false" data-icon="loading" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"></path></svg>
+                Loading
+              </span>
+              {/if}
+            </div>
 
             <svg class="crossword_subscribe_icon" xmlns="http://www.w3.org/2000/svg" width="101" height="178" viewBox="0 0 101 178" fill="none">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M84.3672 20.2232C83.8654 19.3658 83.8488 18.3209 84.1549 17.3752C86.6335 9.69678 75.7514 8.42302 72.3299 7.30917C68.7595 6.14569 70.4909 0.0332954 63.6727 0.00021073C56.8572 -0.0328739 55.9226 3.84079 55.5973 3.84079C55.1203 3.84079 58.3047 9.53687 58.3047 9.53687C58.3047 9.53687 61.6931 9.51757 63.6534 15.6713C65.6164 21.8278 65.0402 25.5499 70.4137 29.1285C75.7872 32.7072 88.7757 21.5356 88.7757 21.5356C86.2668 22.3296 84.9985 21.3067 84.3644 20.2232H84.3672Z" fill="#5C3420"/>
@@ -296,8 +314,6 @@
 
     flex-direction: column-reverse;
     position: relative;
-    /* width: 900px; */
-    /* height: 750px; */
     height: 100%;
     width: 100%;
     margin: 0 auto;
@@ -376,6 +392,7 @@
     background: #FD5000;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     color: #FFF;
+    position: relative;
 
     font-family: Gilroy;
     font-size: 24px;
@@ -386,15 +403,46 @@
     transition: all .3s;
     margin-top: 40px;
     user-select: none;
+    overflow: hidden;
   }
   .crossword_subscribe_submit:active {
     opacity: .6;
   }
+  .crossword_subscribe_submit.loading {
+    pointer-events: none;
+  }
+
   .crossword_subscribe_icon {
     position: absolute;
     right: -45px;
     height: 140px;
     top: 120px;
+  }
+
+  .anticon-loading {
+    animation: loadingCircle 1s infinite linear;
+  }
+  @keyframes loadingCircle {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .crossword_submit_loading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    justify-content: center;
+    background: #FD5000;
+    pointer-events: none;
+    z-index: 9;
+  }
+  .crossword_submit_loading svg {
+    margin-right: 4px;
   }
   /* crossword subscribe */
 </style>
