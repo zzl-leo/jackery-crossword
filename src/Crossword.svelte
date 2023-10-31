@@ -233,8 +233,29 @@
 
     {#if isComplete && !isRevealing && showCompleteMessage}
       <CompletedMessage showConfetti="{showConfetti}">
-        <slot name="message">
-          <h3>You solved it!</h3>
+        <slot name="message" slot="message">
+          <h3 class="title_gameend">Congratulations 🎉 You have successfully filled in the word:</h3>
+          <div class="coupon_gameend">
+            <svg viewBox="0 0 346 94.2">
+              <style type="text/css">.st5{font-weight: bold;}._middle {font-weight: 500; font-size:14px; fill:#fff; text-anchor: middle;}._m {dominant-baseline: middle;}._d {dominant-baseline: alphabetic;}</style>
+              <path fill="#FD5000" d="M214,0.2c0,4.4,3.6,8,8,8c4.4,0,8-3.6,8-8h108c0,4.4,3.6,8,8,8v78c-4.4,0-8,3.6-8,8l-108.1,0 c0-0.3,0.1-0.7,0.1-1c0-4.4-3.6-8-8-8c-4.4,0-8,3.6-8,8c0,0.3,0,0.7,0.1,1L8,94.2c0-4.4-3.6-8-8-8v-78c4.4,0,8-3.6,8-8H214z M222,67.2c-0.6,0-1,0.4-1,1v12c0,0.6,0.4,1,1,1c0.6,0,1-0.4,1-1v-12C223,67.7,222.6,67.2,222,67.2z M222,49.2c-0.6,0-1,0.4-1,1v12 c0,0.6,0.4,1,1,1c0.6,0,1-0.4,1-1v-12C223,49.7,222.6,49.2,222,49.2z M222,31.2c-0.6,0-1,0.4-1,1v12c0,0.6,0.4,1,1,1 c0.6,0,1-0.4,1-1v-12C223,31.7,222.6,31.2,222,31.2z M222,13.2c-0.6,0-1,0.4-1,1v12c0,0.6,0.4,1,1,1c0.6,0,1-0.4,1-1v-12 C223,13.7,222.6,13.2,222,13.2z"/>
+              <polygon fill="#FFC879" points="21.8,0 0,21.8 0,60.9 60.9,0" />
+              <text transform="matrix(0.7 -0.7 0.7 0.7 7 40)" fill="#946040" font-size="8" class="st5">COPY &amp; USE</text>
+              <text class="_middle _d" x="120" y="55">
+                <tspan class="st5" font-size="45">2%</tspan>
+              </text>
+              <text transform="matrix(1 0 0 1 284 76)" class="_middle _m">Code:YUASDEFF</text>
+              <circle fill="none" stroke-width="1px" stroke="#fff" cx="285" cy="38.2" r="24.5" />
+              <text transform="matrix(1 0 0 1 266 47)" fill="#fff" font-size="24" class="st5">GO</text>
+            </svg>
+          </div>
+        </slot>
+
+        <slot name="footer" slot="footer">
+          <div class="footer_gameend">
+            This code will be sent to the email you provided.<br>
+            Use the stackable coupon code to earn up to 52% off during the Black Friday Sale.
+          </div>
         </slot>
       </CompletedMessage>
     {/if}
@@ -242,7 +263,7 @@
     {#if !isComplete && !isRevealing && !isSubscribe}
       <!-- svelte-ignore a11y-click-events-have-key-events -->
       <CompletedMessage showConfetti="{false}" outClickClose="{false}" funcClose="{subscribeModalClose}">
-        <slot name="message">
+        <slot name="message" slot="message">
           <div class="crossword_subscribe_container">
             <h3>
               Subscribe to solve the crossword puzzle<br>
@@ -328,7 +349,7 @@
     margin-bottom: 0.5em;
   }
 
-  @media only screen and (max-width: 720px) {
+  @media only screen and (max-width: 1024px) {
     .play:not(.is-loaded) {
       flex-direction: column;
     }
@@ -444,5 +465,71 @@
   .crossword_submit_loading svg {
     margin-right: 4px;
   }
+
+  @media only screen and (max-width: 1024px) {
+    .crossword_subscribe_container {
+      padding: 30px 0;
+    }
+    .crossword_subscribe_container h3 {
+      font-size: 16px;
+    }
+    .crossword_subscribe_container h3 strong {
+      font-size: 28px;
+    }
+    .crossword_subscribe_container input {
+      border-radius: 30px;
+      height: 34px;
+      width: 85%;
+      margin: 10px auto 0;
+      padding: 0 12px;
+      font-size: 15px;
+    }
+    .crossword_subscribe_submit {
+      padding: 10px 16px;
+      border-radius: 36px;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    .crossword_submit_loading {
+      font-size: 14px;
+    }
+    .crossword_submit_loading svg {
+      margin-right: 4px;
+    }
+    .crossword_subscribe_icon {
+      position: absolute;
+      right: -45px;
+      height: 94px;
+      top: 90px;
+    }
+  }
   /* crossword subscribe */
+
+
+  /* game over modal */
+  .coupon_gameend {
+    margin: 40px 12px 20px;
+  }
+  .footer_gameend {
+    padding: 20px 60px;
+    color: #000;
+    text-align: center;
+    font-family: Gilroy;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .title_gameend {
+      font-size: 18px;
+      text-align: center;
+    }
+    .coupon_gameend {
+      margin: 20px 8px 10px;
+    }
+    .footer_gameend {
+      padding: 10px 20px;
+    }
+  }
+  /* game over modal */
 </style>

@@ -49,12 +49,10 @@
       params.el.querySelector(".modal-content-body").innerHTML = createSocialDom(true, params.number)
     }, 2000);
 
-    console.log("8888888")
-    console.log(share__type)
     window.open(
       _url,
       '单独窗口',
-      'height=300,width=600,top=30,left=20,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no'
+      'height=500,width=600,top=30,left=20,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no'
     );
   }
 

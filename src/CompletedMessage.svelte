@@ -25,12 +25,16 @@
   <div class="completed" transition:fade="{{ y: 20 }}">
     <div class="content">
       <div class="message">
-        <slot />
+        <slot name="message" />
       </div>
 
       {#if outClickClose}
-        <button on:click="{close}">View puzzle</button>
+        <button on:click="{close}">SHOP NOW</button>
       {/if}
+    </div>
+
+    <div class="footer">
+      <slot name="footer" />
     </div>
 
     {#if showConfetti}
@@ -77,18 +81,17 @@
     cursor: pointer;
     margin-left: 1em;
     font-size: 1em;
-    font-family: var(--font);
-    background-color: var(--accent-color);
-    border-radius: 4px;
-    color: var(--main-color);
-    padding: 0.75em;
+    background-color: rgb(253, 80, 0);
+    border-radius: 30px;
+    color: #fff;
+    padding: 12px 24px;
     border: none;
-    font-weight: 400;
-    transition: background-color 150ms;
+    font-weight: 600;
+    transition: all .3s;
   }
 
-  button:hover {
-    background-color: var(--secondary-highlight-color);
+  button:active {
+    opacity: 0.6;
   }
 
   .content {
@@ -108,5 +111,34 @@
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .completed {
+      top: min(50%, 20em);
+      left: 50%;
+      max-width: 100%;
+      width: 100%;
+      transform: translate(-50%, -36%);
+    }
+    .curtain {
+      right: -4.8%;
+      bottom: -180px;
+      left: -4.8%;
+      top: -20px;
+      background-color: var(--bg-color);
+      opacity: 0.9;
+      cursor: pointer;
+      z-index: 999;
+      pointer-events: none;
+    }
+    button {
+      cursor: pointer;
+      margin-left: 1em;
+      font-size: 15px;
+      border-radius: 30px;
+      color: #fff;
+      padding: 12px 24px;
+    }
   }
 </style>

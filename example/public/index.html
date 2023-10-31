@@ -223,11 +223,12 @@
 			.modal-container.header__changeLocal.modal .moadal-header {
 				padding-top: 60px;
 				height: 112px;
+				background: transparent;
 			}
 
 			.modal-container.modal .modal-content {
-				max-height: 100vh;
-				width: 100%;
+				max-height: 80vh;
+				width: 90%;
 				transform: translateY(0);
 				padding-bottom: 12px;
 				border: none;
@@ -235,8 +236,7 @@
 
 			.modal-container.modal .moadal-header {
 				padding: 0 12px;
-				height: 52px;
-				background: #fff;
+				height: 40px;
 			}
 
 			.modal-container.modal .modal-content-body {
@@ -282,6 +282,23 @@
 		.tips_modal__socials img, .tips_modal__socials svg {
 			width: 53px;
 			height: 53px;
+		}
+		@media (max-width: 1024px) {
+			.tips_modal__title {
+				margin: 0 auto 20px;
+				font-size: 20px;
+			}
+			.tips_modal__subtitle {
+				font-size: 16px;
+				margin-bottom: 28px;
+			}
+			.tips_modal__socials img, .tips_modal__socials svg {
+				width: 50px;
+				height: 50px;
+			}
+			.tips_modal__des {
+				font-size: 16px;
+			}
 		}
 		/* social share */
 	</style>
