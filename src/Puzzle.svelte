@@ -20,7 +20,7 @@
   export let showKeyboard;
   export let isLoaded;
   export let keyboardStyle;
-  console.log(cells)
+
   let element;
   let cellsHistoryIndex = 0;
   let cellsHistory = [];

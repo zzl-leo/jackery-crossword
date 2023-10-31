@@ -5,11 +5,18 @@
     const dispatch = createEventDispatcher();
 
   export let showConfetti = true;
+  export let outClickClose = true;
+  export let funcClose = false;
 
   let isOpen = true;
 
+  $: funcClose && (isOpen = false);
+
   function close() {
-    isOpen = false
+    if(outClickClose) {
+      isOpen = false
+    }
+
     dispatch('messageClose', false);
   }
 </script>
@@ -21,7 +28,9 @@
         <slot />
       </div>
 
-      <button on:click="{close}">View puzzle</button>
+      {#if outClickClose}
+        <button on:click="{close}">View puzzle</button>
+      {/if}
     </div>
 
     {#if showConfetti}
@@ -40,26 +49,28 @@
 <style>
   .completed {
     position: absolute;
-    top: min(50%, 15em);
+    top: min(50%, 20em);
     left: 50%;
-    background-color: var(--bg-color);
+    max-width: 80%;
+    width: 680px;
     transform: translate(-50%, -50%);
-    border-radius: 4px;
-    z-index: 100;
-    box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.2);
-    font-family: var(--font);
+    border-radius: 18px;
+    z-index: 1000;
+    box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(180deg, rgba(255, 201, 92, 0.70) 0%, rgba(255, 255, 255, 0.00) 155.03%);
+    backdrop-filter: blur(5.838780879974365px)
   }
 
   .curtain {
     position: absolute;
     top: 0;
-    right: -2px;
-    bottom: 0;
-    left: 0;
+    right: -100px;
+    bottom: -50px;
+    left: -100px;
     background-color: var(--bg-color);
     opacity: 0.9;
     cursor: pointer;
-    z-index: 1;
+    z-index: 999;
   }
 
   button {
@@ -85,7 +96,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2em;
+    padding: 12px;
   }
 
   .message {
