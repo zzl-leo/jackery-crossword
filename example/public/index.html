@@ -275,6 +275,62 @@
 				line-height: 1.11;
 			}
 		}
+
+
+		.container {
+			max-width: 1200px;
+			width: 85vw;
+			margin: 0 auto;
+		}
+		.how-to-play {
+			padding-top: 130px;
+			padding-bottom: 280px;
+		}
+		.how-to-play .title {
+			color: #000;
+			font-size: 32px;
+			font-weight: 700;
+			line-height: 1.45;
+			margin-bottom: 16px;
+		}
+		.how-to-play li {
+			color: #000;
+			font-size: 24px;
+			font-weight: 400;
+			line-height: 1.45;
+			word-break: keep-all;
+		}
+		ul, li {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.how-to-play-main {
+			background-image: url(https://cdn.shopify.com/s/files/1/0970/9262/files/c1495b36ce3b67e4c4a05acbcf689d20_9564ad92-0a5f-46df-8f52-d952a6366c2f.png?v=1698661935);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: bottom center;
+		}
+
+		@media only screen and (max-width: 1024px) {
+			.how-to-play {
+				padding-top: 180px;
+				margin-top: 130px;
+				padding-bottom: 20px;
+			}
+			.how-to-play .title {
+				font-size: 16px;
+				margin-bottom: 10px;
+			}
+			.how-to-play li {
+				font-size: 13px;
+			}
+			.how-to-play-main {
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: top center;
+			}
+		}
 	</style>
 </head>
 
@@ -291,17 +347,17 @@
 	</main>
 	<script type="text/javascript" src="build/bundle.js" defer></script>
 
-	<div class="how-to-play">
-		<div class="title">How to Play</div>
-		<ul>
-			<li>1. Use the hints to ..............</li>
-			<li>1. Use the hints to ..............</li>
-			<li>1. Use the hints to ..............</li>
-			<li>1. Use the hints to ..............</li>
-			<li>1. Use the hints to ..............</li>
-			<li>1. Use the hints to ..............</li>
-			<li>1. Use the hints to ..............</li>
-		</ul>
+	<div class="how-to-play-main">
+		<div class="how-to-play container">
+			<div class="title">How to Play</div>
+			<ul>
+				<li>1. Use the hints to guess the words corresponding to the numbers in the picture 
+				</li>
+				<li>2. Enter the letters of each word into the designated boxes. </li>
+				<li>3. You can click on the patterns in the image to get word-related hints. </li>
+				<li>4. If you enter a word incorrectly, the box will turn red, and you will need to delete the letters and reenter them.</li>
+			</ul>
+		</div>
 	</div>
 </body>
 

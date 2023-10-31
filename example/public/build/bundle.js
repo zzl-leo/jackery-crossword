@@ -3671,7 +3671,7 @@ var app = (function () {
     			this.h();
     		},
     		h: function hydrate() {
-    			attr_dev(div, "class", "keyboard svelte-1355mcf");
+    			attr_dev(div, "class", "keyboard keyboard-container svelte-1mjakjx");
     			add_location(div, file$8, 226, 2, 6975);
     		},
     		m: function mount(target, anchor) {
@@ -3766,9 +3766,9 @@ var app = (function () {
     		},
     		h: function hydrate() {
     			attr_dev(svg, "viewBox", svg_viewBox_value = "0 0 " + /*w*/ ctx[13] + " " + /*h*/ ctx[12]);
-    			attr_dev(svg, "class", "svelte-1355mcf");
+    			attr_dev(svg, "class", "svelte-1mjakjx");
     			add_location(svg, file$8, 200, 2, 6082);
-    			attr_dev(section, "class", "puzzle svelte-1355mcf");
+    			attr_dev(section, "class", "puzzle svelte-1mjakjx");
     			toggle_class(section, "stacked", /*stacked*/ ctx[5]);
     			toggle_class(section, "is-loaded", /*isLoaded*/ ctx[7]);
     			add_location(section, file$8, 195, 0, 5982);
@@ -6668,22 +6668,22 @@ var app = (function () {
     			this.h();
     		},
     		h: function hydrate() {
-    			attr_dev(button0, "class", "check__close svelte-1g42xp9");
+    			attr_dev(button0, "class", "check__close svelte-1mkm0fc");
     			add_location(button0, file$2, 32, 6, 711);
-    			attr_dev(p0, "class", "correct_text svelte-1g42xp9");
+    			attr_dev(p0, "class", "correct_text svelte-1mkm0fc");
     			add_location(p0, file$2, 34, 6, 788);
-    			attr_dev(p1, "class", "incorrect_text svelte-1g42xp9");
+    			attr_dev(p1, "class", "incorrect_text svelte-1mkm0fc");
     			add_location(p1, file$2, 35, 6, 852);
-    			attr_dev(div0, "class", "modal svelte-1g42xp9");
+    			attr_dev(div0, "class", "modal svelte-1mkm0fc");
     			add_location(div0, file$2, 31, 4, 684);
-    			attr_dev(div1, "class", "modal-background svelte-1g42xp9");
+    			attr_dev(div1, "class", "modal-background svelte-1mkm0fc");
     			add_location(div1, file$2, 30, 2, 648);
     			attr_dev(div2, "id", "modal-container");
-    			attr_dev(div2, "class", "svelte-1g42xp9");
+    			attr_dev(div2, "class", "svelte-1mkm0fc");
     			toggle_class(div2, "five", /*modalIn*/ ctx[2]);
     			toggle_class(div2, "out", /*out*/ ctx[3]);
     			add_location(div2, file$2, 25, 0, 558);
-    			attr_dev(button1, "class", "check__open svelte-1g42xp9");
+    			attr_dev(button1, "class", "check__open svelte-1mkm0fc");
     			add_location(button1, file$2, 40, 0, 944);
     		},
     		m: function mount(target, anchor) {

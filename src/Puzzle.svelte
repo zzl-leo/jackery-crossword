@@ -224,7 +224,7 @@
 </section>
 
 {#if keyboardVisible}
-  <div class="keyboard">
+  <div class="keyboard keyboard-container">
     <Keyboard
       layout="crossword"
       style="{keyboardStyle}"
@@ -284,6 +284,14 @@
       overflow: hidden;
       border-radius: 8px;
       padding: 70px 38px 14px 10px;
+    }
+
+
+    .keyboard-container {
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: calc(100% + 60px);
     }
   }
 </style>
