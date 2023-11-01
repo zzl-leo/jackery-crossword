@@ -9943,7 +9943,9 @@ var app = (function () {
     		x: 6,
     		y: 1,
     		uncheck: [
-    			1
+    			1,
+    			3,
+    			7
     		]
     	},
     	{
@@ -9953,6 +9955,7 @@ var app = (function () {
     		x: 8,
     		y: 0,
     		uncheck: [
+    			1,
     			5,
     			6,
     			7,
@@ -9970,6 +9973,8 @@ var app = (function () {
     		x: 3,
     		y: 2,
     		uncheck: [
+    			1,
+    			2,
     			5,
     			6,
     			7,
@@ -9986,6 +9991,10 @@ var app = (function () {
     		y: 1,
     		uncheck: [
     			1,
+    			2,
+    			3,
+    			4,
+    			5,
     			6
     		]
     	}
