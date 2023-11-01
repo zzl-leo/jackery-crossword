@@ -12,14 +12,22 @@
   export let isLoaded;
 
   $: focusedClueNumbers = focusedCell.clueNumbers || {};
-  // $: currentClue =
-  //   clues.find(
-  //     c =>
-  //       c.direction === focusedDirection &&
-  //       c.number === focusedClueNumbers[focusedDirection]
-  //   ) || {};
+  $: currentClue =
+    clues.find(
+      c =>
+        c.direction === focusedDirection &&
+        c.number === focusedClueNumbers[focusedDirection]
+    ) || {};
 
-  function onClueFocus({ direction, id }) {
+  function onClueFocus({ direction, id, number }) {
+    console.log(focusedCell)
+    console.log(focusedCellIndex)
+    console.log(focusedDirection)
+
+    // 避免当前cell被重置
+    if(focusedDirection === direction && focusedCell.clueNumbers[direction] === number) {
+      return
+    }
     focusedDirection = direction;
     focusedCellIndex = cellIndexMap[id] || 0;
   }

@@ -51,6 +51,8 @@
       focusedDirection,
       focusedCell,
     });
+
+    console.log(secondarilyFocusedCells)
   }
 
   function onCellUpdate(index, newValue, diff = 1, doReplaceFilledCells) {
@@ -113,8 +115,6 @@
       ];
       focusedCellIndexHistoryIndex = 0;
     }
-
-    console.log(cells[index])
   }
 
   function onFocusCellDiff(diff, doReplaceFilledCells = true) {

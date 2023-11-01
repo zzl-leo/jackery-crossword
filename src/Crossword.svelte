@@ -138,7 +138,7 @@
   function onCheck() {
     isChecking = true;
     const res = getCheckRes() || {error: '', correct: ''}
-    console.log("check resaults: 错误单词数：", res.error.length, "正确单词数：", res.correct.length)
+    console.info("check resaults: 错误单词数：", res.error.length, "正确单词数：", res.correct.length)
     error_num = res.error.length
     correct_num = res.correct.length
     checkModal = true
