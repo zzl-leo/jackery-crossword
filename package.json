@@ -1,18 +1,18 @@
 {
 	"name": "svelte-crossword",
-	"version": "0.3.4",
-	"description": "Crossword component for Svelte",
+	"version": "0.0.1",
+	"description": "Jackery Crossword component for Svelte",
 	"svelte": "src/Crossword.svelte",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/russellsamora/svelte-crossword.git"
+		"url": "git+https://github.com/zzl-leo/jackery-crossword"
 	},
 	"keywords": [
 		"svelte",
 		"crossword",
 		"puzzle"
 	],
-	"author": "russell samora",
+	"author": "leo",
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/russellsamora/svelte-crossword/issues"

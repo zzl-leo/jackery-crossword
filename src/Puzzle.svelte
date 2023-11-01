@@ -56,6 +56,13 @@
   }
 
   function onCellUpdate(index, newValue, diff = 1, doReplaceFilledCells) {
+    console.log("***onCellUpdate***")
+    console.log(index)
+    console.log(newValue)
+    console.log(diff)
+    console.log(doReplaceFilledCells)
+    console.log("***onCellUpdate***")
+
     doReplaceFilledCells = doReplaceFilledCells || !!cells[index].value;
 
     const dimension = focusedDirection == "across" ? "x" : "y";
@@ -124,10 +131,13 @@
     const currentCellIndex = sortedCellsInDirectionFiltered.findIndex(
       (d) => d.index == focusedCellIndex
     );
+
     const nextCellIndex = (
       sortedCellsInDirectionFiltered[currentCellIndex + diff] || {}
     ).index;
     const nextCell = cells[nextCellIndex];
+
+
     if (!nextCell) return;
     onFocusCell(nextCellIndex);
   }

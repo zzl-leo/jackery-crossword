@@ -3557,7 +3557,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (202:4) {#each cells as { x, y, value, answer, index, number, custom }}
+    // (212:4) {#each cells as { x, y, value, answer, index, number, custom }}
     function create_each_block$3(ctx) {
     	let cell;
     	let current;
@@ -3637,14 +3637,14 @@ var app = (function () {
     		block,
     		id: create_each_block$3.name,
     		type: "each",
-    		source: "(202:4) {#each cells as { x, y, value, answer, index, number, custom }}",
+    		source: "(212:4) {#each cells as { x, y, value, answer, index, number, custom }}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (226:0) {#if keyboardVisible}
+    // (236:0) {#if keyboardVisible}
     function create_if_block$2(ctx) {
     	let div;
     	let keyboard;
@@ -3675,7 +3675,7 @@ var app = (function () {
     		},
     		h: function hydrate() {
     			attr_dev(div, "class", "keyboard keyboard-container svelte-1mjakjx");
-    			add_location(div, file$8, 226, 2, 6966);
+    			add_location(div, file$8, 236, 2, 7155);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div, anchor);
@@ -3706,7 +3706,7 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(226:0) {#if keyboardVisible}",
+    		source: "(236:0) {#if keyboardVisible}",
     		ctx
     	});
 
@@ -3770,11 +3770,11 @@ var app = (function () {
     		h: function hydrate() {
     			attr_dev(svg, "viewBox", svg_viewBox_value = "0 0 " + /*w*/ ctx[13] + " " + /*h*/ ctx[12]);
     			attr_dev(svg, "class", "svelte-1mjakjx");
-    			add_location(svg, file$8, 200, 2, 6073);
+    			add_location(svg, file$8, 210, 2, 6262);
     			attr_dev(section, "class", "puzzle svelte-1mjakjx");
     			toggle_class(section, "stacked", /*stacked*/ ctx[5]);
     			toggle_class(section, "is-loaded", /*isLoaded*/ ctx[7]);
-    			add_location(section, file$8, 195, 0, 5973);
+    			add_location(section, file$8, 205, 0, 6162);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, section, anchor);
@@ -3946,6 +3946,12 @@ var app = (function () {
     	}
 
     	function onCellUpdate(index, newValue, diff = 1, doReplaceFilledCells) {
+    		console.log("***onCellUpdate***");
+    		console.log(index);
+    		console.log(newValue);
+    		console.log(diff);
+    		console.log(doReplaceFilledCells);
+    		console.log("***onCellUpdate***");
     		doReplaceFilledCells = doReplaceFilledCells || !!cells[index].value;
     		const dimension = focusedDirection == "across" ? "x" : "y";
     		const clueIndex = cells[index].clueNumbers[focusedDirection];
@@ -9922,6 +9928,7 @@ var app = (function () {
     			4,
     			5,
     			6,
+    			9,
     			14,
     			15,
     			16,

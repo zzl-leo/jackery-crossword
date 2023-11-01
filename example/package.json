@@ -1,6 +1,6 @@
 {
   "name": "svelte-crossword-example",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "scripts": {
     "dev": "rollup -c -w",
     "start": "sirv public",
