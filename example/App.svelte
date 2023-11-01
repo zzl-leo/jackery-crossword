@@ -2,6 +2,15 @@
   import Crossword from "../src/Crossword.svelte";
   import jac from './data/jackery.data.json'
 
+  window.fbAsyncInit = function () {
+		FB.init({
+			appId: '855600322936840',
+			xfbml: true,
+			version: 'v2.9'
+		});
+		FB.AppEvents.logPageView();
+	};
+
 </script>
 
 <article>

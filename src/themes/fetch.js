@@ -192,3 +192,7 @@ export const shopCR = CR;
 
 // email电话订阅
 export const footerPhoneSubs = (params) => post("/v1/notice/subscribe", { shopify_shop_id: shopId, ...params });
+
+// 创建组合券(需要加前缀/osconsumerapi)
+export const createCoupons = (params) => post("/osconsumerapi/v1/service/create-combinesWith-coupon", { shopShopifyId: shopId, ...params, settingId: 1000 });
+

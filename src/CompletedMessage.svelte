@@ -7,6 +7,7 @@
   export let showConfetti = true;
   export let outClickClose = true;
   export let funcClose = false;
+  export let btnShopNow = true;
 
   let isOpen = true;
 
@@ -29,7 +30,15 @@
       </div>
 
       {#if outClickClose}
-        <button on:click="{close}">SHOP NOW</button>
+        <button on:click="{close}">
+          {#if btnShopNow}
+            SHOP NOW
+          {/if}
+
+          {#if !btnShopNow}
+            CLOSE
+          {/if}
+        </button>
       {/if}
     </div>
 

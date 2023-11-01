@@ -5,7 +5,7 @@
   import Clues from "./Clues.svelte";
   import CompletedMessage from "./CompletedMessage.svelte";
   import CheckModal from "./CheckModal.svelte";
-  import {footerPhoneSubs} from "./themes/fetch.js"
+  import {footerPhoneSubs, createCoupons} from "./themes/fetch.js"
 
   import createClues from "./helpers/createClues.js";
   import createCells from "./helpers/createCells.js";
@@ -47,8 +47,11 @@
   let isSubscribe = window.localStorage.getItem("__jky_cwd") || false
   let subscribe_email = ''
   let subscribe_error = false
+  let subscribe_error_txt = ''
   let subscribeModalClose = false
   let subscribeLoading = false
+  let coupons_api_error = ""
+  let coupons_code = ""
 
   const onDataUpdate = () => {
     originalClues = createClues(data);
@@ -69,6 +72,8 @@
   $: cells, (revealed = !clues.filter((d) => !d.isCorrect).length);
   $: stacked = width < breakpoint;
   $: inlineStyles = themeStyles[theme];
+
+  $: isComplete, handleComplete();
 
   onMount(() => {
     isLoaded = true;
@@ -168,24 +173,43 @@
     return reg.test(str)
   }
 
-  function handleEmail(e) {
+  function handleEmail() {
     subscribe_error = !verifyEmail(subscribe_email)
+    if(subscribe_error) {
+      subscribe_error_txt = subscribe_email === "" ? "The phone field is required when email is not present." : "The email must be a valid email address."
+    }
+    return subscribe_error
   }
 
   function handSubscribe() {
-    subscribe_error = !verifyEmail(subscribe_email)
-    if(!subscribe_error) {
+    if(!handleEmail()) {
       subscribeLoading = true
       footerPhoneSubs({
         email: subscribe_email,
         tags: "CP_games"
-      }).then(res => {
-        console.log(res)
+      }).then(() => {
         subscribeModalClose = true
         subscribeLoading = false
         window.localStorage.setItem("__jky_cwd", '1')
+        window.localStorage.setItem("__jky_cwd_email", subscribe_email)
+      }).catch(e => {
+        subscribe_error_txt = e.message || 'Server Error'
+        subscribeLoading = false
       })
     }
+  }
+
+  function handleComplete() {
+    const email = window.localStorage.getItem("__jky_cwd_email") || false
+    if(!isComplete || !email) return
+    createCoupons({
+      email
+    }).then(res => {
+      coupons_code = res.data
+      console.log(res)
+    }).catch(e => {
+      coupons_api_error = e.message
+    })
   }
 </script>
 
@@ -232,30 +256,31 @@
     </div>
 
     {#if isComplete && !isRevealing && showCompleteMessage}
-      <CompletedMessage showConfetti="{showConfetti}">
+      <CompletedMessage showConfetti="{showConfetti && !coupons_api_error}" btnShopNow="{!coupons_api_error}">
         <slot name="message" slot="message">
+          {#if coupons_api_error === ""}
           <h3 class="title_gameend">Congratulations 🎉 You have successfully filled in the word:</h3>
           <div class="coupon_gameend">
-            <svg viewBox="0 0 346 94.2">
-              <style type="text/css">.st5{font-weight: bold;}._middle {font-weight: 500; font-size:14px; fill:#fff; text-anchor: middle;}._m {dominant-baseline: middle;}._d {dominant-baseline: alphabetic;}</style>
-              <path fill="#FD5000" d="M214,0.2c0,4.4,3.6,8,8,8c4.4,0,8-3.6,8-8h108c0,4.4,3.6,8,8,8v78c-4.4,0-8,3.6-8,8l-108.1,0 c0-0.3,0.1-0.7,0.1-1c0-4.4-3.6-8-8-8c-4.4,0-8,3.6-8,8c0,0.3,0,0.7,0.1,1L8,94.2c0-4.4-3.6-8-8-8v-78c4.4,0,8-3.6,8-8H214z M222,67.2c-0.6,0-1,0.4-1,1v12c0,0.6,0.4,1,1,1c0.6,0,1-0.4,1-1v-12C223,67.7,222.6,67.2,222,67.2z M222,49.2c-0.6,0-1,0.4-1,1v12 c0,0.6,0.4,1,1,1c0.6,0,1-0.4,1-1v-12C223,49.7,222.6,49.2,222,49.2z M222,31.2c-0.6,0-1,0.4-1,1v12c0,0.6,0.4,1,1,1 c0.6,0,1-0.4,1-1v-12C223,31.7,222.6,31.2,222,31.2z M222,13.2c-0.6,0-1,0.4-1,1v12c0,0.6,0.4,1,1,1c0.6,0,1-0.4,1-1v-12 C223,13.7,222.6,13.2,222,13.2z"/>
-              <polygon fill="#FFC879" points="21.8,0 0,21.8 0,60.9 60.9,0" />
-              <text transform="matrix(0.7 -0.7 0.7 0.7 7 40)" fill="#946040" font-size="8" class="st5">COPY &amp; USE</text>
-              <text class="_middle _d" x="120" y="55">
-                <tspan class="st5" font-size="45">2%</tspan>
-              </text>
-              <text transform="matrix(1 0 0 1 284 76)" class="_middle _m">Code:YUASDEFF</text>
-              <circle fill="none" stroke-width="1px" stroke="#fff" cx="285" cy="38.2" r="24.5" />
-              <text transform="matrix(1 0 0 1 266 47)" fill="#fff" font-size="24" class="st5">GO</text>
-            </svg>
+            <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/Group_552.png?v=1698821612" alt="coupon">
+            <div class="coupone_info">
+              <div class="coupone_info_title">CODE: {coupons_code}</div>
+              <div class="coupone_info_des">2% off stackable coupon</div>
+            </div>
           </div>
-        </slot>
+          {/if}
 
+          {#if coupons_api_error !== ""}
+            <h3 class="title_gameend">{coupons_api_error}</h3>
+          {/if}
+        </slot>
+        
         <slot name="footer" slot="footer">
+          {#if coupons_api_error === ""}
           <div class="footer_gameend">
             This code will be sent to the email you provided.<br>
             Use the stackable coupon code to earn up to 52% off during the Black Friday Sale.
           </div>
+          {/if}
         </slot>
       </CompletedMessage>
     {/if}
@@ -270,7 +295,7 @@
               Win up to <strong>52% </strong> off
             </h3>
             <input on:input="{handleEmail}" on:change="{handleEmail}" bind:value="{subscribe_email}" type="text" placeholder="Email">
-            <div class="error__tips" class:active="{subscribe_error}">请输入正确的邮箱</div>
+            <div class="error__tips" class:active="{subscribe_error}">{subscribe_error_txt}</div>
             <div 
               class="crossword_subscribe_submit" 
               class:loading="{subscribeLoading}"
@@ -509,6 +534,35 @@
   /* game over modal */
   .coupon_gameend {
     margin: 40px 12px 20px;
+    position: relative;
+  }
+  .coupon_gameend .coupone_info {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .coupon_gameend .coupone_info .coupone_info_title {
+    color: #754C08;
+    text-align: center;
+    font-family: Gilroy;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .coupon_gameend .coupone_info .coupone_info_des {
+    color: #000;
+    text-align: center;
+    font-family: Gilroy;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .coupon_gameend img {
+    height: 280px;
   }
   .footer_gameend {
     padding: 20px 60px;
@@ -517,6 +571,7 @@
     font-family: Gilroy;
     font-size: 14px;
     font-weight: 500;
+    display: flex;
   }
 
   @media only screen and (max-width: 1024px) {
@@ -526,9 +581,24 @@
     }
     .coupon_gameend {
       margin: 20px 8px 10px;
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     }
     .footer_gameend {
       padding: 10px 20px;
+    }
+    .coupon_gameend .coupone_info .coupone_info_title {
+      font-size: 16px;
+    }
+    .coupon_gameend .coupone_info .coupone_info_des {
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .coupon_gameend img {
+      height: unset;
+      width: 100%;
     }
   }
   /* game over modal */

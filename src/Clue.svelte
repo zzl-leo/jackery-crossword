@@ -2,6 +2,8 @@
   import scrollTo from "./helpers/scrollTo.js";
   import ZModle from './themes/modal.js'
   import tips from '../example/data/tips.json'
+  import checkMobile from "./helpers/checkMobile.js";
+
 
   export let number;
   export let direction;
@@ -27,7 +29,10 @@
     // const share__url = params.item.getAttribute("data-url")
     const share__type = params.item.getAttribute("data-type")
 
-
+    setTimeout(() => {
+      window.localStorage.setItem(`__jky_shared__${params.number}`, "true")
+      params.el.querySelector(".modal-content-body").innerHTML = createSocialDom(true, params.number)
+    }, 2000);
     let _url = ''
     switch (share__type) {
       case 'facebook':
@@ -39,15 +44,24 @@
       case 'whatsapp':
         _url = `https://api.whatsapp.com/send?text=${encodeURIComponent("jackery cccrossword game!")}&url=https://jackery-crossword.vercel.app`
         break;
+      case 'messenger':
+        if(checkMobile()) {
+          window.open(
+            `fb-messenger://share/?link=https://jackery-crossword.vercel.app/`,
+            '单独窗口',
+            'height=500,width=600,top=30,left=20,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no'
+          );
+        } else {
+          FB.ui({
+            method: 'send',
+            link: 'https://jackery-crossword.vercel.app/',
+            redirect_uri: 'https://jackery-crossword.vercel.app/'
+          });
+        }
+        return;
       default:
-        _url = 'https://jackery-crossword.vercel.app/'
-        break;
+        return
     }
-
-    setTimeout(() => {
-      window.localStorage.setItem(`__jky_shared__${params.number}`, "true")
-      params.el.querySelector(".modal-content-body").innerHTML = createSocialDom(true, params.number)
-    }, 2000);
 
     window.open(
       _url,
@@ -74,13 +88,13 @@
       </li>  
       <li>
         <div data-url="/" data-type="whatsapp">
-          <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/f01bcca8403a21bffff4e86dc1f517c0.png?v=1698731889" alt="whatsapp" />
+          <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/02.png?v=1698829939" alt="whatsapp" />
         </div>
       </li>  
 
       <li>
-        <div data-url="/" data-type="unknow">
-          <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/597349547b5720f8827002705db04931.jpg?v=1698731889" alt="message" />
+        <div data-url="/" data-type="messenger">
+          <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/01_6b2bfacf-c07b-46db-922e-d8653d1aaa33.png?v=1698829939" alt="message" />
         </div>
       </li>  
     </ul>`
@@ -175,7 +189,7 @@
   }
   .clue--down--3 {
     top: 800px;
-    right: 200px;
+    right: 160px;
     height: 180px;
     width: 212px;
     background-image: url("https://cdn.shopify.com/s/files/1/0970/9262/files/image.png?v=1698645099");
@@ -195,11 +209,11 @@
     height: 122px;
   }
   .clue--across--5 {
-    top: 330px;
-    right: -66px;
-    height: 168px;
-    width: 162px;
-    background-image: url("https://www.crosswords-for-kids.com/crosswords/farm-animals/donkey.png");
+    top: 380px;
+    right: -90px;
+    height: 92px;
+    width: 243px;
+    background-image: url("https://cdn.shopify.com/s/files/1/0970/9262/files/1_2_48b91050-cb67-456f-b336-4007dfd8ee2b.png?v=1698821609");
   }
 
   button {
@@ -258,8 +272,8 @@
     top: -25px;
   }
   .clue--across--5 button {
-    left: 20px;
-    top: 80px;
+    left: 30px;
+    top: 10px;
   }
 
   strong {
@@ -331,7 +345,7 @@
     }
     .clue--down--3 {
       top: 274px;
-      left: 190px;
+      left: 220px;
       height: 62px;
       width: 73px;
     }
@@ -349,9 +363,9 @@
     }
     .clue--across--5 {
       top: 130px;
-      right: -10px;
-      height: 42px;
-      width: 40px;
+      right: -34px;
+      height: 32px;
+      width: 84px;
     }
 
     button {
@@ -379,11 +393,11 @@
     }
     .clue--across--5 button {
       left: unset;
-      right: 15px;
+      right: 20px;
       top: 0;
     }
     .clue--across--6 button {
-      right: px;
+      /* right: px; */
       top: -10px;
     }
   }

@@ -122,7 +122,7 @@ body.modal-active {
   .modal-container.modal .moadal-header {
     padding: 0 12px;
     height: 52px;
-    background: #fff;
+    /* background: #fff; */
   }
   .modal-container.modal .modal-content-body {
     padding: 18px;
