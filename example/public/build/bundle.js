@@ -6375,14 +6375,17 @@ var app = (function () {
     // (25:0) {#if isOpen}
     function create_if_block$1(ctx) {
     	let div3;
+    	let svg;
+    	let path;
+    	let t0;
     	let div1;
     	let div0;
-    	let t0;
     	let t1;
-    	let div2;
     	let t2;
-    	let div3_transition;
+    	let div2;
     	let t3;
+    	let div3_transition;
+    	let t4;
     	let div4;
     	let div4_transition;
     	let current;
@@ -6398,59 +6401,95 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			div3 = element("div");
+    			svg = svg_element("svg");
+    			path = svg_element("path");
+    			t0 = space();
     			div1 = element("div");
     			div0 = element("div");
     			if (message_slot) message_slot.c();
-    			t0 = space();
-    			if (if_block0) if_block0.c();
     			t1 = space();
+    			if (if_block0) if_block0.c();
+    			t2 = space();
     			div2 = element("div");
     			if (footer_slot) footer_slot.c();
-    			t2 = space();
-    			if (if_block1) if_block1.c();
     			t3 = space();
+    			if (if_block1) if_block1.c();
+    			t4 = space();
     			div4 = element("div");
     			this.h();
     		},
     		l: function claim(nodes) {
     			div3 = claim_element(nodes, "DIV", { class: true });
     			var div3_nodes = children(div3);
+
+    			svg = claim_svg_element(div3_nodes, "svg", {
+    				class: true,
+    				"fill-rule": true,
+    				viewBox: true,
+    				focusable: true,
+    				"data-icon": true,
+    				width: true,
+    				height: true,
+    				fill: true,
+    				"aria-hidden": true
+    			});
+
+    			var svg_nodes = children(svg);
+    			path = claim_svg_element(svg_nodes, "path", { d: true });
+    			children(path).forEach(detach_dev);
+    			svg_nodes.forEach(detach_dev);
+    			t0 = claim_space(div3_nodes);
     			div1 = claim_element(div3_nodes, "DIV", { class: true });
     			var div1_nodes = children(div1);
     			div0 = claim_element(div1_nodes, "DIV", { class: true });
     			var div0_nodes = children(div0);
     			if (message_slot) message_slot.l(div0_nodes);
     			div0_nodes.forEach(detach_dev);
-    			t0 = claim_space(div1_nodes);
+    			t1 = claim_space(div1_nodes);
     			if (if_block0) if_block0.l(div1_nodes);
     			div1_nodes.forEach(detach_dev);
-    			t1 = claim_space(div3_nodes);
+    			t2 = claim_space(div3_nodes);
     			div2 = claim_element(div3_nodes, "DIV", { class: true });
     			var div2_nodes = children(div2);
     			if (footer_slot) footer_slot.l(div2_nodes);
     			div2_nodes.forEach(detach_dev);
-    			t2 = claim_space(div3_nodes);
+    			t3 = claim_space(div3_nodes);
     			if (if_block1) if_block1.l(div3_nodes);
     			div3_nodes.forEach(detach_dev);
-    			t3 = claim_space(nodes);
+    			t4 = claim_space(nodes);
     			div4 = claim_element(nodes, "DIV", { class: true });
     			children(div4).forEach(detach_dev);
     			this.h();
     		},
     		h: function hydrate() {
-    			attr_dev(div0, "class", "message svelte-1l41rvq");
-    			add_location(div0, file$3, 27, 6, 613);
-    			attr_dev(div1, "class", "content svelte-1l41rvq");
-    			add_location(div1, file$3, 26, 4, 585);
+    			attr_dev(path, "d", "M799.86 166.31c.02 0 .04.02.08.06l57.69 57.7c.04.03.05.05.06.08a.12.12 0 010 .06c0 .03-.02.05-.06.09L569.93 512l287.7 287.7c.04.04.05.06.06.09a.12.12 0 010 .07c0 .02-.02.04-.06.08l-57.7 57.69c-.03.04-.05.05-.07.06a.12.12 0 01-.07 0c-.03 0-.05-.02-.09-.06L512 569.93l-287.7 287.7c-.04.04-.06.05-.09.06a.12.12 0 01-.07 0c-.02 0-.04-.02-.08-.06l-57.69-57.7c-.04-.03-.05-.05-.06-.07a.12.12 0 010-.07c0-.03.02-.05.06-.09L454.07 512l-287.7-287.7c-.04-.04-.05-.06-.06-.09a.12.12 0 010-.07c0-.02.02-.04.06-.08l57.7-57.69c.03-.04.05-.05.07-.06a.12.12 0 01.07 0c.03 0 .05.02.09.06L512 454.07l287.7-287.7c.04-.04.06-.05.09-.06a.12.12 0 01.07 0z");
+    			add_location(path, file$3, 26, 191, 772);
+    			attr_dev(svg, "class", "close_icon svelte-1tc2o1u");
+    			attr_dev(svg, "fill-rule", "evenodd");
+    			attr_dev(svg, "viewBox", "64 64 896 896");
+    			attr_dev(svg, "focusable", "false");
+    			attr_dev(svg, "data-icon", "close");
+    			attr_dev(svg, "width", "1em");
+    			attr_dev(svg, "height", "1em");
+    			attr_dev(svg, "fill", "currentColor");
+    			attr_dev(svg, "aria-hidden", "true");
+    			add_location(svg, file$3, 26, 4, 585);
+    			attr_dev(div0, "class", "message svelte-1tc2o1u");
+    			add_location(div0, file$3, 29, 6, 1463);
+    			attr_dev(div1, "class", "content svelte-1tc2o1u");
+    			add_location(div1, file$3, 28, 4, 1435);
     			attr_dev(div2, "class", "footer");
-    			add_location(div2, file$3, 44, 4, 916);
-    			attr_dev(div3, "class", "completed svelte-1l41rvq");
+    			add_location(div2, file$3, 46, 4, 1766);
+    			attr_dev(div3, "class", "completed svelte-1tc2o1u");
     			add_location(div3, file$3, 25, 2, 527);
-    			attr_dev(div4, "class", "curtain svelte-1l41rvq");
-    			add_location(div4, file$3, 55, 2, 1144);
+    			attr_dev(div4, "class", "curtain svelte-1tc2o1u");
+    			add_location(div4, file$3, 57, 2, 1994);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div3, anchor);
+    			append_hydration_dev(div3, svg);
+    			append_hydration_dev(svg, path);
+    			append_hydration_dev(div3, t0);
     			append_hydration_dev(div3, div1);
     			append_hydration_dev(div1, div0);
 
@@ -6458,23 +6497,27 @@ var app = (function () {
     				message_slot.m(div0, null);
     			}
 
-    			append_hydration_dev(div1, t0);
+    			append_hydration_dev(div1, t1);
     			if (if_block0) if_block0.m(div1, null);
-    			append_hydration_dev(div3, t1);
+    			append_hydration_dev(div3, t2);
     			append_hydration_dev(div3, div2);
 
     			if (footer_slot) {
     				footer_slot.m(div2, null);
     			}
 
-    			append_hydration_dev(div3, t2);
+    			append_hydration_dev(div3, t3);
     			if (if_block1) if_block1.m(div3, null);
-    			insert_hydration_dev(target, t3, anchor);
+    			insert_hydration_dev(target, t4, anchor);
     			insert_hydration_dev(target, div4, anchor);
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(div4, "click", /*close*/ ctx[4], false, false, false, false);
+    				dispose = [
+    					listen_dev(svg, "click", /*close*/ ctx[4], false, false, false, false),
+    					listen_dev(div4, "click", /*close*/ ctx[4], false, false, false, false)
+    				];
+
     				mounted = true;
     			}
     		},
@@ -6580,11 +6623,11 @@ var app = (function () {
     			if (footer_slot) footer_slot.d(detaching);
     			if (if_block1) if_block1.d();
     			if (detaching && div3_transition) div3_transition.end();
-    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(t4);
     			if (detaching) detach_dev(div4);
     			if (detaching && div4_transition) div4_transition.end();
     			mounted = false;
-    			dispose();
+    			run_all(dispose);
     		}
     	};
 
@@ -6599,7 +6642,7 @@ var app = (function () {
     	return block;
     }
 
-    // (32:6) {#if outClickClose}
+    // (34:6) {#if outClickClose}
     function create_if_block_2$1(ctx) {
     	let button;
     	let t;
@@ -6626,8 +6669,8 @@ var app = (function () {
     			this.h();
     		},
     		h: function hydrate() {
-    			attr_dev(button, "class", "svelte-1l41rvq");
-    			add_location(button, file$3, 32, 8, 715);
+    			attr_dev(button, "class", "svelte-1tc2o1u");
+    			add_location(button, file$3, 34, 8, 1565);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, button, anchor);
@@ -6676,14 +6719,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$1.name,
     		type: "if",
-    		source: "(32:6) {#if outClickClose}",
+    		source: "(34:6) {#if outClickClose}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (34:10) {#if btnShopNow}
+    // (36:10) {#if btnShopNow}
     function create_if_block_4$1(ctx) {
     	let t;
 
@@ -6706,14 +6749,14 @@ var app = (function () {
     		block,
     		id: create_if_block_4$1.name,
     		type: "if",
-    		source: "(34:10) {#if btnShopNow}",
+    		source: "(36:10) {#if btnShopNow}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (38:10) {#if !btnShopNow}
+    // (40:10) {#if !btnShopNow}
     function create_if_block_3$1(ctx) {
     	let t;
 
@@ -6736,14 +6779,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3$1.name,
     		type: "if",
-    		source: "(38:10) {#if !btnShopNow}",
+    		source: "(40:10) {#if !btnShopNow}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (49:4) {#if showConfetti}
+    // (51:4) {#if showConfetti}
     function create_if_block_1$1(ctx) {
     	let div;
     	let confetti;
@@ -6764,8 +6807,8 @@ var app = (function () {
     			this.h();
     		},
     		h: function hydrate() {
-    			attr_dev(div, "class", "confetti svelte-1l41rvq");
-    			add_location(div, file$3, 49, 6, 1007);
+    			attr_dev(div, "class", "confetti svelte-1tc2o1u");
+    			add_location(div, file$3, 51, 6, 1857);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div, anchor);
@@ -6791,7 +6834,7 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(49:4) {#if showConfetti}",
+    		source: "(51:4) {#if showConfetti}",
     		ctx
     	});
 
@@ -7605,10 +7648,6 @@ var app = (function () {
     			if (dict[d.id] !== d.answer) {
             console.log("----------");
             console.log(data);
-            console.log(cells);
-            console.log(dict);
-            console.log(d);
-            console.log(d.id);
             console.log("----------");
 
     				failedCell = true;

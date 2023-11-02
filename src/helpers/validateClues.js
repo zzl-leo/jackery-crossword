@@ -39,10 +39,6 @@ export default function validateClues(data) {
 			if (dict[d.id] !== d.answer) {
         console.log("----------")
         console.log(data)
-        console.log(cells)
-        console.log(dict)
-        console.log(d)
-        console.log(d.id)
         console.log("----------")
 
 				failedCell = true;
