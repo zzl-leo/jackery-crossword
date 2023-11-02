@@ -1,7 +1,7 @@
 [{
-	"clue": "露营帐篷", "answer": "Camping", "direction": "across", "x": 11, "y": 4, "uncheck": [1]
+	"clue": "露营帐篷", "answer": "Camping", "direction": "across", "x": 11, "y": 4, "uncheck": [1, 2]
 },{
-	"clue": "NO.1", "answer": "GlobalLeadingBrand", "direction": "across", "x": 0, "y": 6, "uncheck": [1,2,3,4,5,6,9,14,15,16,17,18]
+	"clue": "NO.1", "answer": "GlobalLeadingBrand", "direction": "across", "x": 0, "y": 6, "uncheck": [1,2,3,4,5,6,9,13,14,15,16,17,18]
 },{
 	"clue": "电池护盾", "answer": "Chargeshield", "direction": "across", "x": 6, "y": 1, "uncheck": [1, 3, 7]
 },

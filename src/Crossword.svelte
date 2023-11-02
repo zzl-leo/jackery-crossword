@@ -256,7 +256,7 @@
     </div>
 
     {#if isComplete && !isRevealing && showCompleteMessage}
-      <CompletedMessage showConfetti="{showConfetti && !coupons_api_error}" btnShopNow="{!coupons_api_error}">
+      <CompletedMessage showCloseBtn="{true}" showConfetti="{showConfetti && !coupons_api_error}" btnShopNow="{!coupons_api_error}">
         <slot name="message" slot="message">
           {#if coupons_api_error === ""}
           <h3 class="title_gameend">Congratulations 🎉 You have successfully filled in the word:</h3>

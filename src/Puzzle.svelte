@@ -42,7 +42,7 @@
 
   onMount(() => {
     isMobile = checkMobile();
-    onFocusCell(0)
+    onFocusCell(14)
   });
 
   function updateSecondarilyFocusedCells() {
@@ -56,13 +56,6 @@
   }
 
   function onCellUpdate(index, newValue, diff = 1, doReplaceFilledCells) {
-    console.log("***onCellUpdate***")
-    console.log(index)
-    console.log(newValue)
-    console.log(diff)
-    console.log(doReplaceFilledCells)
-    console.log("***onCellUpdate***")
-
     doReplaceFilledCells = doReplaceFilledCells || !!cells[index].value;
 
     const dimension = focusedDirection == "across" ? "x" : "y";
@@ -90,6 +83,23 @@
     cellsHistoryIndex = 0;
     cells = newCells;
 
+
+
+    console.log("***onCellUpdate***")
+    console.log(index)
+    console.log(newValue)
+    console.log(diff)
+    console.log(doReplaceFilledCells)
+    console.log("***onCellUpdate***")
+    const activeCells = getSecondarilyFocusedCells({
+      cells,
+      focusedDirection,
+      focusedCell,
+    });
+    if(diff < 0 && index === activeCells[activeCells.length-1]) { // FIX:回退删除cell内容限制在当前word中
+      return
+    }
+
     if (isAtEndOfClue && diff > 0) {
       onFocusClueDiff(diff);
     } else {
@@ -110,7 +120,6 @@
       onFlipDirection();
     } else {
       focusedCellIndex = index;
-      
       if (!cells[focusedCellIndex].clueNumbers[focusedDirection]) {
         const newDirection = focusedDirection === "across" ? "down" : "across";
         focusedDirection = newDirection
@@ -136,7 +145,6 @@
       sortedCellsInDirectionFiltered[currentCellIndex + diff] || {}
     ).index;
     const nextCell = cells[nextCellIndex];
-
 
     if (!nextCell) return;
     onFocusCell(nextCellIndex);
@@ -191,9 +199,11 @@
   }
 
   function onKeydown({ detail }) {
+    console.log(detail)
     const diff = detail === "Backspace" ? -1 : 1;
     const value = detail === "Backspace" ? "" : detail;
-    onCellUpdate(focusedCellIndex, value, diff);
+    const doReplaceFilledCells = detail === "Backspace" ? true : false;
+    onCellUpdate(focusedCellIndex, value, diff, doReplaceFilledCells);
   }
 
   function onClick() {

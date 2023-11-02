@@ -30,7 +30,7 @@
   }
 
   function onKeydown(e) {
-    console.log(11111111111111111)
+    console.log(250250250)
 
 
     if (e.ctrlKey && e.key.toLowerCase() == "z") {
