@@ -90,6 +90,9 @@ const Modal = (function () {
                 // 恢复body滚动
                 document.body.classList.remove('overflow-hidden');
             }, 300);
+
+            // 设置focus cell
+            document.querySelector(".is-focused.is-secondarily-focused") && document.querySelector(".is-focused.is-secondarily-focused").focus()
         }
 
         // 按下 ESC 键关闭模态框
