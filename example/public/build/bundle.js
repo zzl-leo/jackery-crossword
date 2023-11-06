@@ -4784,34 +4784,34 @@ var app = (function () {
     			attr_dev(path0, "d", "M13.7995 25.7885C20.0747 25.7885 25.1615 20.7017 25.1615 14.4264C25.1615 8.15119 20.0747 3.0644 13.7995 3.0644C7.52423 3.0644 2.43745 8.15119 2.43745 14.4264C2.43745 20.7017 7.52423 25.7885 13.7995 25.7885ZM13.7995 28.0609C6.26986 28.0609 0.165039 21.9561 0.165039 14.4264C0.165039 6.89682 6.26986 0.791992 13.7995 0.791992C21.3291 0.791992 27.4339 6.89682 27.4339 14.4264C27.4339 21.9561 21.3291 28.0609 13.7995 28.0609Z");
     			attr_dev(path0, "fill", "#A48F86");
     			attr_dev(path0, "class", "svelte-1loojzy");
-    			add_location(path0, file$7, 175, 8, 7269);
+    			add_location(path0, file$7, 167, 8, 6947);
     			attr_dev(path1, "d", "M14.0384 6.97314C12.3796 6.97314 11.0616 7.45035 10.1072 8.42749C9.13004 9.3819 8.65283 10.6772 8.65283 12.336H11.0616C11.0616 11.3362 11.2661 10.5408 11.6751 9.99545C12.1296 9.35917 12.8795 9.04104 13.9021 9.04104C14.7202 9.04104 15.3564 9.26828 15.8109 9.72276C16.2427 10.1772 16.4699 10.7908 16.4699 11.5861C16.4699 12.177 16.2654 12.7223 15.8564 13.245L15.4701 13.6768C14.0612 14.9266 13.1976 15.8583 12.8795 16.4945C12.5841 17.0854 12.4478 17.8125 12.4478 18.6533V19.0396H14.8792V18.6533C14.8792 18.0852 14.9929 17.5853 15.2428 17.1308C15.4473 16.7218 15.7655 16.3355 16.1745 15.9719C17.2653 15.0402 17.9015 14.4494 18.1061 14.1994C18.6514 13.4722 18.9468 12.5405 18.9468 11.4271C18.9468 10.0636 18.4924 8.97286 17.6061 8.17752C16.6972 7.35945 15.5155 6.97314 14.0384 6.97314ZM13.6521 20.2667C13.1749 20.2667 12.7886 20.4031 12.4932 20.7212C12.1523 21.0166 11.9933 21.4029 11.9933 21.8801C11.9933 22.3346 12.1523 22.7209 12.4932 23.0391C12.7886 23.3572 13.1749 23.5163 13.6521 23.5163C14.1066 23.5163 14.5156 23.3572 14.8565 23.0618C15.1746 22.7437 15.3337 22.3574 15.3337 21.8801C15.3337 21.4029 15.1746 21.0166 14.8565 20.7212C14.5384 20.4031 14.1293 20.2667 13.6521 20.2667Z");
     			attr_dev(path1, "fill", "#A48F86");
     			attr_dev(path1, "class", "svelte-1loojzy");
-    			add_location(path1, file$7, 176, 8, 7726);
+    			add_location(path1, file$7, 168, 8, 7404);
     			attr_dev(g, "clip-path", "url(#clip0_1554_302)");
-    			add_location(g, file$7, 174, 6, 7224);
+    			add_location(g, file$7, 166, 6, 6902);
     			attr_dev(rect, "width", "27.2689");
     			attr_dev(rect, "height", "27.2689");
     			attr_dev(rect, "fill", "white");
     			attr_dev(rect, "transform", "translate(0.165039 0.791992)");
-    			add_location(rect, file$7, 180, 10, 9009);
+    			add_location(rect, file$7, 172, 10, 8687);
     			attr_dev(clipPath, "id", "clip0_1554_302");
-    			add_location(clipPath, file$7, 179, 8, 8968);
-    			add_location(defs, file$7, 178, 6, 8953);
+    			add_location(clipPath, file$7, 171, 8, 8646);
+    			add_location(defs, file$7, 170, 6, 8631);
     			attr_dev(svg, "class", "modal_icon svelte-1loojzy");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "viewBox", "0 0 28 29");
     			attr_dev(svg, "fill", "none");
-    			add_location(svg, file$7, 173, 4, 7126);
+    			add_location(svg, file$7, 165, 4, 6804);
     			attr_dev(button, "class", button_class_value = "clue " + /*custom*/ ctx[2] + " svelte-1loojzy");
     			toggle_class(button, "is-disable-highlight", /*isDisableHighlight*/ ctx[6]);
     			toggle_class(button, "is-number-focused", /*isNumberFocused*/ ctx[4]);
     			toggle_class(button, "is-direction-focused", /*isDirectionFocused*/ ctx[5]);
     			toggle_class(button, "is-filled", /*isFilled*/ ctx[3]);
-    			add_location(button, file$7, 162, 2, 6779);
+    			add_location(button, file$7, 154, 2, 6457);
     			attr_dev(li, "class", li_class_value = "" + (null_to_empty(/*clueClass*/ ctx[9]) + " svelte-1loojzy"));
-    			add_location(li, file$7, 161, 0, 6643);
+    			add_location(li, file$7, 153, 0, 6321);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, li, anchor);
@@ -4943,15 +4943,11 @@ var app = (function () {
     			case 'messenger':
     				const _shared_ms_url = `${window.location.origin}/pages/crossword?utm_source=messenger&utm_medium=organic&utm_campaign=bfcm2023&utm_term=game`;
     				handleCrosswordGTM({ position: answer, method: "Messenger" });
-    				if (checkMobile()) {
-    					window.open(`fb-messenger://share/?link=${encodeURIComponent(_shared_ms_url)}`, '单独窗口', 'height=500,width=600,top=30,left=20,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
-    				} else {
-    					FB.ui({
-    						method: 'send',
-    						link: encodeURIComponent(_shared_ms_url),
-    						redirect_uri: encodeURIComponent(_shared_ms_url)
-    					});
-    				}
+    				FB.ui({
+    					method: 'send',
+    					link: encodeURIComponent(_shared_ms_url),
+    					redirect_uri: encodeURIComponent(_shared_ms_url)
+    				});
     				return;
     			default:
     				return;

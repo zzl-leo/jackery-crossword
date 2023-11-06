@@ -66,19 +66,11 @@
           position: answer,
           method: "Messenger"
         })
-        if(checkMobile()) {
-          window.open(
-            `fb-messenger://share/?link=${encodeURIComponent(_shared_ms_url)}`,
-            '单独窗口',
-            'height=500,width=600,top=30,left=20,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no'
-          );
-        } else {
-          FB.ui({
-            method: 'send',
-            link: encodeURIComponent(_shared_ms_url),
-            redirect_uri: encodeURIComponent(_shared_ms_url)
-          });
-        }
+        FB.ui({
+          method: 'send',
+          link: encodeURIComponent(_shared_ms_url),
+          redirect_uri: encodeURIComponent(_shared_ms_url)
+        });
         return;
       default:
         return
