@@ -2,7 +2,7 @@
   import scrollTo from "./helpers/scrollTo.js";
   import ZModle from './themes/modal.js'
   import tips from '../example/data/tips.json'
-  import checkMobile from "./helpers/checkMobile.js";
+  // import checkMobile from "./helpers/checkMobile.js";
   import {handleCrosswordGTM} from "./helpers/gtm-event.js"
 
   export let number;
@@ -61,10 +61,11 @@
           position: answer,
           method: "Messenger"
         })
+ 
         FB.ui({
           method: 'send',
-          link: encodeURIComponent(_shared_ms_url),
-          redirect_uri: encodeURIComponent(_shared_ms_url)
+          link: _shared_ms_url,
+          redirect_uri: _shared_ms_url
         });
         return;
       default:
