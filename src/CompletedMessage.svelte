@@ -72,9 +72,9 @@
   </div>
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div
-    class="curtain"
+    class="curtain 888"
     transition:fade="{{ duration: 250 }}"
-    on:click="{close}"></div>
+    on:click="{(e) => {e.stopPropagation();e.preventDefault();close()}}"></div>
 {/if}
 
 <style>
@@ -88,8 +88,8 @@
     border-radius: 18px;
     z-index: 1000;
     box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(180deg, rgba(255, 201, 92, 0.70) 0%, rgba(255, 255, 255, 0.00) 155.03%);
-    backdrop-filter: blur(5.838780879974365px)
+    background: linear-gradient(180deg, rgba(255, 201, 92, 1) 0%, rgba(255, 255, 255, 1) 155.03%);
+    /* backdrop-filter: blur(5.838780879974365px) */
   }
 
   .curtain {
@@ -99,7 +99,7 @@
     bottom: -50px;
     left: -100px;
     background-color: var(--bg-color);
-    opacity: 0.9;
+    opacity: 0.96;
     cursor: pointer;
     z-index: 999;
   }
@@ -169,7 +169,6 @@
       opacity: 0.9;
       cursor: pointer;
       z-index: 999;
-      pointer-events: none;
     }
     button {
       cursor: pointer;

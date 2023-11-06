@@ -22,11 +22,6 @@
   $: clueClass = `clue--${direction}--${number}`;
 
   function handleShare(params) {
-    console.log("分享了。。。")
-    console.log("eeee")
-    console.log(tips[params.number - 1])
-    console.log(params)
-    console.log(params.item.getAttribute("data-url"))
     // const share__url = params.item.getAttribute("data-url")
     const share__type = params.item.getAttribute("data-type")
 
