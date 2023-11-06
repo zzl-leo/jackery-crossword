@@ -86,7 +86,7 @@
     width: 680px;
     transform: translate(-50%, -50%);
     border-radius: 18px;
-    z-index: 1000;
+    z-index: 998;
     box-shadow: 0 3px 6px 3px rgba(0, 0, 0, 0.2);
     background: linear-gradient(180deg, rgba(255, 201, 92, 1) 0%, rgba(255, 255, 255, 1) 155.03%);
     /* backdrop-filter: blur(5.838780879974365px) */
@@ -101,7 +101,7 @@
     background-color: var(--bg-color);
     opacity: 0.96;
     cursor: pointer;
-    z-index: 999;
+    z-index: 997;
   }
 
   button {
@@ -168,7 +168,7 @@
       background-color: var(--bg-color);
       opacity: 0.9;
       cursor: pointer;
-      z-index: 999;
+      z-index: 996;
     }
     button {
       cursor: pointer;

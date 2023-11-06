@@ -68,6 +68,7 @@
     height: fit-content;
     margin: 0;
     margin-right: 0;
+    overflow: visible;
 
 
 

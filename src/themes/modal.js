@@ -19,6 +19,7 @@ const Modal = (function () {
         const modal = document.createElement('div');
         modal.classList.add('modal');
         modal.classList.add('modal-container');
+        modal.classList.add('modal-container__crossword');
         const modalContent = document.createElement('div');
         modalContent.classList.add('modal-content');
 

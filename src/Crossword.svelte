@@ -263,7 +263,7 @@
       <CompletedMessage showCloseBtn="{true}" showConfetti="{showConfetti && !coupons_api_error}" btnShopNow="{!coupons_api_error}">
         <slot name="message" slot="message">
           {#if coupons_api_error === ""}
-          <h3 class="title_gameend">Congratulations 🎉 You have successfully filled in the word:</h3>
+          <div class="title_gameend">Congratulations 🎉 You have successfully filled in the word:</div>
           <div class="coupon_gameend">
             <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/Group_552.png?v=1698821612" alt="coupon">
             <div class="coupone_info">
@@ -274,7 +274,7 @@
           {/if}
 
           {#if coupons_api_error !== ""}
-            <h3 class="title_gameend">{coupons_api_error}</h3>
+            <div class="title_gameend">{coupons_api_error}</div>
           {/if}
         </slot>
         
@@ -578,17 +578,19 @@
     display: flex;
   }
 
+  .title_gameend {
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+  }
+
   @media only screen and (max-width: 1024px) {
-    .title_gameend {
-      font-size: 18px;
-      text-align: center;
-    }
     .coupon_gameend {
       margin: 20px 8px 10px;
       display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     .footer_gameend {
       padding: 10px 20px;

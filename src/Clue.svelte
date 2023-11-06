@@ -122,7 +122,7 @@
     ZModle.getInstance(createSocialDom(hasShared, number), {
       header: "",
       id: `cell_modal_${clueClass}`,
-      class: "",
+      class: "modal-container__crossword",
       cb: (el) => {
         if(hasShared) {
           el.querySelector(".modal-content-body").innerHTML = createSocialDom(hasShared, number)

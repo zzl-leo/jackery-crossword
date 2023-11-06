@@ -27,11 +27,11 @@
   section {
     max-width: 100%;
     margin: 0 0;
-
     background-image: url(https://cdn.shopify.com/s/files/1/0970/9262/files/Group_538.png?v=1698649582);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    overflow: visible;
   }
 
 @media screen and (max-width: 1024px) {
