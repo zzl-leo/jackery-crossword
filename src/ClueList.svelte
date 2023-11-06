@@ -15,6 +15,7 @@
     {#each clues as clue}
       <Clue
         clue="{clue.clue}"
+        answer="{clue.answer}"
         number="{clue.number}"
         direction="{direction}"
         custom="{clue.custom}"

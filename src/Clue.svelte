@@ -3,11 +3,12 @@
   import ZModle from './themes/modal.js'
   import tips from '../example/data/tips.json'
   import checkMobile from "./helpers/checkMobile.js";
-
+  import {handleCrosswordGTM} from "./helpers/gtm-event.js"
 
   export let number;
   export let direction;
   export let clue;
+  export let answer;
   export let custom;
   export let isFilled;
   export let isNumberFocused = false;
@@ -30,32 +31,52 @@
     const share__type = params.item.getAttribute("data-type")
 
     setTimeout(() => {
-      window.localStorage.setItem(`__jky_shared__${params.number}`, "true")
+      window.sessionStorage.setItem(`__jky_shared__${params.number}`, "true")
       params.el.querySelector(".modal-content-body").innerHTML = createSocialDom(true, params.number)
     }, 2000);
     let _url = ''
     switch (share__type) {
       case 'facebook':
-        _url = `https://www.facebook.com/sharer/sharer.php?u=https://jackery-crossword.vercel.app/`
+        const _shared_fb_url = `${window.location.origin}/pages/crossword?utm_source=facebook&utm_medium=organic&utm_campaign=bfcm2023&utm_term=game`
+        _url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(_shared_fb_url)}`
+        handleCrosswordGTM({
+          position: answer,
+          method: "Facebook"
+        })
         break;
       case 'twitter':
-        _url = `https://twitter.com/intent/tweet?url=https://jackery-crossword.vercel.app&text=${encodeURIComponent("jackery cccrossword game!")}`
+        const _shared_tw_url = `${window.location.origin}/pages/crossword?utm_source=twitter&utm_medium=organic&utm_campaign=bfcm2023&utm_term=game`
+        _url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(_shared_tw_url)}`
+        handleCrosswordGTM({
+          position: answer,
+          method: "Twitter"
+        })
         break;
       case 'whatsapp':
-        _url = `https://api.whatsapp.com/send?text=${encodeURIComponent("jackery cccrossword game!")}&url=https://jackery-crossword.vercel.app`
+        const _shared_ws_url = `${window.location.origin}/pages/crossword?utm_source=whatsapp&utm_medium=organic&utm_campaign=bfcm2023&utm_term=game`
+        _url = `https://api.whatsapp.com/send?url=${encodeURIComponent(_shared_ws_url)}`
+        handleCrosswordGTM({
+          position: answer,
+          method: "Whatsapp"
+        })
         break;
       case 'messenger':
+        const _shared_ms_url = `${window.location.origin}/pages/crossword?utm_source=messenger&utm_medium=organic&utm_campaign=bfcm2023&utm_term=game`
+        handleCrosswordGTM({
+          position: answer,
+          method: "Messenger"
+        })
         if(checkMobile()) {
           window.open(
-            `fb-messenger://share/?link=https://jackery-crossword.vercel.app/`,
+            `fb-messenger://share/?link=${encodeURIComponent(_shared_ms_url)}`,
             '单独窗口',
             'height=500,width=600,top=30,left=20,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no'
           );
         } else {
           FB.ui({
             method: 'send',
-            link: 'https://jackery-crossword.vercel.app/',
-            redirect_uri: 'https://jackery-crossword.vercel.app/'
+            link: encodeURIComponent(_shared_ms_url),
+            redirect_uri: encodeURIComponent(_shared_ms_url)
           });
         }
         return;
@@ -75,7 +96,7 @@
     <div class="tips_modal__subtitle">Click the button below to share this game on social media and get the answers.</div>
     <ul class="tips_modal__socials">
       <li>
-        <div data-url="/" data-type="facebook">
+        <div data-url="https://www.jackery.com/pages/crossword?utm_source=facebook&utm_medium=organic&utm_campaign=bfcm2023&utm_term=game" data-type="facebook">
                 <svg xmlns="http://www.w3.org/2000/svg" width="52" height="50" viewBox="0 0 52 50" fill="none">
           <path d="M48.44 0.755127H3.57691C2.49673 0.755127 1.6246 1.62064 1.6246 2.69478V47.3069C1.6246 48.3793 2.49673 49.2465 3.57517 49.2465H48.4383C49.5185 49.2465 50.3889 48.3793 50.3889 47.3069V2.69478C50.3889 1.62064 49.5185 0.755127 48.4383 0.755127H48.44ZM42.8068 14.9069H38.9126C35.8576 14.9069 35.2663 16.35 35.2663 18.4724V23.1448H42.5571L41.6052 30.462H35.2663V49.2465H27.6652V30.4655H21.3089V23.1431H27.6652V17.7482C27.6652 11.4879 31.5126 8.07582 37.1319 8.07582C39.8263 8.07582 42.1358 8.27409 42.8137 8.36547V14.9051H42.8068V14.9069Z" fill="#2477E1"/>
           </svg>
@@ -105,11 +126,7 @@
   }
 
   function handleOpenHelp(clue_name, number) {
-    console.log(tips)
-    const hasShared = window.localStorage.getItem(`__jky_shared__${number}`) || false
-
-    console.log(clue_name)
-    console.log(number)
+    const hasShared = window.sessionStorage.getItem(`__jky_shared__${number}`) || false
     const params = {
       number,
       clue_name
@@ -134,11 +151,15 @@
         }, 0);
       }
     })
+
+    handleCrosswordGTM({
+      position: answer
+    })
   }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<li class="{clueClass}" bind:this="{element}" use:scrollTo="{isFocused}" on:click="{onFocus}">
+<li class="{clueClass}" bind:this="{element}" use:scrollTo="{isFocused}" on:click="{() => {onFocus();handleOpenHelp(clue, number)}}">
   <button
     class="clue {custom}"
     class:is-disable-highlight="{isDisableHighlight}"

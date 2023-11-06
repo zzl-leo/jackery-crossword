@@ -1,6 +1,8 @@
 <script>
   import { fade } from "svelte/transition";
   import Confetti from "./Confetti.svelte";
+  import {handleGameGTM} from "./helpers/gtm-event.js"
+
   import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
 
@@ -21,6 +23,16 @@
 
     dispatch('messageClose', false);
   }
+  
+  function handleGTM_shopnow() {
+    handleGameGTM({
+      button_name: "SHOP NOW"
+    })
+
+    setTimeout(() => {
+      window.location.href = `${window.location.origin}/pages/black-friday`
+    }, 20);
+  }
 </script>
 
 {#if isOpen}
@@ -37,7 +49,8 @@
       {#if outClickClose}
         <button on:click="{close}">
           {#if btnShopNow}
-            SHOP NOW
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <span on:click="{handleGTM_shopnow}">SHOP NOW</span>
           {/if}
 
           {#if !btnShopNow}
@@ -102,6 +115,14 @@
     border: none;
     font-weight: 600;
     transition: all .3s;
+    position: relative;
+  }
+  button span {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    margin: -12px -24px;
+    padding: 12px 24px;
   }
 
   button:active {

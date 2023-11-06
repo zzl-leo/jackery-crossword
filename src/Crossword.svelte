@@ -12,6 +12,7 @@
   import validateClues from "./helpers/validateClues.js";
   import { fromPairs } from "./helpers/utils.js";
   import themeStyles from "./helpers/themeStyles.js";
+  import {handleGameGTM} from "./helpers/gtm-event.js"
 
   export let data = [];
   export let actions = ["clear", "reveal", "check"];
@@ -44,7 +45,7 @@
   let cells = [];
 
   // 订阅相关
-  let isSubscribe = window.localStorage.getItem("__jky_cwd") || false
+  let isSubscribe = window.sessionStorage.getItem("__jky_cwd") || false
   let subscribe_email = ''
   let subscribe_error = false
   let subscribe_error_txt = ''
@@ -190,8 +191,11 @@
       }).then(() => {
         subscribeModalClose = true
         subscribeLoading = false
-        window.localStorage.setItem("__jky_cwd", '1')
-        window.localStorage.setItem("__jky_cwd_email", subscribe_email)
+        window.sessionStorage.setItem("__jky_cwd", '1')
+        window.sessionStorage.setItem("__jky_cwd_email", subscribe_email)
+        handleGameGTM({
+          button_name: "PLAY NOW"
+        })
       }).catch(e => {
         subscribe_error_txt = e.message || 'Server Error'
         subscribeLoading = false
@@ -200,7 +204,7 @@
   }
 
   function handleComplete() {
-    const email = window.localStorage.getItem("__jky_cwd_email") || false
+    const email = window.sessionStorage.getItem("__jky_cwd_email") || false
     if(!isComplete || !email) return
     createCoupons({
       email
@@ -278,7 +282,7 @@
           {#if coupons_api_error === ""}
           <div class="footer_gameend">
             This code will be sent to the email you provided.<br>
-            Use the stackable coupon code to earn up to 52% off during the Black Friday Sale.
+            This code can be combined and stacked with any other offers, including sales and coupons.
           </div>
           {/if}
         </slot>
