@@ -47,6 +47,7 @@
   // 订阅相关
   let isSubscribe = window.sessionStorage.getItem("__jky_cwd") || false
   let subscribe_email = ''
+  let subscribe_agree = false
   let subscribe_error = false
   let subscribe_error_txt = ''
   let subscribeModalClose = false
@@ -175,15 +176,34 @@
   }
 
   function handleEmail() {
-    subscribe_error = !verifyEmail(subscribe_email)
-    if(subscribe_error) {
+    if(!verifyEmail(subscribe_email)) {
+      subscribe_error = true
       subscribe_error_txt = subscribe_email === "" ? "The phone field is required when email is not present." : "The email must be a valid email address."
+    } else {
+      subscribe_error = false
+      subscribe_error_txt = ''
+      handleAgree()
     }
-    return subscribe_error
+    return !verifyEmail(subscribe_email)
+  }
+  
+  function handleAgree() {
+    setTimeout(() => {
+      if(!subscribe_agree) {
+        subscribe_error = true
+        subscribe_error_txt = 'Please agree to the Terms of Service and Privacy policy.'
+      } else {
+        subscribe_error = false
+        subscribe_error_txt = ''
+        handleEmail()
+      }
+    }, 0);
   }
 
   function handSubscribe() {
-    if(!handleEmail()) {
+    handleEmail()
+    handleAgree()
+    if(!subscribe_error) {
       subscribeLoading = true
       footerPhoneSubs({
         email: subscribe_email,
@@ -210,7 +230,6 @@
       email
     }).then(res => {
       coupons_code = res.data
-      console.log(res)
     }).catch(e => {
       coupons_api_error = e.message
     })
@@ -268,7 +287,7 @@
             <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/Group_552.png?v=1698821612" alt="coupon">
             <div class="coupone_info">
               <div class="coupone_info_title">CODE: {coupons_code}</div>
-              <div class="coupone_info_des">2% off stackable coupon</div>
+              <div class="coupone_info_des">3% off stackable coupon</div>
             </div>
           </div>
           {/if}
@@ -299,7 +318,24 @@
               Win up to <strong>52% </strong> off
             </h3>
             <input on:input="{handleEmail}" on:change="{handleEmail}" bind:value="{subscribe_email}" type="text" placeholder="Email">
+
+            <label class="dji-checkbox">
+              <span class="dji-checkbox-input">
+                <input on:change="{handleAgree}" type="checkbox" class="dji-checkbox-original" bind:checked="{subscribe_agree}">
+                <span class="dji-checkbox-inner">
+                  <i style="font-size: 12px;" class="font-bold iconfont jackery-icon-checkbox"></i>
+                </span>
+              </span>
+
+              <span class="dji-checkbox-label">
+                <span class="dji-agree">
+                  <p>I agree to Jackery's <a href="/policies/terms-of-service" title="/policies/terms-of-service">Terms of Service</a> and <a href="/policies/privacy-policy" title="/policies/privacy-policy">Privacy Policy</a></p>
+                </span>
+              </span>
+            </label>
+
             <div class="error__tips" class:active="{subscribe_error}">{subscribe_error_txt}</div>
+
             <div 
               class="crossword_subscribe_submit" 
               class:loading="{subscribeLoading}"
@@ -584,6 +620,7 @@
     font-weight: bold;
   }
 
+  .dji-checkbox {width: 80%;}
   @media only screen and (max-width: 1024px) {
     .coupon_gameend {
       margin: 20px 8px 10px;
@@ -602,10 +639,14 @@
       font-size: 12px;
       font-weight: 500;
     }
+    .coupone_info {
+      padding-left: 30px;
+    }
     .coupon_gameend img {
       height: unset;
       width: 100%;
     }
+    .dji-checkbox {margin-top: 6px!important;}
   }
   /* game over modal */
 </style>

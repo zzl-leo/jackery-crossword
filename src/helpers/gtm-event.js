@@ -10,7 +10,7 @@ export const handleCrosswordGTM = (params) => {
                 }
             })
         } catch (error) {
-            console.error(error)
+            console.log(error)
         }
 }
 
@@ -26,6 +26,6 @@ export const handleGameGTM = (params) => {
                 }
             })
         } catch (error) {
-            console.error(error)
+            console.log(error)
         }
 }

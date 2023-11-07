@@ -87,9 +87,6 @@
 
     console.log("***onCellUpdate***")
     console.log(index)
-    console.log(newValue)
-    console.log(diff)
-    console.log(doReplaceFilledCells)
     console.log("***onCellUpdate***")
     const activeCells = getSecondarilyFocusedCells({
       cells,
@@ -153,13 +150,12 @@
   function onFocusClueDiff(diff = 1) {
     const currentNumber = focusedCell.clueNumbers[focusedDirection];
     let nextCluesInDirection = clues.filter(
-      (clue) =>
-        !clue.isFilled &&
-        (diff > 0
-          ? clue.number > currentNumber
-          : clue.number < currentNumber) &&
-        clue.direction == focusedDirection
+      (clue) => {
+        return !clue.isFilled &&
+        (diff > 0 ? clue.number > currentNumber : clue.number < currentNumber) && clue.direction == focusedDirection
+      }
     );
+
     if (diff < 0) {
       nextCluesInDirection = nextCluesInDirection.reverse();
     }
@@ -171,7 +167,7 @@
     const nextFocusedCell =
       sortedCellsInDirection.find(
         (cell) =>
-          !cell.value && cell.clueNumbers[focusedDirection] == nextClue.number
+          !cell.value && (cell.clueNumbers[focusedDirection] == nextClue.number)
       ) || {};
     focusedCellIndex = nextFocusedCell.index || 0;
   }
@@ -193,13 +189,21 @@
   }
 
   function onFlipDirection() {
-    const newDirection = focusedDirection === "across" ? "down" : "across";
+    console.log("focusedDirection--")
+    console.log(focusedDirection)
+    // FIX: 无法全部自动填充问题
+    // let newDirection = focusedDirection === "across" ? "down" : "across";
+    let newDirection
+    if(focusedDirection === "across") {
+      newDirection = "down"
+    } else if(focusedDirection === "down") {
+      focusedDirection = "across"
+    }
     const hasClueInNewDirection = !!focusedCell["clueNumbers"][newDirection];
     if (hasClueInNewDirection) focusedDirection = newDirection;
   }
 
   function onKeydown({ detail }) {
-    console.log(detail)
     const diff = detail === "Backspace" ? -1 : 1;
     const value = detail === "Backspace" ? "" : detail;
     const doReplaceFilledCells = detail === "Backspace" ? true : false;

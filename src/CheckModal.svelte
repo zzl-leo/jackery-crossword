@@ -49,7 +49,7 @@
     top: 0;
     left: 0;
     transform: scale(0);
-    z-index: 99;
+    z-index: 998;
   }
   #modal-container.five {
     transform: scale(1);
@@ -60,6 +60,7 @@
   #modal-container.five .modal-background .modal {
     transform: translateX(-1500px);
     animation: bounce-in-left 1.1s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+    visibility: visible!important;;
   }
   #modal-container.five.out {
     animation: quickScaleDown 0s 1.1s linear forwards;
@@ -331,6 +332,6 @@
 
   .check__open, .check__close {display: none;}
   p.correct_text, p.incorrect_text {font-weight: bold;text-align: left;}
-  p.correct_text {color: skyblue;}
+  p.correct_text {color: #D3C0B6;}
   p.incorrect_text {color: rgb(231, 64, 64);}
 </style>

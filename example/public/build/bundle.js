@@ -3568,7 +3568,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (222:4) {#each cells as { x, y, value, answer, index, number, custom }}
+    // (226:4) {#each cells as { x, y, value, answer, index, number, custom }}
     function create_each_block$3(ctx) {
     	let cell;
     	let current;
@@ -3648,14 +3648,14 @@ var app = (function () {
     		block,
     		id: create_each_block$3.name,
     		type: "each",
-    		source: "(222:4) {#each cells as { x, y, value, answer, index, number, custom }}",
+    		source: "(226:4) {#each cells as { x, y, value, answer, index, number, custom }}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (246:0) {#if keyboardVisible}
+    // (250:0) {#if keyboardVisible}
     function create_if_block$2(ctx) {
     	let div;
     	let keyboard;
@@ -3686,7 +3686,7 @@ var app = (function () {
     		},
     		h: function hydrate() {
     			attr_dev(div, "class", "keyboard keyboard-container svelte-1mjakjx");
-    			add_location(div, file$8, 246, 2, 7498);
+    			add_location(div, file$8, 250, 2, 7650);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div, anchor);
@@ -3717,7 +3717,7 @@ var app = (function () {
     		block,
     		id: create_if_block$2.name,
     		type: "if",
-    		source: "(246:0) {#if keyboardVisible}",
+    		source: "(250:0) {#if keyboardVisible}",
     		ctx
     	});
 
@@ -3781,11 +3781,11 @@ var app = (function () {
     		h: function hydrate() {
     			attr_dev(svg, "viewBox", svg_viewBox_value = "0 0 " + /*w*/ ctx[13] + " " + /*h*/ ctx[12]);
     			attr_dev(svg, "class", "svelte-1mjakjx");
-    			add_location(svg, file$8, 220, 2, 6605);
+    			add_location(svg, file$8, 224, 2, 6757);
     			attr_dev(section, "class", "puzzle svelte-1mjakjx");
     			toggle_class(section, "stacked", /*stacked*/ ctx[5]);
     			toggle_class(section, "is-loaded", /*isLoaded*/ ctx[7]);
-    			add_location(section, file$8, 215, 0, 6505);
+    			add_location(section, file$8, 219, 0, 6657);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, section, anchor);
@@ -3978,9 +3978,6 @@ var app = (function () {
     		$$invalidate(0, cells = newCells);
     		console.log("***onCellUpdate***");
     		console.log(index);
-    		console.log(newValue);
-    		console.log(diff);
-    		console.log(doReplaceFilledCells);
     		console.log("***onCellUpdate***");
     		const activeCells = getSecondarilyFocusedCells({ cells, focusedDirection, focusedCell });
 
@@ -4031,9 +4028,11 @@ var app = (function () {
     	function onFocusClueDiff(diff = 1) {
     		const currentNumber = focusedCell.clueNumbers[focusedDirection];
 
-    		let nextCluesInDirection = clues.filter(clue => !clue.isFilled && (diff > 0
-    		? clue.number > currentNumber
-    		: clue.number < currentNumber) && clue.direction == focusedDirection);
+    		let nextCluesInDirection = clues.filter(clue => {
+    			return !clue.isFilled && (diff > 0
+    			? clue.number > currentNumber
+    			: clue.number < currentNumber) && clue.direction == focusedDirection;
+    		});
 
     		if (diff < 0) {
     			nextCluesInDirection = nextCluesInDirection.reverse();
@@ -4061,13 +4060,24 @@ var app = (function () {
     	}
 
     	function onFlipDirection() {
-    		const newDirection = focusedDirection === "across" ? "down" : "across";
+    		console.log("focusedDirection--");
+    		console.log(focusedDirection);
+
+    		// FIX: 无法全部自动填充问题
+    		// let newDirection = focusedDirection === "across" ? "down" : "across";
+    		let newDirection;
+
+    		if (focusedDirection === "across") {
+    			newDirection = "down";
+    		} else if (focusedDirection === "down") {
+    			$$invalidate(22, focusedDirection = "across");
+    		}
+
     		const hasClueInNewDirection = !!focusedCell["clueNumbers"][newDirection];
     		if (hasClueInNewDirection) $$invalidate(22, focusedDirection = newDirection);
     	}
 
     	function onKeydown({ detail }) {
-    		console.log(detail);
     		const diff = detail === "Backspace" ? -1 : 1;
     		const value = detail === "Backspace" ? "" : detail;
     		const doReplaceFilledCells = detail === "Backspace" ? true : false;
@@ -4690,7 +4700,7 @@ var app = (function () {
                     }
                 });
             } catch (error) {
-                console.error(error);
+                console.log(error);
             }
     };
 
@@ -4706,7 +4716,7 @@ var app = (function () {
                     }
                 });
             } catch (error) {
-                console.error(error);
+                console.log(error);
             }
     };
 
@@ -7278,22 +7288,22 @@ var app = (function () {
     			this.h();
     		},
     		h: function hydrate() {
-    			attr_dev(button0, "class", "check__close svelte-1mkm0fc");
+    			attr_dev(button0, "class", "check__close svelte-1oqir1l");
     			add_location(button0, file$2, 32, 6, 711);
-    			attr_dev(p0, "class", "correct_text svelte-1mkm0fc");
+    			attr_dev(p0, "class", "correct_text svelte-1oqir1l");
     			add_location(p0, file$2, 34, 6, 788);
-    			attr_dev(p1, "class", "incorrect_text svelte-1mkm0fc");
+    			attr_dev(p1, "class", "incorrect_text svelte-1oqir1l");
     			add_location(p1, file$2, 35, 6, 852);
-    			attr_dev(div0, "class", "modal svelte-1mkm0fc");
+    			attr_dev(div0, "class", "modal svelte-1oqir1l");
     			add_location(div0, file$2, 31, 4, 684);
-    			attr_dev(div1, "class", "modal-background svelte-1mkm0fc");
+    			attr_dev(div1, "class", "modal-background svelte-1oqir1l");
     			add_location(div1, file$2, 30, 2, 648);
     			attr_dev(div2, "id", "modal-container");
-    			attr_dev(div2, "class", "svelte-1mkm0fc");
+    			attr_dev(div2, "class", "svelte-1oqir1l");
     			toggle_class(div2, "five", /*modalIn*/ ctx[2]);
     			toggle_class(div2, "out", /*out*/ ctx[3]);
     			add_location(div2, file$2, 25, 0, 558);
-    			attr_dev(button1, "class", "check__open svelte-1mkm0fc");
+    			attr_dev(button1, "class", "check__open svelte-1oqir1l");
     			add_location(button1, file$2, 40, 0, 944);
     		},
     		m: function mount(target, anchor) {
@@ -7834,7 +7844,7 @@ var app = (function () {
     var classic = {
     	"font": "sans-serif",
     	"primary-highlight-color": "#ffda00",
-    	"secondary-highlight-color": "#a7d8ff",
+    	"secondary-highlight-color": "#D3C0B6",
     	"main-color": "#1a1a1a",
     	"bg-color": "#fff",
     	"accent-color": "#efefef",
@@ -7889,12 +7899,12 @@ var app = (function () {
     const get_toolbar_slot_changes = dirty => ({});
 
     const get_toolbar_slot_context = ctx => ({
-    	onClear: /*onClear*/ ctx[32],
-    	onReveal: /*onReveal*/ ctx[33],
-    	onCheck: /*onCheck*/ ctx[34]
+    	onClear: /*onClear*/ ctx[33],
+    	onReveal: /*onReveal*/ ctx[34],
+    	onCheck: /*onCheck*/ ctx[35]
     });
 
-    // (220:0) {#if validated}
+    // (239:0) {#if validated}
     function create_if_block(ctx) {
     	let article;
     	let t0;
@@ -7912,27 +7922,27 @@ var app = (function () {
     	let t3;
     	let article_resize_listener;
     	let current;
-    	const toolbar_slot_template = /*#slots*/ ctx[44].toolbar;
-    	const toolbar_slot = create_slot(toolbar_slot_template, ctx, /*$$scope*/ ctx[53], get_toolbar_slot_context);
+    	const toolbar_slot_template = /*#slots*/ ctx[46].toolbar;
+    	const toolbar_slot = create_slot(toolbar_slot_template, ctx, /*$$scope*/ ctx[56], get_toolbar_slot_context);
     	const toolbar_slot_or_fallback = toolbar_slot || fallback_block_3(ctx);
 
     	function clues_1_focusedCellIndex_binding(value) {
-    		/*clues_1_focusedCellIndex_binding*/ ctx[45](value);
+    		/*clues_1_focusedCellIndex_binding*/ ctx[47](value);
     	}
 
     	function clues_1_focusedCell_binding(value) {
-    		/*clues_1_focusedCell_binding*/ ctx[46](value);
+    		/*clues_1_focusedCell_binding*/ ctx[48](value);
     	}
 
     	function clues_1_focusedDirection_binding(value) {
-    		/*clues_1_focusedDirection_binding*/ ctx[47](value);
+    		/*clues_1_focusedDirection_binding*/ ctx[49](value);
     	}
 
     	let clues_1_props = {
     		clues: /*clues*/ ctx[8],
-    		cellIndexMap: /*cellIndexMap*/ ctx[29],
-    		stacked: /*stacked*/ ctx[27],
-    		isDisableHighlight: /*isDisableHighlight*/ ctx[28],
+    		cellIndexMap: /*cellIndexMap*/ ctx[30],
+    		stacked: /*stacked*/ ctx[28],
+    		isDisableHighlight: /*isDisableHighlight*/ ctx[29],
     		isLoaded: /*isLoaded*/ ctx[16]
     	};
 
@@ -7940,8 +7950,8 @@ var app = (function () {
     		clues_1_props.focusedCellIndex = /*focusedCellIndex*/ ctx[7];
     	}
 
-    	if (/*focusedCell*/ ctx[30] !== void 0) {
-    		clues_1_props.focusedCell = /*focusedCell*/ ctx[30];
+    	if (/*focusedCell*/ ctx[31] !== void 0) {
+    		clues_1_props.focusedCell = /*focusedCell*/ ctx[31];
     	}
 
     	if (/*focusedDirection*/ ctx[14] !== void 0) {
@@ -7954,26 +7964,26 @@ var app = (function () {
     	binding_callbacks.push(() => bind(clues_1, 'focusedDirection', clues_1_focusedDirection_binding));
 
     	function puzzle_cells_binding(value) {
-    		/*puzzle_cells_binding*/ ctx[48](value);
+    		/*puzzle_cells_binding*/ ctx[50](value);
     	}
 
     	function puzzle_focusedCellIndex_binding(value) {
-    		/*puzzle_focusedCellIndex_binding*/ ctx[49](value);
+    		/*puzzle_focusedCellIndex_binding*/ ctx[51](value);
     	}
 
     	function puzzle_focusedDirection_binding(value) {
-    		/*puzzle_focusedDirection_binding*/ ctx[50](value);
+    		/*puzzle_focusedDirection_binding*/ ctx[52](value);
     	}
 
     	let puzzle_props = {
     		clues: /*clues*/ ctx[8],
-    		focusedCell: /*focusedCell*/ ctx[30],
+    		focusedCell: /*focusedCell*/ ctx[31],
     		isRevealing: /*isRevealing*/ ctx[15],
     		isChecking: /*isChecking*/ ctx[17],
-    		isDisableHighlight: /*isDisableHighlight*/ ctx[28],
+    		isDisableHighlight: /*isDisableHighlight*/ ctx[29],
     		revealDuration: /*revealDuration*/ ctx[1],
     		showKeyboard: /*showKeyboard*/ ctx[4],
-    		stacked: /*stacked*/ ctx[27],
+    		stacked: /*stacked*/ ctx[28],
     		isLoaded: /*isLoaded*/ ctx[16],
     		keyboardStyle: /*keyboardStyle*/ ctx[5]
     	};
@@ -7995,7 +8005,7 @@ var app = (function () {
     	binding_callbacks.push(() => bind(puzzle, 'focusedCellIndex', puzzle_focusedCellIndex_binding));
     	binding_callbacks.push(() => bind(puzzle, 'focusedDirection', puzzle_focusedDirection_binding));
     	let if_block0 = /*isComplete*/ ctx[10] && !/*isRevealing*/ ctx[15] && /*showCompleteMessage*/ ctx[2] && create_if_block_3(ctx);
-    	let if_block1 = !/*isComplete*/ ctx[10] && !/*isRevealing*/ ctx[15] && !/*isSubscribe*/ ctx[31] && create_if_block_1(ctx);
+    	let if_block1 = !/*isComplete*/ ctx[10] && !/*isRevealing*/ ctx[15] && !/*isSubscribe*/ ctx[32] && create_if_block_1(ctx);
 
     	const block = {
     		c: function create() {
@@ -8031,14 +8041,14 @@ var app = (function () {
     			this.h();
     		},
     		h: function hydrate() {
-    			attr_dev(div, "class", "play svelte-622vlv");
-    			toggle_class(div, "stacked", /*stacked*/ ctx[27]);
+    			attr_dev(div, "class", "play svelte-wf6ihe");
+    			toggle_class(div, "stacked", /*stacked*/ ctx[28]);
     			toggle_class(div, "is-loaded", /*isLoaded*/ ctx[16]);
-    			add_location(div, file$1, 234, 4, 6470);
-    			attr_dev(article, "class", "svelte-crossword svelte-622vlv");
-    			attr_dev(article, "style", /*inlineStyles*/ ctx[26]);
-    			add_render_callback(() => /*article_elementresize_handler*/ ctx[52].call(article));
-    			add_location(article, file$1, 220, 2, 6071);
+    			add_location(div, file$1, 253, 4, 6941);
+    			attr_dev(article, "class", "svelte-crossword svelte-wf6ihe");
+    			attr_dev(article, "style", /*inlineStyles*/ ctx[27]);
+    			add_render_callback(() => /*article_elementresize_handler*/ ctx[55].call(article));
+    			add_location(article, file$1, 239, 2, 6542);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, article, anchor);
@@ -8056,20 +8066,20 @@ var app = (function () {
     			if (if_block0) if_block0.m(article, null);
     			append_hydration_dev(article, t3);
     			if (if_block1) if_block1.m(article, null);
-    			article_resize_listener = add_iframe_resize_listener(article, /*article_elementresize_handler*/ ctx[52].bind(article));
+    			article_resize_listener = add_iframe_resize_listener(article, /*article_elementresize_handler*/ ctx[55].bind(article));
     			current = true;
     		},
     		p: function update(ctx, dirty) {
     			if (toolbar_slot) {
-    				if (toolbar_slot.p && (!current || dirty[1] & /*$$scope*/ 4194304)) {
+    				if (toolbar_slot.p && (!current || dirty[1] & /*$$scope*/ 33554432)) {
     					update_slot_base(
     						toolbar_slot,
     						toolbar_slot_template,
     						ctx,
-    						/*$$scope*/ ctx[53],
+    						/*$$scope*/ ctx[56],
     						!current
-    						? get_all_dirty_from_scope(/*$$scope*/ ctx[53])
-    						: get_slot_changes(toolbar_slot_template, /*$$scope*/ ctx[53], dirty, get_toolbar_slot_changes),
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[56])
+    						: get_slot_changes(toolbar_slot_template, /*$$scope*/ ctx[56], dirty, get_toolbar_slot_changes),
     						get_toolbar_slot_context
     					);
     				}
@@ -8081,9 +8091,9 @@ var app = (function () {
 
     			const clues_1_changes = {};
     			if (dirty[0] & /*clues*/ 256) clues_1_changes.clues = /*clues*/ ctx[8];
-    			if (dirty[0] & /*cellIndexMap*/ 536870912) clues_1_changes.cellIndexMap = /*cellIndexMap*/ ctx[29];
-    			if (dirty[0] & /*stacked*/ 134217728) clues_1_changes.stacked = /*stacked*/ ctx[27];
-    			if (dirty[0] & /*isDisableHighlight*/ 268435456) clues_1_changes.isDisableHighlight = /*isDisableHighlight*/ ctx[28];
+    			if (dirty[0] & /*cellIndexMap*/ 1073741824) clues_1_changes.cellIndexMap = /*cellIndexMap*/ ctx[30];
+    			if (dirty[0] & /*stacked*/ 268435456) clues_1_changes.stacked = /*stacked*/ ctx[28];
+    			if (dirty[0] & /*isDisableHighlight*/ 536870912) clues_1_changes.isDisableHighlight = /*isDisableHighlight*/ ctx[29];
     			if (dirty[0] & /*isLoaded*/ 65536) clues_1_changes.isLoaded = /*isLoaded*/ ctx[16];
 
     			if (!updating_focusedCellIndex && dirty[0] & /*focusedCellIndex*/ 128) {
@@ -8092,9 +8102,9 @@ var app = (function () {
     				add_flush_callback(() => updating_focusedCellIndex = false);
     			}
 
-    			if (!updating_focusedCell && dirty[0] & /*focusedCell*/ 1073741824) {
+    			if (!updating_focusedCell && dirty[1] & /*focusedCell*/ 1) {
     				updating_focusedCell = true;
-    				clues_1_changes.focusedCell = /*focusedCell*/ ctx[30];
+    				clues_1_changes.focusedCell = /*focusedCell*/ ctx[31];
     				add_flush_callback(() => updating_focusedCell = false);
     			}
 
@@ -8107,13 +8117,13 @@ var app = (function () {
     			clues_1.$set(clues_1_changes);
     			const puzzle_changes = {};
     			if (dirty[0] & /*clues*/ 256) puzzle_changes.clues = /*clues*/ ctx[8];
-    			if (dirty[0] & /*focusedCell*/ 1073741824) puzzle_changes.focusedCell = /*focusedCell*/ ctx[30];
+    			if (dirty[1] & /*focusedCell*/ 1) puzzle_changes.focusedCell = /*focusedCell*/ ctx[31];
     			if (dirty[0] & /*isRevealing*/ 32768) puzzle_changes.isRevealing = /*isRevealing*/ ctx[15];
     			if (dirty[0] & /*isChecking*/ 131072) puzzle_changes.isChecking = /*isChecking*/ ctx[17];
-    			if (dirty[0] & /*isDisableHighlight*/ 268435456) puzzle_changes.isDisableHighlight = /*isDisableHighlight*/ ctx[28];
+    			if (dirty[0] & /*isDisableHighlight*/ 536870912) puzzle_changes.isDisableHighlight = /*isDisableHighlight*/ ctx[29];
     			if (dirty[0] & /*revealDuration*/ 2) puzzle_changes.revealDuration = /*revealDuration*/ ctx[1];
     			if (dirty[0] & /*showKeyboard*/ 16) puzzle_changes.showKeyboard = /*showKeyboard*/ ctx[4];
-    			if (dirty[0] & /*stacked*/ 134217728) puzzle_changes.stacked = /*stacked*/ ctx[27];
+    			if (dirty[0] & /*stacked*/ 268435456) puzzle_changes.stacked = /*stacked*/ ctx[28];
     			if (dirty[0] & /*isLoaded*/ 65536) puzzle_changes.isLoaded = /*isLoaded*/ ctx[16];
     			if (dirty[0] & /*keyboardStyle*/ 32) puzzle_changes.keyboardStyle = /*keyboardStyle*/ ctx[5];
 
@@ -8137,8 +8147,8 @@ var app = (function () {
 
     			puzzle.$set(puzzle_changes);
 
-    			if (!current || dirty[0] & /*stacked*/ 134217728) {
-    				toggle_class(div, "stacked", /*stacked*/ ctx[27]);
+    			if (!current || dirty[0] & /*stacked*/ 268435456) {
+    				toggle_class(div, "stacked", /*stacked*/ ctx[28]);
     			}
 
     			if (!current || dirty[0] & /*isLoaded*/ 65536) {
@@ -8168,7 +8178,7 @@ var app = (function () {
     				check_outros();
     			}
 
-    			if (!/*isComplete*/ ctx[10] && !/*isRevealing*/ ctx[15] && !/*isSubscribe*/ ctx[31]) {
+    			if (!/*isComplete*/ ctx[10] && !/*isRevealing*/ ctx[15] && !/*isSubscribe*/ ctx[32]) {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
 
@@ -8191,8 +8201,8 @@ var app = (function () {
     				check_outros();
     			}
 
-    			if (!current || dirty[0] & /*inlineStyles*/ 67108864) {
-    				attr_dev(article, "style", /*inlineStyles*/ ctx[26]);
+    			if (!current || dirty[0] & /*inlineStyles*/ 134217728) {
+    				attr_dev(article, "style", /*inlineStyles*/ ctx[27]);
     			}
     		},
     		i: function intro(local) {
@@ -8227,14 +8237,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(220:0) {#if validated}",
+    		source: "(239:0) {#if validated}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (230:26)        
+    // (249:26)        
     function fallback_block_3(ctx) {
     	let toolbar;
     	let t;
@@ -8246,7 +8256,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	toolbar.$on("event", /*onToolbarEvent*/ ctx[35]);
+    	toolbar.$on("event", /*onToolbarEvent*/ ctx[36]);
 
     	checkmodal = new CheckModal({
     			props: {
@@ -8306,14 +8316,14 @@ var app = (function () {
     		block,
     		id: fallback_block_3.name,
     		type: "fallback",
-    		source: "(230:26)        ",
+    		source: "(249:26)        ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (262:4) {#if isComplete && !isRevealing && showCompleteMessage}
+    // (281:4) {#if isComplete && !isRevealing && showCompleteMessage}
     function create_if_block_3(ctx) {
     	let completedmessage;
     	let current;
@@ -8321,8 +8331,8 @@ var app = (function () {
     	completedmessage = new CompletedMessage({
     			props: {
     				showCloseBtn: true,
-    				showConfetti: /*showConfetti*/ ctx[3] && !/*coupons_api_error*/ ctx[24],
-    				btnShopNow: !/*coupons_api_error*/ ctx[24],
+    				showConfetti: /*showConfetti*/ ctx[3] && !/*coupons_api_error*/ ctx[25],
+    				btnShopNow: !/*coupons_api_error*/ ctx[25],
     				$$slots: {
     					footer: [create_footer_slot],
     					message: [create_message_slot_1]
@@ -8345,10 +8355,10 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const completedmessage_changes = {};
-    			if (dirty[0] & /*showConfetti, coupons_api_error*/ 16777224) completedmessage_changes.showConfetti = /*showConfetti*/ ctx[3] && !/*coupons_api_error*/ ctx[24];
-    			if (dirty[0] & /*coupons_api_error*/ 16777216) completedmessage_changes.btnShopNow = !/*coupons_api_error*/ ctx[24];
+    			if (dirty[0] & /*showConfetti, coupons_api_error*/ 33554440) completedmessage_changes.showConfetti = /*showConfetti*/ ctx[3] && !/*coupons_api_error*/ ctx[25];
+    			if (dirty[0] & /*coupons_api_error*/ 33554432) completedmessage_changes.btnShopNow = !/*coupons_api_error*/ ctx[25];
 
-    			if (dirty[0] & /*coupons_api_error, coupons_code*/ 50331648 | dirty[1] & /*$$scope*/ 4194304) {
+    			if (dirty[0] & /*coupons_api_error, coupons_code*/ 100663296 | dirty[1] & /*$$scope*/ 33554432) {
     				completedmessage_changes.$$scope = { dirty, ctx };
     			}
 
@@ -8372,14 +8382,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(262:4) {#if isComplete && !isRevealing && showCompleteMessage}",
+    		source: "(281:4) {#if isComplete && !isRevealing && showCompleteMessage}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (265:10) {#if coupons_api_error === ""}
+    // (284:10) {#if coupons_api_error === ""}
     function create_if_block_6(ctx) {
     	let div0;
     	let t0;
@@ -8407,10 +8417,10 @@ var app = (function () {
     			div3 = element("div");
     			div1 = element("div");
     			t3 = text("CODE: ");
-    			t4 = text(/*coupons_code*/ ctx[25]);
+    			t4 = text(/*coupons_code*/ ctx[26]);
     			t5 = space();
     			div2 = element("div");
-    			t6 = text("2% off stackable coupon");
+    			t6 = text("3% off stackable coupon");
     			this.h();
     		},
     		l: function claim(nodes) {
@@ -8428,32 +8438,32 @@ var app = (function () {
     			div1 = claim_element(div3_nodes, "DIV", { class: true });
     			var div1_nodes = children(div1);
     			t3 = claim_text(div1_nodes, "CODE: ");
-    			t4 = claim_text(div1_nodes, /*coupons_code*/ ctx[25]);
+    			t4 = claim_text(div1_nodes, /*coupons_code*/ ctx[26]);
     			div1_nodes.forEach(detach_dev);
     			t5 = claim_space(div3_nodes);
     			div2 = claim_element(div3_nodes, "DIV", { class: true });
     			var div2_nodes = children(div2);
-    			t6 = claim_text(div2_nodes, "2% off stackable coupon");
+    			t6 = claim_text(div2_nodes, "3% off stackable coupon");
     			div2_nodes.forEach(detach_dev);
     			div3_nodes.forEach(detach_dev);
     			div4_nodes.forEach(detach_dev);
     			this.h();
     		},
     		h: function hydrate() {
-    			attr_dev(div0, "class", "title_gameend svelte-622vlv");
-    			add_location(div0, file$1, 265, 10, 7572);
+    			attr_dev(div0, "class", "title_gameend svelte-wf6ihe");
+    			add_location(div0, file$1, 284, 10, 8043);
     			if (!src_url_equal(img.src, img_src_value = "https://cdn.shopify.com/s/files/1/0970/9262/files/Group_552.png?v=1698821612")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "coupon");
-    			attr_dev(img, "class", "svelte-622vlv");
-    			add_location(img, file$1, 267, 12, 7717);
-    			attr_dev(div1, "class", "coupone_info_title svelte-622vlv");
-    			add_location(div1, file$1, 269, 14, 7872);
-    			attr_dev(div2, "class", "coupone_info_des svelte-622vlv");
-    			add_location(div2, file$1, 270, 14, 7945);
-    			attr_dev(div3, "class", "coupone_info svelte-622vlv");
-    			add_location(div3, file$1, 268, 12, 7831);
-    			attr_dev(div4, "class", "coupon_gameend svelte-622vlv");
-    			add_location(div4, file$1, 266, 10, 7676);
+    			attr_dev(img, "class", "svelte-wf6ihe");
+    			add_location(img, file$1, 286, 12, 8188);
+    			attr_dev(div1, "class", "coupone_info_title svelte-wf6ihe");
+    			add_location(div1, file$1, 288, 14, 8343);
+    			attr_dev(div2, "class", "coupone_info_des svelte-wf6ihe");
+    			add_location(div2, file$1, 289, 14, 8416);
+    			attr_dev(div3, "class", "coupone_info svelte-wf6ihe");
+    			add_location(div3, file$1, 287, 12, 8302);
+    			attr_dev(div4, "class", "coupon_gameend svelte-wf6ihe");
+    			add_location(div4, file$1, 285, 10, 8147);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div0, anchor);
@@ -8471,7 +8481,7 @@ var app = (function () {
     			append_hydration_dev(div2, t6);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*coupons_code*/ 33554432) set_data_dev(t4, /*coupons_code*/ ctx[25]);
+    			if (dirty[0] & /*coupons_code*/ 67108864) set_data_dev(t4, /*coupons_code*/ ctx[26]);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div0);
@@ -8484,14 +8494,14 @@ var app = (function () {
     		block,
     		id: create_if_block_6.name,
     		type: "if",
-    		source: "(265:10) {#if coupons_api_error === \\\"\\\"}",
+    		source: "(284:10) {#if coupons_api_error === \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (276:10) {#if coupons_api_error !== ""}
+    // (295:10) {#if coupons_api_error !== ""}
     function create_if_block_5(ctx) {
     	let div;
     	let t;
@@ -8499,26 +8509,26 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			div = element("div");
-    			t = text(/*coupons_api_error*/ ctx[24]);
+    			t = text(/*coupons_api_error*/ ctx[25]);
     			this.h();
     		},
     		l: function claim(nodes) {
     			div = claim_element(nodes, "DIV", { class: true });
     			var div_nodes = children(div);
-    			t = claim_text(div_nodes, /*coupons_api_error*/ ctx[24]);
+    			t = claim_text(div_nodes, /*coupons_api_error*/ ctx[25]);
     			div_nodes.forEach(detach_dev);
     			this.h();
     		},
     		h: function hydrate() {
-    			attr_dev(div, "class", "title_gameend svelte-622vlv");
-    			add_location(div, file$1, 276, 12, 8111);
+    			attr_dev(div, "class", "title_gameend svelte-wf6ihe");
+    			add_location(div, file$1, 295, 12, 8582);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div, anchor);
     			append_hydration_dev(div, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*coupons_api_error*/ 16777216) set_data_dev(t, /*coupons_api_error*/ ctx[24]);
+    			if (dirty[0] & /*coupons_api_error*/ 33554432) set_data_dev(t, /*coupons_api_error*/ ctx[25]);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
@@ -8529,19 +8539,19 @@ var app = (function () {
     		block,
     		id: create_if_block_5.name,
     		type: "if",
-    		source: "(276:10) {#if coupons_api_error !== \\\"\\\"}",
+    		source: "(295:10) {#if coupons_api_error !== \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (264:44)            
+    // (283:44)            
     function fallback_block_2(ctx) {
     	let t;
     	let if_block1_anchor;
-    	let if_block0 = /*coupons_api_error*/ ctx[24] === "" && create_if_block_6(ctx);
-    	let if_block1 = /*coupons_api_error*/ ctx[24] !== "" && create_if_block_5(ctx);
+    	let if_block0 = /*coupons_api_error*/ ctx[25] === "" && create_if_block_6(ctx);
+    	let if_block1 = /*coupons_api_error*/ ctx[25] !== "" && create_if_block_5(ctx);
 
     	const block = {
     		c: function create() {
@@ -8563,7 +8573,7 @@ var app = (function () {
     			insert_hydration_dev(target, if_block1_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (/*coupons_api_error*/ ctx[24] === "") {
+    			if (/*coupons_api_error*/ ctx[25] === "") {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
@@ -8576,7 +8586,7 @@ var app = (function () {
     				if_block0 = null;
     			}
 
-    			if (/*coupons_api_error*/ ctx[24] !== "") {
+    			if (/*coupons_api_error*/ ctx[25] !== "") {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
@@ -8601,18 +8611,18 @@ var app = (function () {
     		block,
     		id: fallback_block_2.name,
     		type: "fallback",
-    		source: "(264:44)            ",
+    		source: "(283:44)            ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (264:8) 
+    // (283:8) 
     function create_message_slot_1(ctx) {
     	let current;
-    	const message_slot_template = /*#slots*/ ctx[44].message;
-    	const message_slot = create_slot(message_slot_template, ctx, /*$$scope*/ ctx[53], get_message_slot_context);
+    	const message_slot_template = /*#slots*/ ctx[46].message;
+    	const message_slot = create_slot(message_slot_template, ctx, /*$$scope*/ ctx[56], get_message_slot_context);
     	const message_slot_or_fallback = message_slot || fallback_block_2(ctx);
 
     	const block = {
@@ -8631,20 +8641,20 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (message_slot) {
-    				if (message_slot.p && (!current || dirty[1] & /*$$scope*/ 4194304)) {
+    				if (message_slot.p && (!current || dirty[1] & /*$$scope*/ 33554432)) {
     					update_slot_base(
     						message_slot,
     						message_slot_template,
     						ctx,
-    						/*$$scope*/ ctx[53],
+    						/*$$scope*/ ctx[56],
     						!current
-    						? get_all_dirty_from_scope(/*$$scope*/ ctx[53])
-    						: get_slot_changes(message_slot_template, /*$$scope*/ ctx[53], dirty, get_message_slot_changes),
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[56])
+    						: get_slot_changes(message_slot_template, /*$$scope*/ ctx[56], dirty, get_message_slot_changes),
     						get_message_slot_context
     					);
     				}
     			} else {
-    				if (message_slot_or_fallback && message_slot_or_fallback.p && (!current || dirty[0] & /*coupons_api_error, coupons_code*/ 50331648)) {
+    				if (message_slot_or_fallback && message_slot_or_fallback.p && (!current || dirty[0] & /*coupons_api_error, coupons_code*/ 100663296)) {
     					message_slot_or_fallback.p(ctx, !current ? [-1, -1, -1] : dirty);
     				}
     			}
@@ -8667,14 +8677,14 @@ var app = (function () {
     		block,
     		id: create_message_slot_1.name,
     		type: "slot",
-    		source: "(264:8) ",
+    		source: "(283:8) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (282:10) {#if coupons_api_error === ""}
+    // (301:10) {#if coupons_api_error === ""}
     function create_if_block_4(ctx) {
     	let div;
     	let t0;
@@ -8699,9 +8709,9 @@ var app = (function () {
     			this.h();
     		},
     		h: function hydrate() {
-    			add_location(br, file$1, 283, 61, 8389);
-    			attr_dev(div, "class", "footer_gameend svelte-622vlv");
-    			add_location(div, file$1, 282, 10, 8299);
+    			add_location(br, file$1, 302, 61, 8860);
+    			attr_dev(div, "class", "footer_gameend svelte-wf6ihe");
+    			add_location(div, file$1, 301, 10, 8770);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div, anchor);
@@ -8718,17 +8728,17 @@ var app = (function () {
     		block,
     		id: create_if_block_4.name,
     		type: "if",
-    		source: "(282:10) {#if coupons_api_error === \\\"\\\"}",
+    		source: "(301:10) {#if coupons_api_error === \\\"\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (281:42)            
+    // (300:42)            
     function fallback_block_1(ctx) {
     	let if_block_anchor;
-    	let if_block = /*coupons_api_error*/ ctx[24] === "" && create_if_block_4(ctx);
+    	let if_block = /*coupons_api_error*/ ctx[25] === "" && create_if_block_4(ctx);
 
     	const block = {
     		c: function create() {
@@ -8744,7 +8754,7 @@ var app = (function () {
     			insert_hydration_dev(target, if_block_anchor, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (/*coupons_api_error*/ ctx[24] === "") {
+    			if (/*coupons_api_error*/ ctx[25] === "") {
     				if (if_block) ; else {
     					if_block = create_if_block_4(ctx);
     					if_block.c();
@@ -8765,18 +8775,18 @@ var app = (function () {
     		block,
     		id: fallback_block_1.name,
     		type: "fallback",
-    		source: "(281:42)            ",
+    		source: "(300:42)            ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (281:8) 
+    // (300:8) 
     function create_footer_slot(ctx) {
     	let current;
-    	const footer_slot_template = /*#slots*/ ctx[44].footer;
-    	const footer_slot = create_slot(footer_slot_template, ctx, /*$$scope*/ ctx[53], get_footer_slot_context);
+    	const footer_slot_template = /*#slots*/ ctx[46].footer;
+    	const footer_slot = create_slot(footer_slot_template, ctx, /*$$scope*/ ctx[56], get_footer_slot_context);
     	const footer_slot_or_fallback = footer_slot || fallback_block_1(ctx);
 
     	const block = {
@@ -8795,20 +8805,20 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (footer_slot) {
-    				if (footer_slot.p && (!current || dirty[1] & /*$$scope*/ 4194304)) {
+    				if (footer_slot.p && (!current || dirty[1] & /*$$scope*/ 33554432)) {
     					update_slot_base(
     						footer_slot,
     						footer_slot_template,
     						ctx,
-    						/*$$scope*/ ctx[53],
+    						/*$$scope*/ ctx[56],
     						!current
-    						? get_all_dirty_from_scope(/*$$scope*/ ctx[53])
-    						: get_slot_changes(footer_slot_template, /*$$scope*/ ctx[53], dirty, get_footer_slot_changes),
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[56])
+    						: get_slot_changes(footer_slot_template, /*$$scope*/ ctx[56], dirty, get_footer_slot_changes),
     						get_footer_slot_context
     					);
     				}
     			} else {
-    				if (footer_slot_or_fallback && footer_slot_or_fallback.p && (!current || dirty[0] & /*coupons_api_error*/ 16777216)) {
+    				if (footer_slot_or_fallback && footer_slot_or_fallback.p && (!current || dirty[0] & /*coupons_api_error*/ 33554432)) {
     					footer_slot_or_fallback.p(ctx, !current ? [-1, -1, -1] : dirty);
     				}
     			}
@@ -8831,14 +8841,14 @@ var app = (function () {
     		block,
     		id: create_footer_slot.name,
     		type: "slot",
-    		source: "(281:8) ",
+    		source: "(300:8) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (292:4) {#if !isComplete && !isRevealing && !isSubscribe}
+    // (311:4) {#if !isComplete && !isRevealing && !isSubscribe}
     function create_if_block_1(ctx) {
     	let completedmessage;
     	let current;
@@ -8847,7 +8857,7 @@ var app = (function () {
     			props: {
     				showConfetti: false,
     				outClickClose: false,
-    				funcClose: /*subscribeModalClose*/ ctx[22],
+    				funcClose: /*subscribeModalClose*/ ctx[23],
     				$$slots: { message: [create_message_slot] },
     				$$scope: { ctx }
     			},
@@ -8867,9 +8877,9 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const completedmessage_changes = {};
-    			if (dirty[0] & /*subscribeModalClose*/ 4194304) completedmessage_changes.funcClose = /*subscribeModalClose*/ ctx[22];
+    			if (dirty[0] & /*subscribeModalClose*/ 8388608) completedmessage_changes.funcClose = /*subscribeModalClose*/ ctx[23];
 
-    			if (dirty[0] & /*subscribeLoading, subscribe_error, subscribe_error_txt, subscribe_email*/ 12058624 | dirty[1] & /*$$scope*/ 4194304) {
+    			if (dirty[0] & /*subscribeLoading, subscribe_error, subscribe_error_txt, subscribe_agree, subscribe_email*/ 24641536 | dirty[1] & /*$$scope*/ 33554432) {
     				completedmessage_changes.$$scope = { dirty, ctx };
     			}
 
@@ -8893,14 +8903,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(292:4) {#if !isComplete && !isRevealing && !isSubscribe}",
+    		source: "(311:4) {#if !isComplete && !isRevealing && !isSubscribe}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (309:14) {#if subscribeLoading}
+    // (345:14) {#if subscribeLoading}
     function create_if_block_2(ctx) {
     	let span;
     	let svg;
@@ -8940,8 +8950,8 @@ var app = (function () {
     		},
     		h: function hydrate() {
     			attr_dev(path, "d", "M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z");
-    			add_location(path, file$1, 310, 171, 9736);
-    			attr_dev(svg, "class", "anticon-loading svelte-622vlv");
+    			add_location(path, file$1, 346, 171, 11011);
+    			attr_dev(svg, "class", "anticon-loading svelte-wf6ihe");
     			attr_dev(svg, "viewBox", "0 0 1024 1024");
     			attr_dev(svg, "focusable", "false");
     			attr_dev(svg, "data-icon", "loading");
@@ -8949,9 +8959,9 @@ var app = (function () {
     			attr_dev(svg, "height", "1em");
     			attr_dev(svg, "fill", "currentColor");
     			attr_dev(svg, "aria-hidden", "true");
-    			add_location(svg, file$1, 310, 16, 9581);
-    			attr_dev(span, "class", "crossword_submit_loading svelte-622vlv");
-    			add_location(span, file$1, 309, 14, 9525);
+    			add_location(svg, file$1, 346, 16, 10856);
+    			attr_dev(span, "class", "crossword_submit_loading svelte-wf6ihe");
+    			add_location(span, file$1, 345, 14, 10800);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, span, anchor);
@@ -8968,14 +8978,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(309:14) {#if subscribeLoading}",
+    		source: "(345:14) {#if subscribeLoading}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (295:44)            
+    // (314:44)            
     function fallback_block(ctx) {
     	let div2;
     	let h3;
@@ -8986,14 +8996,31 @@ var app = (function () {
     	let t2;
     	let t3;
     	let t4;
-    	let input;
+    	let input0;
     	let t5;
-    	let div0;
+    	let label;
+    	let span1;
+    	let input1;
     	let t6;
+    	let span0;
+    	let i;
     	let t7;
-    	let div1;
+    	let span3;
+    	let span2;
+    	let p;
     	let t8;
+    	let a0;
     	let t9;
+    	let t10;
+    	let a1;
+    	let t11;
+    	let t12;
+    	let div0;
+    	let t13;
+    	let t14;
+    	let div1;
+    	let t15;
+    	let t16;
     	let svg;
     	let path0;
     	let path1;
@@ -9025,7 +9052,7 @@ var app = (function () {
     	let path27;
     	let mounted;
     	let dispose;
-    	let if_block = /*subscribeLoading*/ ctx[23] && create_if_block_2(ctx);
+    	let if_block = /*subscribeLoading*/ ctx[24] && create_if_block_2(ctx);
 
     	const block = {
     		c: function create() {
@@ -9038,15 +9065,32 @@ var app = (function () {
     			t2 = text("52%");
     			t3 = text(" off");
     			t4 = space();
-    			input = element("input");
+    			input0 = element("input");
     			t5 = space();
-    			div0 = element("div");
-    			t6 = text(/*subscribe_error_txt*/ ctx[21]);
+    			label = element("label");
+    			span1 = element("span");
+    			input1 = element("input");
+    			t6 = space();
+    			span0 = element("span");
+    			i = element("i");
     			t7 = space();
+    			span3 = element("span");
+    			span2 = element("span");
+    			p = element("p");
+    			t8 = text("I agree to Jackery's ");
+    			a0 = element("a");
+    			t9 = text("Terms of Service");
+    			t10 = text(" and ");
+    			a1 = element("a");
+    			t11 = text("Privacy Policy");
+    			t12 = space();
+    			div0 = element("div");
+    			t13 = text(/*subscribe_error_txt*/ ctx[22]);
+    			t14 = space();
     			div1 = element("div");
-    			t8 = text("PLAY NOW\n              ");
+    			t15 = text("PLAY NOW\n              ");
     			if (if_block) if_block.c();
-    			t9 = space();
+    			t16 = space();
     			svg = svg_element("svg");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
@@ -9094,24 +9138,58 @@ var app = (function () {
     			h3_nodes.forEach(detach_dev);
     			t4 = claim_space(div2_nodes);
 
-    			input = claim_element(div2_nodes, "INPUT", {
+    			input0 = claim_element(div2_nodes, "INPUT", {
     				type: true,
     				placeholder: true,
     				class: true
     			});
 
     			t5 = claim_space(div2_nodes);
+    			label = claim_element(div2_nodes, "LABEL", { class: true });
+    			var label_nodes = children(label);
+    			span1 = claim_element(label_nodes, "SPAN", { class: true });
+    			var span1_nodes = children(span1);
+    			input1 = claim_element(span1_nodes, "INPUT", { type: true, class: true });
+    			t6 = claim_space(span1_nodes);
+    			span0 = claim_element(span1_nodes, "SPAN", { class: true });
+    			var span0_nodes = children(span0);
+    			i = claim_element(span0_nodes, "I", { style: true, class: true });
+    			children(i).forEach(detach_dev);
+    			span0_nodes.forEach(detach_dev);
+    			span1_nodes.forEach(detach_dev);
+    			t7 = claim_space(label_nodes);
+    			span3 = claim_element(label_nodes, "SPAN", { class: true });
+    			var span3_nodes = children(span3);
+    			span2 = claim_element(span3_nodes, "SPAN", { class: true });
+    			var span2_nodes = children(span2);
+    			p = claim_element(span2_nodes, "P", {});
+    			var p_nodes = children(p);
+    			t8 = claim_text(p_nodes, "I agree to Jackery's ");
+    			a0 = claim_element(p_nodes, "A", { href: true, title: true });
+    			var a0_nodes = children(a0);
+    			t9 = claim_text(a0_nodes, "Terms of Service");
+    			a0_nodes.forEach(detach_dev);
+    			t10 = claim_text(p_nodes, " and ");
+    			a1 = claim_element(p_nodes, "A", { href: true, title: true });
+    			var a1_nodes = children(a1);
+    			t11 = claim_text(a1_nodes, "Privacy Policy");
+    			a1_nodes.forEach(detach_dev);
+    			p_nodes.forEach(detach_dev);
+    			span2_nodes.forEach(detach_dev);
+    			span3_nodes.forEach(detach_dev);
+    			label_nodes.forEach(detach_dev);
+    			t12 = claim_space(div2_nodes);
     			div0 = claim_element(div2_nodes, "DIV", { class: true });
     			var div0_nodes = children(div0);
-    			t6 = claim_text(div0_nodes, /*subscribe_error_txt*/ ctx[21]);
+    			t13 = claim_text(div0_nodes, /*subscribe_error_txt*/ ctx[22]);
     			div0_nodes.forEach(detach_dev);
-    			t7 = claim_space(div2_nodes);
+    			t14 = claim_space(div2_nodes);
     			div1 = claim_element(div2_nodes, "DIV", { class: true });
     			var div1_nodes = children(div1);
-    			t8 = claim_text(div1_nodes, "PLAY NOW\n              ");
+    			t15 = claim_text(div1_nodes, "PLAY NOW\n              ");
     			if (if_block) if_block.l(div1_nodes);
     			div1_nodes.forEach(detach_dev);
-    			t9 = claim_space(div2_nodes);
+    			t16 = claim_space(div2_nodes);
 
     			svg = claim_svg_element(div2_nodes, "svg", {
     				class: true,
@@ -9356,166 +9434,189 @@ var app = (function () {
     			this.h();
     		},
     		h: function hydrate() {
-    			add_location(br, file$1, 297, 53, 8974);
-    			attr_dev(strong, "class", "svelte-622vlv");
-    			add_location(strong, file$1, 298, 24, 9003);
-    			attr_dev(h3, "class", "svelte-622vlv");
-    			add_location(h3, file$1, 296, 12, 8916);
-    			attr_dev(input, "type", "text");
-    			attr_dev(input, "placeholder", "Email");
-    			attr_dev(input, "class", "svelte-622vlv");
-    			add_location(input, file$1, 300, 12, 9059);
-    			attr_dev(div0, "class", "error__tips svelte-622vlv");
-    			toggle_class(div0, "active", /*subscribe_error*/ ctx[20]);
-    			add_location(div0, file$1, 301, 12, 9193);
-    			attr_dev(div1, "class", "crossword_subscribe_submit svelte-622vlv");
-    			toggle_class(div1, "loading", /*subscribeLoading*/ ctx[23]);
-    			add_location(div1, file$1, 302, 12, 9291);
+    			add_location(br, file$1, 316, 53, 9445);
+    			attr_dev(strong, "class", "svelte-wf6ihe");
+    			add_location(strong, file$1, 317, 24, 9474);
+    			attr_dev(h3, "class", "svelte-wf6ihe");
+    			add_location(h3, file$1, 315, 12, 9387);
+    			attr_dev(input0, "type", "text");
+    			attr_dev(input0, "placeholder", "Email");
+    			attr_dev(input0, "class", "svelte-wf6ihe");
+    			add_location(input0, file$1, 319, 12, 9530);
+    			attr_dev(input1, "type", "checkbox");
+    			attr_dev(input1, "class", "dji-checkbox-original svelte-wf6ihe");
+    			add_location(input1, file$1, 323, 16, 9758);
+    			set_style(i, "font-size", "12px");
+    			attr_dev(i, "class", "font-bold iconfont jackery-icon-checkbox");
+    			add_location(i, file$1, 325, 18, 9939);
+    			attr_dev(span0, "class", "dji-checkbox-inner");
+    			add_location(span0, file$1, 324, 16, 9887);
+    			attr_dev(span1, "class", "dji-checkbox-input");
+    			add_location(span1, file$1, 322, 14, 9708);
+    			attr_dev(a0, "href", "/policies/terms-of-service");
+    			attr_dev(a0, "title", "/policies/terms-of-service");
+    			add_location(a0, file$1, 331, 42, 10199);
+    			attr_dev(a1, "href", "/policies/privacy-policy");
+    			attr_dev(a1, "title", "/policies/privacy-policy");
+    			add_location(a1, file$1, 331, 139, 10296);
+    			add_location(p, file$1, 331, 18, 10175);
+    			attr_dev(span2, "class", "dji-agree");
+    			add_location(span2, file$1, 330, 16, 10132);
+    			attr_dev(span3, "class", "dji-checkbox-label");
+    			add_location(span3, file$1, 329, 14, 10082);
+    			attr_dev(label, "class", "dji-checkbox svelte-wf6ihe");
+    			add_location(label, file$1, 321, 12, 9665);
+    			attr_dev(div0, "class", "error__tips svelte-wf6ihe");
+    			toggle_class(div0, "active", /*subscribe_error*/ ctx[21]);
+    			add_location(div0, file$1, 336, 12, 10467);
+    			attr_dev(div1, "class", "crossword_subscribe_submit svelte-wf6ihe");
+    			toggle_class(div1, "loading", /*subscribeLoading*/ ctx[24]);
+    			add_location(div1, file$1, 338, 12, 10566);
     			attr_dev(path0, "fill-rule", "evenodd");
     			attr_dev(path0, "clip-rule", "evenodd");
     			attr_dev(path0, "d", "M84.3672 20.2232C83.8654 19.3658 83.8488 18.3209 84.1549 17.3752C86.6335 9.69678 75.7514 8.42302 72.3299 7.30917C68.7595 6.14569 70.4909 0.0332954 63.6727 0.00021073C56.8572 -0.0328739 55.9226 3.84079 55.5973 3.84079C55.1203 3.84079 58.3047 9.53687 58.3047 9.53687C58.3047 9.53687 61.6931 9.51757 63.6534 15.6713C65.6164 21.8278 65.0402 25.5499 70.4137 29.1285C75.7872 32.7072 88.7757 21.5356 88.7757 21.5356C86.2668 22.3296 84.9985 21.3067 84.3644 20.2232H84.3672Z");
     			attr_dev(path0, "fill", "#5C3420");
-    			add_location(path0, file$1, 317, 14, 10321);
+    			add_location(path0, file$1, 353, 14, 11596);
     			attr_dev(path1, "fill-rule", "evenodd");
     			attr_dev(path1, "clip-rule", "evenodd");
     			attr_dev(path1, "d", "M56.0108 171.39C56.0108 171.39 61.1059 137.324 54.5275 123.842L58.12 77.6279L36.5791 79.114L51.095 171.66L56.0108 171.393V171.39Z");
     			attr_dev(path1, "fill", "#E3633D");
-    			add_location(path1, file$1, 318, 14, 10868);
+    			add_location(path1, file$1, 354, 14, 12143);
     			attr_dev(path2, "fill-rule", "evenodd");
     			attr_dev(path2, "clip-rule", "evenodd");
     			attr_dev(path2, "d", "M50.935 170.053L46.6588 173.166C45.8179 173.935 41.2329 175.429 41.2329 175.429C40.7752 176.386 41.6685 176.888 42.4267 177.014L55.9611 176.73C55.9611 176.73 59.0849 176.082 56.314 170.058C53.852 171.145 51.5774 171.925 50.935 170.05V170.053Z");
     			attr_dev(path2, "fill", "#4A2A1A");
-    			add_location(path2, file$1, 319, 14, 11079);
+    			add_location(path2, file$1, 355, 14, 12354);
     			attr_dev(path3, "fill-rule", "evenodd");
     			attr_dev(path3, "clip-rule", "evenodd");
     			attr_dev(path3, "d", "M35.0793 86.3373L39.4879 125.383L46.6176 164.712H59.0685C59.0685 164.712 58.3654 157.05 58.5391 154.886C58.7128 152.722 61.0012 133.24 56.1956 123.795L57.406 85.116L35.0793 86.3401V86.3373Z");
     			attr_dev(path3, "fill", "#C9D9B9");
-    			add_location(path3, file$1, 320, 14, 11403);
+    			add_location(path3, file$1, 356, 14, 12678);
     			attr_dev(path4, "fill-rule", "evenodd");
     			attr_dev(path4, "clip-rule", "evenodd");
     			attr_dev(path4, "d", "M71.9355 128.234L91.8746 165.242C95.7455 166.642 95.9909 164.392 94.8991 160.795C90.3251 145.187 92.3322 135.661 79.4568 121.746L71.9355 128.234Z");
     			attr_dev(path4, "fill", "#E3633D");
-    			add_location(path4, file$1, 321, 14, 11674);
+    			add_location(path4, file$1, 357, 14, 12949);
     			attr_dev(path5, "fill-rule", "evenodd");
     			attr_dev(path5, "clip-rule", "evenodd");
     			attr_dev(path5, "d", "M52.7629 83.2027L64.5218 121.746C65.0043 123.555 66.0988 126.152 66.959 127.815L85.9303 161.404L95.9164 155.664C95.9164 155.664 94.0388 151.013 93.628 148.961C91.2322 137.04 88.6516 131.848 79.3134 118.642L75.1916 79.114L65.0015 79.5221L52.7657 83.2027H52.7629Z");
     			attr_dev(path5, "fill", "#C9D9B9");
-    			add_location(path5, file$1, 322, 14, 11901);
+    			add_location(path5, file$1, 358, 14, 13176);
     			attr_dev(path6, "fill-rule", "evenodd");
     			attr_dev(path6, "clip-rule", "evenodd");
     			attr_dev(path6, "d", "M91.6815 165.145L91.5299 170.433C91.6264 171.569 90.0024 176.113 90.0024 176.113C90.4794 177.058 91.4251 176.659 91.9875 176.137L100.038 165.255C100.038 165.255 101.436 162.385 94.9734 160.896C94.3283 163.51 93.5535 165.785 91.6787 165.148L91.6815 165.145Z");
     			attr_dev(path6, "fill", "#4A2A1A");
-    			add_location(path6, file$1, 323, 14, 12244);
+    			add_location(path6, file$1, 359, 14, 13519);
     			attr_dev(path7, "d", "M23.7476 34.957C18.2225 28.5634 16.4139 25.8615 11.0128 19.3135L5.20093 20.0027C14.0731 34.764 14.3213 40.7303 20.6542 44.4303C28.0073 41.8414 24.6906 36.7105 23.7449 34.9543L23.7476 34.957Z");
     			attr_dev(path7, "fill", "#C95836");
-    			add_location(path7, file$1, 324, 14, 12582);
+    			add_location(path7, file$1, 360, 14, 13857);
     			attr_dev(path8, "d", "M10.9964 19.3326L7.82308 16.4846C7.18896 15.9166 6.37287 15.5913 5.52094 15.5748L2.07186 15.5031C0.869781 15.4783 0.0123394 16.661 0.412113 17.7969L4.60008 21.1523C5.5237 21.8912 6.76989 22.2854 8.09052 22.2496L10.2879 22.1917L10.9964 19.3354V19.3326Z");
     			attr_dev(path8, "fill", "#C95836");
-    			add_location(path8, file$1, 325, 14, 12814);
+    			add_location(path8, file$1, 361, 14, 14089);
     			attr_dev(path9, "fill-rule", "evenodd");
     			attr_dev(path9, "clip-rule", "evenodd");
     			attr_dev(path9, "d", "M44.8721 19.6499C44.8721 19.6499 17.1995 37.2565 18.6277 40.9206L19.2149 42.5555C19.9786 44.6785 22.5344 45.5194 24.4092 44.2621L38.3764 34.8937L41.1363 33.1347L44.8721 19.6499Z");
     			attr_dev(path9, "fill", "#C95836");
-    			add_location(path9, file$1, 326, 14, 13107);
+    			add_location(path9, file$1, 362, 14, 14382);
     			attr_dev(path10, "fill-rule", "evenodd");
     			attr_dev(path10, "clip-rule", "evenodd");
     			attr_dev(path10, "d", "M67.3973 54.7278L37.9574 56.9693C33.1684 58.7283 35.0818 86.3374 35.0818 86.3374L54.4391 87.2335C63.4326 87.046 74.0694 94.0986 75.1887 79.114C76.468 61.9844 67.3973 54.7278 67.3973 54.7278Z");
     			attr_dev(path10, "fill", "#C9D9B9");
-    			add_location(path10, file$1, 327, 14, 13366);
+    			add_location(path10, file$1, 363, 14, 14641);
     			attr_dev(path11, "fill-rule", "evenodd");
     			attr_dev(path11, "clip-rule", "evenodd");
     			attr_dev(path11, "d", "M44.8723 19.6498L55.6717 18.2686L58.6383 18.354L69.9478 22.1615C73.7635 23.9977 75.5694 28.3897 74.1633 32.3985L71.5441 45.3235C74.5769 55.0201 76.1649 61.8218 75.7624 71.8382C59.8514 77.9423 37.886 77.8871 32.7661 70.6113C33.4002 50.5647 37.2298 32.6273 44.8723 19.6498Z");
     			attr_dev(path11, "fill", "#8CA671");
-    			add_location(path11, file$1, 328, 14, 13638);
+    			add_location(path11, file$1, 364, 14, 14913);
     			attr_dev(path12, "d", "M49.7797 19.0515C49.7797 19.0515 46.3307 27.8575 52.3548 28.1801C58.379 28.4999 61.5744 19.3492 61.5744 19.3492L57.1576 17.4441L49.7797 19.0515Z");
     			attr_dev(path12, "fill", "#C95836");
-    			add_location(path12, file$1, 329, 14, 13991);
+    			add_location(path12, file$1, 365, 14, 15266);
     			attr_dev(path13, "fill-rule", "evenodd");
     			attr_dev(path13, "clip-rule", "evenodd");
     			attr_dev(path13, "d", "M7.07593 24.2623L12.6921 20.3639L23.304 32.7458L41.2359 21.089C41.2359 21.089 43.1686 19.8648 44.8724 19.647C46.5763 19.4292 39.4686 35.1306 39.4686 35.1306L25.9949 45.0175C25.9949 45.0175 19.9845 48.7726 16.869 42.9028C13.7563 37.033 7.07593 24.2623 7.07593 24.2623Z");
     			attr_dev(path13, "fill", "#8CA671");
-    			add_location(path13, file$1, 330, 14, 14177);
+    			add_location(path13, file$1, 366, 14, 15452);
     			attr_dev(path14, "d", "M38.0513 35.9827L40.5409 29.6084");
     			attr_dev(path14, "stroke", "#3A6B26");
     			attr_dev(path14, "stroke-width", "0.725106");
     			attr_dev(path14, "stroke-linecap", "round");
     			attr_dev(path14, "stroke-linejoin", "round");
-    			add_location(path14, file$1, 331, 14, 14526);
+    			add_location(path14, file$1, 367, 14, 15801);
     			attr_dev(path15, "fill-rule", "evenodd");
     			attr_dev(path15, "clip-rule", "evenodd");
     			attr_dev(path15, "d", "M80.1929 55.4225C84.0059 54.0826 87.8244 55.1606 89.6854 59.3789L94.3779 81.6063L89.7406 80.9694L83.5868 65.1577L80.1929 55.4225Z");
     			attr_dev(path15, "fill", "#C95836");
-    			add_location(path15, file$1, 332, 14, 14673);
+    			add_location(path15, file$1, 368, 14, 15948);
     			attr_dev(path16, "d", "M89.5588 80.3603L90.8519 84.2698C91.1111 85.05 91.6404 85.7007 92.3462 86.1032L95.2025 87.7299C96.1978 88.2951 97.4826 87.6554 97.6922 86.4892L95.7898 81.6781C95.3707 80.6167 94.5133 79.7124 93.3912 79.1444L91.5219 78.1987L89.5588 80.3575V80.3603Z");
     			attr_dev(path16, "fill", "#C95836");
-    			add_location(path16, file$1, 333, 14, 14884);
+    			add_location(path16, file$1, 369, 14, 16159);
     			attr_dev(path17, "fill-rule", "evenodd");
     			attr_dev(path17, "clip-rule", "evenodd");
     			attr_dev(path17, "d", "M73.4851 25.4011L87.6205 51.2044L93.7549 74.882L86.3605 78.3338L78.0728 55.8583L69.7024 41.6126L73.4851 25.4011Z");
     			attr_dev(path17, "fill", "#8CA671");
-    			add_location(path17, file$1, 334, 14, 15173);
+    			add_location(path17, file$1, 370, 14, 16448);
     			attr_dev(path18, "d", "M56.7191 97.0735C56.3718 95.0305 53.3555 85.334 53.3555 85.334H50.3035");
     			attr_dev(path18, "stroke", "#939C89");
     			attr_dev(path18, "stroke-width", "0.675479");
     			attr_dev(path18, "stroke-linecap", "round");
     			attr_dev(path18, "stroke-linejoin", "round");
-    			add_location(path18, file$1, 335, 14, 15367);
+    			add_location(path18, file$1, 371, 14, 16642);
     			attr_dev(path19, "d", "M71.1361 43.6003L67.1494 34.1574L67.4334 32.2495");
     			attr_dev(path19, "stroke", "#3A6B26");
     			attr_dev(path19, "stroke-width", "0.725106");
     			attr_dev(path19, "stroke-linecap", "round");
     			attr_dev(path19, "stroke-linejoin", "round");
-    			add_location(path19, file$1, 336, 14, 15552);
+    			add_location(path19, file$1, 372, 14, 16827);
     			attr_dev(path20, "fill-rule", "evenodd");
     			attr_dev(path20, "clip-rule", "evenodd");
     			attr_dev(path20, "d", "M52.9118 3.25635C52.9118 3.25635 47.0035 3.25635 48.5502 10.0966C50.0803 16.8569 56.7882 9.61688 56.7882 9.61688L52.9118 3.25635Z");
     			attr_dev(path20, "fill", "#5C3420");
-    			add_location(path20, file$1, 337, 14, 15715);
+    			add_location(path20, file$1, 373, 14, 16990);
     			attr_dev(path21, "fill-rule", "evenodd");
     			attr_dev(path21, "clip-rule", "evenodd");
     			attr_dev(path21, "d", "M51.572 12.5394C51.572 12.5394 51.9497 16.8239 52.2613 20.3722C52.344 21.3179 52.9092 22.1478 53.7418 22.542C54.5717 22.939 55.5394 22.837 56.2728 22.2801C56.5127 22.0981 56.747 21.9189 56.9676 21.7508C57.9712 20.9871 58.4564 19.6857 58.2138 18.4064C57.5907 15.1311 56.4575 9.16479 56.4575 9.16479L51.572 12.5367V12.5394Z");
     			attr_dev(path21, "fill", "#C95836");
-    			add_location(path21, file$1, 338, 14, 15926);
+    			add_location(path21, file$1, 374, 14, 17201);
     			attr_dev(path22, "fill-rule", "evenodd");
     			attr_dev(path22, "clip-rule", "evenodd");
     			attr_dev(path22, "d", "M51.7043 14.4665L52.0104 17.0361C53.8107 16.606 54.8722 15.0152 55.7793 13.179L51.7043 14.4665Z");
     			attr_dev(path22, "fill", "#873B24");
-    			add_location(path22, file$1, 339, 14, 16329);
+    			add_location(path22, file$1, 375, 14, 17604);
     			attr_dev(path23, "fill-rule", "evenodd");
     			attr_dev(path23, "clip-rule", "evenodd");
     			attr_dev(path23, "d", "M58.1172 8.67659C58.4287 7.52138 57.7836 6.32206 56.678 5.99673C55.4952 5.64934 54.0064 5.21373 52.8236 4.8691C51.7153 4.54376 50.7338 5.28265 50.254 6.37445C49.6888 7.66199 49.1319 10.5155 48.972 12.6385C48.881 13.835 49.4572 15.1309 50.5656 15.4562C51.7484 15.8036 55.6055 15.6657 56.5429 13.5593C57.257 11.9575 57.6595 10.3777 58.1172 8.67659Z");
     			attr_dev(path23, "fill", "#C95836");
-    			add_location(path23, file$1, 340, 14, 16506);
+    			add_location(path23, file$1, 376, 14, 17781);
     			attr_dev(path24, "fill-rule", "evenodd");
     			attr_dev(path24, "clip-rule", "evenodd");
     			attr_dev(path24, "d", "M49.6612 11.8997L51.5939 12.4235C51.5939 12.4235 51.2135 13.791 50.3119 13.4243C49.4103 13.0576 49.6612 11.8997 49.6612 11.8997Z");
     			attr_dev(path24, "fill", "white");
-    			add_location(path24, file$1, 341, 14, 16934);
+    			add_location(path24, file$1, 377, 14, 18209);
     			attr_dev(path25, "fill-rule", "evenodd");
     			attr_dev(path25, "clip-rule", "evenodd");
     			attr_dev(path25, "d", "M51.2246 4.60457C51.2246 4.60457 53.1518 10.9017 55.3905 11.5468C56.5402 11.8777 56.3748 13.5678 57.2433 14.2708C58.8175 15.5446 61.8503 11.0892 61.6077 9.07927C61.2493 6.11543 60.5131 4.96298 57.1688 3.46039C55.1258 2.54229 52.7493 1.38984 51.2246 4.60457Z");
     			attr_dev(path25, "fill", "#5C3420");
-    			add_location(path25, file$1, 342, 14, 17142);
+    			add_location(path25, file$1, 378, 14, 18417);
     			attr_dev(path26, "fill-rule", "evenodd");
     			attr_dev(path26, "clip-rule", "evenodd");
     			attr_dev(path26, "d", "M58.1087 13.6255C57.5573 14.4278 56.5951 14.6897 55.961 14.2155C55.3269 13.7385 55.258 12.7046 55.8094 11.9023C56.3608 11.1 57.323 10.8381 57.9571 11.3123C58.5912 11.7893 58.6602 12.8232 58.1087 13.6255Z");
     			attr_dev(path26, "fill", "#C95836");
-    			add_location(path26, file$1, 343, 14, 17481);
+    			add_location(path26, file$1, 379, 14, 18756);
     			attr_dev(path27, "d", "M56.7083 2.90063C57.5436 3.52649 58.7126 4.70926 58.7126 4.70926");
     			attr_dev(path27, "stroke", "#BFAB9E");
     			attr_dev(path27, "stroke-width", "0.802303");
     			attr_dev(path27, "stroke-linecap", "round");
     			attr_dev(path27, "stroke-linejoin", "round");
-    			add_location(path27, file$1, 344, 14, 17766);
-    			attr_dev(svg, "class", "crossword_subscribe_icon svelte-622vlv");
+    			add_location(path27, file$1, 380, 14, 19041);
+    			attr_dev(svg, "class", "crossword_subscribe_icon svelte-wf6ihe");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "width", "101");
     			attr_dev(svg, "height", "178");
     			attr_dev(svg, "viewBox", "0 0 101 178");
     			attr_dev(svg, "fill", "none");
-    			add_location(svg, file$1, 316, 12, 10174);
-    			attr_dev(div2, "class", "crossword_subscribe_container svelte-622vlv");
-    			add_location(div2, file$1, 295, 10, 8860);
+    			add_location(svg, file$1, 352, 12, 11449);
+    			attr_dev(div2, "class", "crossword_subscribe_container svelte-wf6ihe");
+    			add_location(div2, file$1, 314, 10, 9331);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div2, anchor);
@@ -9527,16 +9628,34 @@ var app = (function () {
     			append_hydration_dev(strong, t2);
     			append_hydration_dev(h3, t3);
     			append_hydration_dev(div2, t4);
-    			append_hydration_dev(div2, input);
-    			set_input_value(input, /*subscribe_email*/ ctx[19]);
+    			append_hydration_dev(div2, input0);
+    			set_input_value(input0, /*subscribe_email*/ ctx[19]);
     			append_hydration_dev(div2, t5);
+    			append_hydration_dev(div2, label);
+    			append_hydration_dev(label, span1);
+    			append_hydration_dev(span1, input1);
+    			input1.checked = /*subscribe_agree*/ ctx[20];
+    			append_hydration_dev(span1, t6);
+    			append_hydration_dev(span1, span0);
+    			append_hydration_dev(span0, i);
+    			append_hydration_dev(label, t7);
+    			append_hydration_dev(label, span3);
+    			append_hydration_dev(span3, span2);
+    			append_hydration_dev(span2, p);
+    			append_hydration_dev(p, t8);
+    			append_hydration_dev(p, a0);
+    			append_hydration_dev(a0, t9);
+    			append_hydration_dev(p, t10);
+    			append_hydration_dev(p, a1);
+    			append_hydration_dev(a1, t11);
+    			append_hydration_dev(div2, t12);
     			append_hydration_dev(div2, div0);
-    			append_hydration_dev(div0, t6);
-    			append_hydration_dev(div2, t7);
+    			append_hydration_dev(div0, t13);
+    			append_hydration_dev(div2, t14);
     			append_hydration_dev(div2, div1);
-    			append_hydration_dev(div1, t8);
+    			append_hydration_dev(div1, t15);
     			if (if_block) if_block.m(div1, null);
-    			append_hydration_dev(div2, t9);
+    			append_hydration_dev(div2, t16);
     			append_hydration_dev(div2, svg);
     			append_hydration_dev(svg, path0);
     			append_hydration_dev(svg, path1);
@@ -9569,27 +9688,33 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input, "input", /*handleEmail*/ ctx[36], false, false, false, false),
-    					listen_dev(input, "change", /*handleEmail*/ ctx[36], false, false, false, false),
-    					listen_dev(input, "input", /*input_input_handler*/ ctx[51]),
-    					listen_dev(div1, "click", /*handSubscribe*/ ctx[37], false, false, false, false)
+    					listen_dev(input0, "input", /*handleEmail*/ ctx[37], false, false, false, false),
+    					listen_dev(input0, "change", /*handleEmail*/ ctx[37], false, false, false, false),
+    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[53]),
+    					listen_dev(input1, "change", /*handleAgree*/ ctx[38], false, false, false, false),
+    					listen_dev(input1, "change", /*input1_change_handler*/ ctx[54]),
+    					listen_dev(div1, "click", /*handSubscribe*/ ctx[39], false, false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty[0] & /*subscribe_email*/ 524288 && input.value !== /*subscribe_email*/ ctx[19]) {
-    				set_input_value(input, /*subscribe_email*/ ctx[19]);
+    			if (dirty[0] & /*subscribe_email*/ 524288 && input0.value !== /*subscribe_email*/ ctx[19]) {
+    				set_input_value(input0, /*subscribe_email*/ ctx[19]);
     			}
 
-    			if (dirty[0] & /*subscribe_error_txt*/ 2097152) set_data_dev(t6, /*subscribe_error_txt*/ ctx[21]);
-
-    			if (dirty[0] & /*subscribe_error*/ 1048576) {
-    				toggle_class(div0, "active", /*subscribe_error*/ ctx[20]);
+    			if (dirty[0] & /*subscribe_agree*/ 1048576) {
+    				input1.checked = /*subscribe_agree*/ ctx[20];
     			}
 
-    			if (/*subscribeLoading*/ ctx[23]) {
+    			if (dirty[0] & /*subscribe_error_txt*/ 4194304) set_data_dev(t13, /*subscribe_error_txt*/ ctx[22]);
+
+    			if (dirty[0] & /*subscribe_error*/ 2097152) {
+    				toggle_class(div0, "active", /*subscribe_error*/ ctx[21]);
+    			}
+
+    			if (/*subscribeLoading*/ ctx[24]) {
     				if (if_block) ; else {
     					if_block = create_if_block_2(ctx);
     					if_block.c();
@@ -9600,8 +9725,8 @@ var app = (function () {
     				if_block = null;
     			}
 
-    			if (dirty[0] & /*subscribeLoading*/ 8388608) {
-    				toggle_class(div1, "loading", /*subscribeLoading*/ ctx[23]);
+    			if (dirty[0] & /*subscribeLoading*/ 16777216) {
+    				toggle_class(div1, "loading", /*subscribeLoading*/ ctx[24]);
     			}
     		},
     		d: function destroy(detaching) {
@@ -9616,18 +9741,18 @@ var app = (function () {
     		block,
     		id: fallback_block.name,
     		type: "fallback",
-    		source: "(295:44)            ",
+    		source: "(314:44)            ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (295:8) 
+    // (314:8) 
     function create_message_slot(ctx) {
     	let current;
-    	const message_slot_template = /*#slots*/ ctx[44].message;
-    	const message_slot = create_slot(message_slot_template, ctx, /*$$scope*/ ctx[53], get_message_slot_context_1);
+    	const message_slot_template = /*#slots*/ ctx[46].message;
+    	const message_slot = create_slot(message_slot_template, ctx, /*$$scope*/ ctx[56], get_message_slot_context_1);
     	const message_slot_or_fallback = message_slot || fallback_block(ctx);
 
     	const block = {
@@ -9646,20 +9771,20 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			if (message_slot) {
-    				if (message_slot.p && (!current || dirty[1] & /*$$scope*/ 4194304)) {
+    				if (message_slot.p && (!current || dirty[1] & /*$$scope*/ 33554432)) {
     					update_slot_base(
     						message_slot,
     						message_slot_template,
     						ctx,
-    						/*$$scope*/ ctx[53],
+    						/*$$scope*/ ctx[56],
     						!current
-    						? get_all_dirty_from_scope(/*$$scope*/ ctx[53])
-    						: get_slot_changes(message_slot_template, /*$$scope*/ ctx[53], dirty, get_message_slot_changes_1),
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[56])
+    						: get_slot_changes(message_slot_template, /*$$scope*/ ctx[56], dirty, get_message_slot_changes_1),
     						get_message_slot_context_1
     					);
     				}
     			} else {
-    				if (message_slot_or_fallback && message_slot_or_fallback.p && (!current || dirty[0] & /*subscribeLoading, subscribe_error, subscribe_error_txt, subscribe_email*/ 12058624)) {
+    				if (message_slot_or_fallback && message_slot_or_fallback.p && (!current || dirty[0] & /*subscribeLoading, subscribe_error, subscribe_error_txt, subscribe_agree, subscribe_email*/ 24641536)) {
     					message_slot_or_fallback.p(ctx, !current ? [-1, -1, -1] : dirty);
     				}
     			}
@@ -9682,7 +9807,7 @@ var app = (function () {
     		block,
     		id: create_message_slot.name,
     		type: "slot",
-    		source: "(295:8) ",
+    		source: "(314:8) ",
     		ctx
     	});
 
@@ -9804,6 +9929,7 @@ var app = (function () {
     	let isSubscribe = window.sessionStorage.getItem("__jky_cwd") || false;
 
     	let subscribe_email = '';
+    	let subscribe_agree = false;
     	let subscribe_error = false;
     	let subscribe_error_txt = '';
     	let subscribeModalClose = false;
@@ -9914,30 +10040,53 @@ var app = (function () {
     	}
 
     	function handleEmail() {
-    		$$invalidate(20, subscribe_error = !verifyEmail(subscribe_email));
+    		if (!verifyEmail(subscribe_email)) {
+    			$$invalidate(21, subscribe_error = true);
 
-    		if (subscribe_error) {
-    			$$invalidate(21, subscribe_error_txt = subscribe_email === ""
+    			$$invalidate(22, subscribe_error_txt = subscribe_email === ""
     			? "The phone field is required when email is not present."
     			: "The email must be a valid email address.");
+    		} else {
+    			$$invalidate(21, subscribe_error = false);
+    			$$invalidate(22, subscribe_error_txt = '');
+    			handleAgree();
     		}
 
-    		return subscribe_error;
+    		return !verifyEmail(subscribe_email);
+    	}
+
+    	function handleAgree() {
+    		setTimeout(
+    			() => {
+    				if (!subscribe_agree) {
+    					$$invalidate(21, subscribe_error = true);
+    					$$invalidate(22, subscribe_error_txt = 'Please agree to the Terms of Service and Privacy policy.');
+    				} else {
+    					$$invalidate(21, subscribe_error = false);
+    					$$invalidate(22, subscribe_error_txt = '');
+    					handleEmail();
+    				}
+    			},
+    			0
+    		);
     	}
 
     	function handSubscribe() {
-    		if (!handleEmail()) {
-    			$$invalidate(23, subscribeLoading = true);
+    		handleEmail();
+    		handleAgree();
+
+    		if (!subscribe_error) {
+    			$$invalidate(24, subscribeLoading = true);
 
     			footerPhoneSubs({ email: subscribe_email, tags: "CP_games" }).then(() => {
-    				$$invalidate(22, subscribeModalClose = true);
-    				$$invalidate(23, subscribeLoading = false);
+    				$$invalidate(23, subscribeModalClose = true);
+    				$$invalidate(24, subscribeLoading = false);
     				window.sessionStorage.setItem("__jky_cwd", '1');
     				window.sessionStorage.setItem("__jky_cwd_email", subscribe_email);
     				handleGameGTM({ button_name: "PLAY NOW" });
     			}).catch(e => {
-    				$$invalidate(21, subscribe_error_txt = e.message || 'Server Error');
-    				$$invalidate(23, subscribeLoading = false);
+    				$$invalidate(22, subscribe_error_txt = e.message || 'Server Error');
+    				$$invalidate(24, subscribeLoading = false);
     			});
     		}
     	}
@@ -9947,10 +10096,9 @@ var app = (function () {
     		if (!isComplete || !email) return;
 
     		createCoupons({ email }).then(res => {
-    			$$invalidate(25, coupons_code = res.data);
-    			console.log(res);
+    			$$invalidate(26, coupons_code = res.data);
     		}).catch(e => {
-    			$$invalidate(24, coupons_api_error = e.message);
+    			$$invalidate(25, coupons_api_error = e.message);
     		});
     	}
 
@@ -9985,7 +10133,7 @@ var app = (function () {
 
     	function clues_1_focusedCell_binding(value) {
     		focusedCell = value;
-    		(($$invalidate(30, focusedCell), $$invalidate(9, cells)), $$invalidate(7, focusedCellIndex));
+    		(($$invalidate(31, focusedCell), $$invalidate(9, cells)), $$invalidate(7, focusedCellIndex));
     	}
 
     	function clues_1_focusedDirection_binding(value) {
@@ -10008,9 +10156,14 @@ var app = (function () {
     		$$invalidate(14, focusedDirection);
     	}
 
-    	function input_input_handler() {
+    	function input0_input_handler() {
     		subscribe_email = this.value;
     		$$invalidate(19, subscribe_email);
+    	}
+
+    	function input1_change_handler() {
+    		subscribe_agree = this.checked;
+    		$$invalidate(20, subscribe_agree);
     	}
 
     	function article_elementresize_handler() {
@@ -10019,18 +10172,18 @@ var app = (function () {
     	}
 
     	$$self.$$set = $$props => {
-    		if ('data' in $$props) $$invalidate(39, data = $$props.data);
+    		if ('data' in $$props) $$invalidate(41, data = $$props.data);
     		if ('actions' in $$props) $$invalidate(0, actions = $$props.actions);
-    		if ('theme' in $$props) $$invalidate(40, theme = $$props.theme);
+    		if ('theme' in $$props) $$invalidate(42, theme = $$props.theme);
     		if ('revealDuration' in $$props) $$invalidate(1, revealDuration = $$props.revealDuration);
-    		if ('breakpoint' in $$props) $$invalidate(41, breakpoint = $$props.breakpoint);
-    		if ('revealed' in $$props) $$invalidate(38, revealed = $$props.revealed);
-    		if ('disableHighlight' in $$props) $$invalidate(42, disableHighlight = $$props.disableHighlight);
+    		if ('breakpoint' in $$props) $$invalidate(43, breakpoint = $$props.breakpoint);
+    		if ('revealed' in $$props) $$invalidate(40, revealed = $$props.revealed);
+    		if ('disableHighlight' in $$props) $$invalidate(44, disableHighlight = $$props.disableHighlight);
     		if ('showCompleteMessage' in $$props) $$invalidate(2, showCompleteMessage = $$props.showCompleteMessage);
     		if ('showConfetti' in $$props) $$invalidate(3, showConfetti = $$props.showConfetti);
     		if ('showKeyboard' in $$props) $$invalidate(4, showKeyboard = $$props.showKeyboard);
     		if ('keyboardStyle' in $$props) $$invalidate(5, keyboardStyle = $$props.keyboardStyle);
-    		if ('$$scope' in $$props) $$invalidate(53, $$scope = $$props.$$scope);
+    		if ('$$scope' in $$props) $$invalidate(56, $$scope = $$props.$$scope);
     	};
 
     	$$self.$capture_state = () => ({
@@ -10076,6 +10229,7 @@ var app = (function () {
     		cells,
     		isSubscribe,
     		subscribe_email,
+    		subscribe_agree,
     		subscribe_error,
     		subscribe_error_txt,
     		subscribeModalClose,
@@ -10093,6 +10247,7 @@ var app = (function () {
     		onToolbarEvent,
     		verifyEmail,
     		handleEmail,
+    		handleAgree,
     		handSubscribe,
     		handleComplete,
     		isComplete,
@@ -10105,13 +10260,13 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('data' in $$props) $$invalidate(39, data = $$props.data);
+    		if ('data' in $$props) $$invalidate(41, data = $$props.data);
     		if ('actions' in $$props) $$invalidate(0, actions = $$props.actions);
-    		if ('theme' in $$props) $$invalidate(40, theme = $$props.theme);
+    		if ('theme' in $$props) $$invalidate(42, theme = $$props.theme);
     		if ('revealDuration' in $$props) $$invalidate(1, revealDuration = $$props.revealDuration);
-    		if ('breakpoint' in $$props) $$invalidate(41, breakpoint = $$props.breakpoint);
-    		if ('revealed' in $$props) $$invalidate(38, revealed = $$props.revealed);
-    		if ('disableHighlight' in $$props) $$invalidate(42, disableHighlight = $$props.disableHighlight);
+    		if ('breakpoint' in $$props) $$invalidate(43, breakpoint = $$props.breakpoint);
+    		if ('revealed' in $$props) $$invalidate(40, revealed = $$props.revealed);
+    		if ('disableHighlight' in $$props) $$invalidate(44, disableHighlight = $$props.disableHighlight);
     		if ('showCompleteMessage' in $$props) $$invalidate(2, showCompleteMessage = $$props.showCompleteMessage);
     		if ('showConfetti' in $$props) $$invalidate(3, showConfetti = $$props.showConfetti);
     		if ('showKeyboard' in $$props) $$invalidate(4, showKeyboard = $$props.showKeyboard);
@@ -10131,21 +10286,22 @@ var app = (function () {
     		if ('validated' in $$props) $$invalidate(18, validated = $$props.validated);
     		if ('clues' in $$props) $$invalidate(8, clues = $$props.clues);
     		if ('cells' in $$props) $$invalidate(9, cells = $$props.cells);
-    		if ('isSubscribe' in $$props) $$invalidate(31, isSubscribe = $$props.isSubscribe);
+    		if ('isSubscribe' in $$props) $$invalidate(32, isSubscribe = $$props.isSubscribe);
     		if ('subscribe_email' in $$props) $$invalidate(19, subscribe_email = $$props.subscribe_email);
-    		if ('subscribe_error' in $$props) $$invalidate(20, subscribe_error = $$props.subscribe_error);
-    		if ('subscribe_error_txt' in $$props) $$invalidate(21, subscribe_error_txt = $$props.subscribe_error_txt);
-    		if ('subscribeModalClose' in $$props) $$invalidate(22, subscribeModalClose = $$props.subscribeModalClose);
-    		if ('subscribeLoading' in $$props) $$invalidate(23, subscribeLoading = $$props.subscribeLoading);
-    		if ('coupons_api_error' in $$props) $$invalidate(24, coupons_api_error = $$props.coupons_api_error);
-    		if ('coupons_code' in $$props) $$invalidate(25, coupons_code = $$props.coupons_code);
+    		if ('subscribe_agree' in $$props) $$invalidate(20, subscribe_agree = $$props.subscribe_agree);
+    		if ('subscribe_error' in $$props) $$invalidate(21, subscribe_error = $$props.subscribe_error);
+    		if ('subscribe_error_txt' in $$props) $$invalidate(22, subscribe_error_txt = $$props.subscribe_error_txt);
+    		if ('subscribeModalClose' in $$props) $$invalidate(23, subscribeModalClose = $$props.subscribeModalClose);
+    		if ('subscribeLoading' in $$props) $$invalidate(24, subscribeLoading = $$props.subscribeLoading);
+    		if ('coupons_api_error' in $$props) $$invalidate(25, coupons_api_error = $$props.coupons_api_error);
+    		if ('coupons_code' in $$props) $$invalidate(26, coupons_code = $$props.coupons_code);
     		if ('isComplete' in $$props) $$invalidate(10, isComplete = $$props.isComplete);
-    		if ('inlineStyles' in $$props) $$invalidate(26, inlineStyles = $$props.inlineStyles);
-    		if ('stacked' in $$props) $$invalidate(27, stacked = $$props.stacked);
-    		if ('isDisableHighlight' in $$props) $$invalidate(28, isDisableHighlight = $$props.isDisableHighlight);
-    		if ('percentCorrect' in $$props) $$invalidate(43, percentCorrect = $$props.percentCorrect);
-    		if ('cellIndexMap' in $$props) $$invalidate(29, cellIndexMap = $$props.cellIndexMap);
-    		if ('focusedCell' in $$props) $$invalidate(30, focusedCell = $$props.focusedCell);
+    		if ('inlineStyles' in $$props) $$invalidate(27, inlineStyles = $$props.inlineStyles);
+    		if ('stacked' in $$props) $$invalidate(28, stacked = $$props.stacked);
+    		if ('isDisableHighlight' in $$props) $$invalidate(29, isDisableHighlight = $$props.isDisableHighlight);
+    		if ('percentCorrect' in $$props) $$invalidate(45, percentCorrect = $$props.percentCorrect);
+    		if ('cellIndexMap' in $$props) $$invalidate(30, cellIndexMap = $$props.cellIndexMap);
+    		if ('focusedCell' in $$props) $$invalidate(31, focusedCell = $$props.focusedCell);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -10153,28 +10309,28 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty[1] & /*data*/ 256) {
+    		if ($$self.$$.dirty[1] & /*data*/ 1024) {
     			(onDataUpdate());
     		}
 
     		if ($$self.$$.dirty[0] & /*cells, focusedCellIndex*/ 640) {
-    			$$invalidate(30, focusedCell = cells[focusedCellIndex] || {});
+    			$$invalidate(31, focusedCell = cells[focusedCellIndex] || {});
     		}
 
     		if ($$self.$$.dirty[0] & /*cells*/ 512) {
-    			$$invalidate(29, cellIndexMap = fromPairs(cells.map(cell => [cell.id, cell.index])));
+    			$$invalidate(30, cellIndexMap = fromPairs(cells.map(cell => [cell.id, cell.index])));
     		}
 
     		if ($$self.$$.dirty[0] & /*cells*/ 512) {
-    			$$invalidate(43, percentCorrect = cells.filter(d => d.answer === d.value).length / cells.length);
+    			$$invalidate(45, percentCorrect = cells.filter(d => d.answer === d.value).length / cells.length);
     		}
 
-    		if ($$self.$$.dirty[1] & /*percentCorrect*/ 4096) {
+    		if ($$self.$$.dirty[1] & /*percentCorrect*/ 16384) {
     			$$invalidate(10, isComplete = percentCorrect == 1);
     		}
 
-    		if ($$self.$$.dirty[0] & /*isComplete*/ 1024 | $$self.$$.dirty[1] & /*disableHighlight*/ 2048) {
-    			$$invalidate(28, isDisableHighlight = isComplete && disableHighlight);
+    		if ($$self.$$.dirty[0] & /*isComplete*/ 1024 | $$self.$$.dirty[1] & /*disableHighlight*/ 8192) {
+    			$$invalidate(29, isDisableHighlight = isComplete && disableHighlight);
     		}
 
     		if ($$self.$$.dirty[0] & /*cells*/ 512) {
@@ -10182,15 +10338,15 @@ var app = (function () {
     		}
 
     		if ($$self.$$.dirty[0] & /*cells, clues*/ 768) {
-    			($$invalidate(38, revealed = !clues.filter(d => !d.isCorrect).length));
+    			($$invalidate(40, revealed = !clues.filter(d => !d.isCorrect).length));
     		}
 
-    		if ($$self.$$.dirty[0] & /*width*/ 64 | $$self.$$.dirty[1] & /*breakpoint*/ 1024) {
-    			$$invalidate(27, stacked = width < breakpoint);
+    		if ($$self.$$.dirty[0] & /*width*/ 64 | $$self.$$.dirty[1] & /*breakpoint*/ 4096) {
+    			$$invalidate(28, stacked = width < breakpoint);
     		}
 
-    		if ($$self.$$.dirty[1] & /*theme*/ 512) {
-    			$$invalidate(26, inlineStyles = themes[theme]);
+    		if ($$self.$$.dirty[1] & /*theme*/ 2048) {
+    			$$invalidate(27, inlineStyles = themes[theme]);
     		}
 
     		if ($$self.$$.dirty[0] & /*isComplete*/ 1024) {
@@ -10219,6 +10375,7 @@ var app = (function () {
     		isChecking,
     		validated,
     		subscribe_email,
+    		subscribe_agree,
     		subscribe_error,
     		subscribe_error_txt,
     		subscribeModalClose,
@@ -10236,6 +10393,7 @@ var app = (function () {
     		onCheck,
     		onToolbarEvent,
     		handleEmail,
+    		handleAgree,
     		handSubscribe,
     		revealed,
     		data,
@@ -10250,7 +10408,8 @@ var app = (function () {
     		puzzle_cells_binding,
     		puzzle_focusedCellIndex_binding,
     		puzzle_focusedDirection_binding,
-    		input_input_handler,
+    		input0_input_handler,
+    		input1_change_handler,
     		article_elementresize_handler,
     		$$scope
     	];
@@ -10267,13 +10426,13 @@ var app = (function () {
     			create_fragment$1,
     			safe_not_equal,
     			{
-    				data: 39,
+    				data: 41,
     				actions: 0,
-    				theme: 40,
+    				theme: 42,
     				revealDuration: 1,
-    				breakpoint: 41,
-    				revealed: 38,
-    				disableHighlight: 42,
+    				breakpoint: 43,
+    				revealed: 40,
+    				disableHighlight: 44,
     				showCompleteMessage: 2,
     				showConfetti: 3,
     				showKeyboard: 4,
