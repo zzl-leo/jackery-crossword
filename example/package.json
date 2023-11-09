@@ -5,6 +5,7 @@
     "dev": "rollup -c -w",
     "start": "sirv public",
     "predeploy": "rollup -c",
+    "build": "rollup -c",
     "deploy": "rollup -c rollup.config-ssr.js"
   },
   "devDependencies": {

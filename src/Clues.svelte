@@ -20,10 +20,6 @@
     ) || {};
 
   function onClueFocus({ direction, id, number }) {
-    console.log(focusedCell)
-    console.log(focusedCellIndex)
-    console.log(focusedDirection)
-
     // 避免当前cell被重置
     if(focusedDirection === direction && focusedCell.clueNumbers[direction] === number) {
       return

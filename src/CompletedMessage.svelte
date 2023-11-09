@@ -2,6 +2,7 @@
   import { fade } from "svelte/transition";
   import Confetti from "./Confetti.svelte";
   import {handleGameGTM} from "./helpers/gtm-event.js"
+  import {copyString} from "./helpers/utils"
 
   import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
@@ -25,8 +26,11 @@
   }
   
   function handleGTM_shopnow() {
+    const code = document.querySelector(".coupone_info .coupone_info_title").innerText.replace("CODE:", "") || ""
+    copyString(code.trim())
+
     handleGameGTM({
-      button_name: "SHOP NOW"
+      button_name: "COPY & USE"
     })
 
     setTimeout(() => {
@@ -46,11 +50,11 @@
         <slot name="message" />
       </div>
 
-      {#if outClickClose}
+      {#if showConfetti}
         <button on:click="{close}">
           {#if btnShopNow}
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <span on:click="{handleGTM_shopnow}">SHOP NOW</span>
+            <span on:click="{handleGTM_shopnow}">COPY & USE</span>
           {/if}
 
           {#if !btnShopNow}
@@ -80,7 +84,7 @@
 <style>
   .completed {
     position: absolute;
-    top: min(50%, 20em);
+    top: min(50%, 40em);
     left: 50%;
     max-width: 80%;
     width: 680px;
@@ -154,7 +158,7 @@
 
   @media only screen and (max-width: 1024px) {
     .completed {
-      top: min(50%, 20em);
+      top: min(50%, 40em);
       left: 50%;
       max-width: 100%;
       width: 100%;

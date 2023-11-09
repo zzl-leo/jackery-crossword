@@ -37,10 +37,6 @@ export default function validateClues(data) {
       dict[d.id] = d.answer;
     } else {
 			if (dict[d.id] !== d.answer) {
-        console.log("----------")
-        console.log(data)
-        console.log("----------")
-
 				failedCell = true;
 				console.error(`cell "${d.id}" has two different values\n`, `${dict[d.id]} and ${d.answer}`);
 			}

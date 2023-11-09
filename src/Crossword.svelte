@@ -145,7 +145,6 @@
   function onCheck() {
     isChecking = true;
     const res = getCheckRes() || {error: '', correct: ''}
-    console.info("check resaults: 错误单词数：", res.error.length, "正确单词数：", res.correct.length)
     error_num = res.error.length
     correct_num = res.correct.length
     checkModal = true
@@ -178,7 +177,7 @@
   function handleEmail() {
     if(!verifyEmail(subscribe_email)) {
       subscribe_error = true
-      subscribe_error_txt = subscribe_email === "" ? "The phone field is required when email is not present." : "The email must be a valid email address."
+      subscribe_error_txt = subscribe_email === "" ? "Please enter a valid email address." : "The email must be a valid email address."
     } else {
       subscribe_error = false
       subscribe_error_txt = ''
@@ -203,24 +202,26 @@
   function handSubscribe() {
     handleEmail()
     handleAgree()
-    if(!subscribe_error) {
-      subscribeLoading = true
-      footerPhoneSubs({
-        email: subscribe_email,
-        tags: "CP_games"
-      }).then(() => {
-        subscribeModalClose = true
-        subscribeLoading = false
-        window.sessionStorage.setItem("__jky_cwd", '1')
-        window.sessionStorage.setItem("__jky_cwd_email", subscribe_email)
-        handleGameGTM({
-          button_name: "PLAY NOW"
+    setTimeout(() => {
+      if(!subscribe_error) {
+        subscribeLoading = true
+        footerPhoneSubs({
+          email: subscribe_email,
+          tags: "CP_games"
+        }).then(() => {
+          subscribeModalClose = true
+          subscribeLoading = false
+          window.sessionStorage.setItem("__jky_cwd", '1')
+          window.sessionStorage.setItem("__jky_cwd_email", subscribe_email)
+          handleGameGTM({
+            button_name: "PLAY NOW"
+          })
+        }).catch(e => {
+          subscribe_error_txt = e.message || 'Server Error'
+          subscribeLoading = false
         })
-      }).catch(e => {
-        subscribe_error_txt = e.message || 'Server Error'
-        subscribeLoading = false
-      })
-    }
+      }
+    }, 10);
   }
 
   function handleComplete() {
@@ -279,15 +280,15 @@
     </div>
 
     {#if isComplete && !isRevealing && showCompleteMessage}
-      <CompletedMessage showCloseBtn="{true}" showConfetti="{showConfetti && !coupons_api_error}" btnShopNow="{!coupons_api_error}">
+      <CompletedMessage outClickClose="{false}" showCloseBtn="{false}" showConfetti="{showConfetti && !coupons_api_error}" btnShopNow="{!coupons_api_error}">
         <slot name="message" slot="message">
           {#if coupons_api_error === ""}
           <div class="title_gameend">Congratulations 🎉 You have successfully filled in the word:</div>
           <div class="coupon_gameend">
-            <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/Group_552.png?v=1698821612" alt="coupon">
+            <img src="https://cdn.shopify.com/s/files/1/0607/3866/6677/files/Frame_93.png?v=1699346042" alt="coupon">
             <div class="coupone_info">
-              <div class="coupone_info_title">CODE: {coupons_code}</div>
-              <div class="coupone_info_des">3% off stackable coupon</div>
+              <div class="coupone_info_title">CODE:{coupons_code}</div>
+              <div class="coupone_info_des"><span style="color: #fd5000;">3%</span> off stackable coupon</div>
             </div>
           </div>
           {/if}
@@ -301,7 +302,7 @@
           {#if coupons_api_error === ""}
           <div class="footer_gameend">
             This code will be sent to the email you provided.<br>
-            This code can be combined and stacked with any other offers, including sales and coupons.
+            This code can be combined and stacked with any other offers.
           </div>
           {/if}
         </slot>
@@ -315,7 +316,7 @@
           <div class="crossword_subscribe_container">
             <h3>
               Subscribe to solve the crossword puzzle<br>
-              Win up to <strong>52% </strong> off
+              Win up to <strong>52%</strong> off
             </h3>
             <input on:input="{handleEmail}" on:change="{handleEmail}" bind:value="{subscribe_email}" type="text" placeholder="Email">
 
@@ -591,15 +592,18 @@
     color: #754C08;
     text-align: center;
     font-family: Gilroy;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
   }
   .coupon_gameend .coupone_info .coupone_info_des {
     color: #000;
     text-align: center;
     font-family: Gilroy;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
+  }
+  .coupon_gameend .coupone_info .coupone_info_des span{
+    font-size: 20px;
   }
   .coupon_gameend img {
     height: 280px;
@@ -633,14 +637,16 @@
       padding: 10px 20px;
     }
     .coupon_gameend .coupone_info .coupone_info_title {
-      font-size: 16px;
-    }
+      font-size: 16px;}
     .coupon_gameend .coupone_info .coupone_info_des {
       font-size: 12px;
       font-weight: 500;
     }
+    .coupon_gameend .coupone_info .coupone_info_des span {
+      font-size: 14px;
+    }
     .coupone_info {
-      padding-left: 30px;
+      padding-left: 15px;
     }
     .coupon_gameend img {
       height: unset;

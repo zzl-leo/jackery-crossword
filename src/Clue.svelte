@@ -101,7 +101,7 @@
         </div>
       </li>  
 
-      <li>
+      <li class="hide__mobile">
         <div data-url="/" data-type="messenger">
           <img src="https://cdn.shopify.com/s/files/1/0970/9262/files/01_6b2bfacf-c07b-46db-922e-d8653d1aaa33.png?v=1698829939" alt="message" />
         </div>
@@ -406,8 +406,10 @@
       top: 0;
     }
     .clue--across--6 button {
-      /* right: px; */
       top: -10px;
+    }
+    .hide__mobile {
+      display: none;
     }
   }
 </style>

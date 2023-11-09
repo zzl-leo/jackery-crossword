@@ -6,4 +6,23 @@ function fromPairs(arr) {
   return res;
 };
 
-export { fromPairs };
+/**
+ * click copy
+ *
+ * @param {Element} value - copy string
+ * @param {Element} cb - callback function
+ */
+const copyString = (value, cb) => {
+  const textarea = document.createElement('textarea')
+  textarea.readOnly = 'readonly'
+  textarea.style.position = 'absolute'
+  textarea.style.left = '-9999px'
+  textarea.value = value
+  document.body.appendChild(textarea)
+  textarea.select()
+  const result = document.execCommand('Copy')
+  document.body.removeChild(textarea)
+  if (result && cb) { cb() }
+}
+
+export { fromPairs, copyString };

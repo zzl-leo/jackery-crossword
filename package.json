@@ -14,10 +14,6 @@
 	],
 	"author": "leo",
 	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/russellsamora/svelte-crossword/issues"
-	},
-	"homepage": "https://github.com/russellsamora/svelte-crossword#readme",
 	"peerDependencies": {
 		"svelte": "^3.29.0"
 	},

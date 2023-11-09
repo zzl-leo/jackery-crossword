@@ -51,8 +51,6 @@
       focusedDirection,
       focusedCell,
     });
-
-    console.log(secondarilyFocusedCells)
   }
 
   function onCellUpdate(index, newValue, diff = 1, doReplaceFilledCells) {
@@ -83,11 +81,6 @@
     cellsHistoryIndex = 0;
     cells = newCells;
 
-
-
-    console.log("***onCellUpdate***")
-    console.log(index)
-    console.log("***onCellUpdate***")
     const activeCells = getSecondarilyFocusedCells({
       cells,
       focusedDirection,
@@ -189,8 +182,6 @@
   }
 
   function onFlipDirection() {
-    console.log("focusedDirection--")
-    console.log(focusedDirection)
     // FIX: 无法全部自动填充问题
     // let newDirection = focusedDirection === "across" ? "down" : "across";
     let newDirection

@@ -50,7 +50,7 @@ export default {
 		commonjs(),
 		json(),
 		!production && serve(),
-		!production && livereload('public')
+		// !production && livereload('public')
 	],
 	watch: {
 		clearScreen: false

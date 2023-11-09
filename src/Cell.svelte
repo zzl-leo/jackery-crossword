@@ -30,9 +30,6 @@
   }
 
   function onKeydown(e) {
-    console.log(250250250)
-
-
     if (e.ctrlKey && e.key.toLowerCase() == "z") {
       onHistoricalChange(e.shiftKey ? 1 : -1);
     }
