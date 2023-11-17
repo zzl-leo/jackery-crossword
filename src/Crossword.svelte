@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, tick } from "svelte";
   import Toolbar from "./Toolbar.svelte";
   import Puzzle from "./Puzzle.svelte";
   import Clues from "./Clues.svelte";
@@ -77,8 +77,11 @@
 
   $: isComplete, handleComplete();
 
-  onMount(() => {
+  onMount(async () => {
     isLoaded = true;
+
+    await tick();
+    document.querySelector("#crossword_subscribe_discount").innerText = document.querySelector(".crossword-section #crossword__discount").innerText
   });
 
   function checkClues() {
@@ -227,6 +230,7 @@
   function handleComplete() {
     const email = window.sessionStorage.getItem("__jky_cwd_email") || false
     if(!isComplete || !email) return
+
     createCoupons({
       email
     }).then(res => {
@@ -316,7 +320,7 @@
           <div class="crossword_subscribe_container">
             <h3>
               Subscribe to solve the crossword puzzle<br>
-              Win up to <strong>52%</strong> off
+              Win up to <strong id="crossword_subscribe_discount">52%</strong> off
             </h3>
             <input on:input="{handleEmail}" on:change="{handleEmail}" bind:value="{subscribe_email}" type="text" placeholder="Email">
 
