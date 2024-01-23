@@ -1,6 +1,21 @@
 <script>
   import Crossword from "../src/Crossword.svelte";
   import jac from './data/jackery.data.json'
+  export let modal_title;
+  export let modal_email;
+  export let modal_email_empty;
+  export let modal_email_error;
+  export let modal_email_noagree;
+  export let modal_email_policy;
+  export let modal_email_playnow;
+  export let modal_correct_words;
+  export let modal_incorrect_words;
+  export let btn_reset;
+  export let btn_check;
+  export let success_title;
+  export let success_couponinfo;
+  export let success_copy; 
+  export let success_des; 
 
   window.fbAsyncInit = function () {
 		FB.init({
@@ -15,7 +30,23 @@
 
 <article>
   <section id="default">
-    <Crossword data="{jac}" />
+    <Crossword 
+      modal_title="{modal_title}" 
+      modal_email="{modal_email}"
+      modal_email_empty="{modal_email_empty}"
+      modal_email_error="{modal_email_error}"
+      modal_email_noagree="{modal_email_noagree}"
+      modal_email_policy="{modal_email_policy}"
+      modal_email_playnow="{modal_email_playnow}"
+      modal_correct_words="{modal_correct_words}"
+      modal_incorrect_words="{modal_incorrect_words}"
+      btn_reset="{btn_reset}"
+      btn_check="{btn_check}"
+      success_title="{success_title}"
+      success_couponinfo="{success_couponinfo}"
+      success_copy="{success_copy}"
+      success_des="{success_des}"
+      data="{jac}" />
   </section>
 </article>
 

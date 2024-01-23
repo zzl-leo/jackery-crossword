@@ -22,13 +22,12 @@
   $: clueClass = `clue--${direction}--${number}`;
 
   function handleShare(params) {
-    // const share__url = params.item.getAttribute("data-url")
     const share__type = params.item.getAttribute("data-type")
 
     setTimeout(() => {
       window.sessionStorage.setItem(`__jky_shared__${params.number}`, "true")
       params.el.querySelector(".modal-content-body").innerHTML = createSocialDom(true, params.number)
-    }, 2000);
+    }, 4000);
     let _url = ''
     switch (share__type) {
       case 'facebook':
@@ -127,14 +126,12 @@
         if(hasShared) {
           el.querySelector(".modal-content-body").innerHTML = createSocialDom(hasShared, number)
         }
-
-        el.querySelectorAll(".tips_modal__socials li>div").forEach(item => {
-          item.removeEventListener("click", () => {handleShare({...params, item, el})})
-        })
-
+        
         setTimeout(() => {
           el.querySelectorAll(".tips_modal__socials li>div").forEach(item => {
-            item.addEventListener("click", () => {handleShare({...params, item, el})})
+            item.addEventListener("click", () => {
+              handleShare({...params, item, el})
+            })
           })
         }, 0);
       }

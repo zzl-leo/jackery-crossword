@@ -417,9 +417,37 @@
 	<script async defer crossorigin="anonymous"
 	src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=855600322936840&autoLogAppEvents=1"
 	nonce="ywRETNx8"></script>
+
+
+	<style>
+		.crossword_subscribe_container h3 p {
+			padding: 0;
+			margin: 0;
+		}
+		.crossword_subscribe_container h3 strong {
+			color: #EB8D21;
+			font-size: 36px;
+			font-weight: 700;
+		}
+
+		.coupon_gameend .coupone_info .coupone_info_des p {
+			padding: 0;
+			margin: 0;
+		}
+		.coupon_gameend .coupone_info .coupone_info_des p strong {
+			color: #EB8D21; font-weight: 500;
+		}
+
+		.footer_gameend p {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
 </head>
 
 <body>
+
+	
 	<div class="title-block">
 		<div class="game-title">LIGHTING FESTIVE JOY</div>
 		<div class="game-subtitle">
@@ -427,7 +455,25 @@
 		</div>
 	</div>
 
-	<div class="crossword-main"></div>
+	<div 
+		data-modal-title="<p>Subscribe to solve the crossword puzzle</p><p>Win up to <strong>44%</strong> off</p>"
+		data-modal-email="Email-JP" 
+		data-modal-emailEmpty="Please enter a valid email address-JP." 
+		data-modal-emailError="The email must be a valid email address-JP." 
+		data-modal-notagree="Please agree to the Terms of Service and Privacy policy-JP." 
+		data-modal-policy="<p>I agree to Jackery's <a href='/policies/terms-of-service' title='/policies/terms-of-service'>Terms of Service</a> and <a href='/policies/privacy-policy' title='/policies/privacy-policy'>Privacy Policy-JP</a></p>" 
+		data-modal-playnow="PLAY NOW -J"
+		data-correct_words="CORRECT WORDS jp:"
+		data-incorrect_words="INCORRECT WORDS jp:"
+		data-btn_reset="RESET jp"
+		data-btn_check="CHECK jp"
+		data-success_title="Congratulations 🎉 You have successfully filled in the word: jp"
+		data-success_couponinfo="<p><strong>3% </strong>off stackable coupon jp</p>"
+		data-success_copy="COPY & USE jp"
+		data-success_des="<p>This code will be sent to the email you provided.</p><p>
+            This code can be combined and stacked with any other offers.</p>"
+
+		class="crossword-main"></div>
 	
 	<script type="text/javascript" src="build/bundle.js" defer></script>
 

@@ -4,7 +4,7 @@
   import {handleGameGTM} from "./helpers/gtm-event.js"
   import {copyString} from "./helpers/utils"
 
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
     const dispatch = createEventDispatcher();
 
   export let showConfetti = true;
@@ -12,6 +12,7 @@
   export let funcClose = false;
   export let btnShopNow = true;
   export let showCloseBtn = false;
+  export let success_copy;
 
   let isOpen = true;
 
@@ -30,13 +31,19 @@
     copyString(code.trim())
 
     handleGameGTM({
-      button_name: "COPY & USE"
+      button_name: success_copy
     })
 
     setTimeout(() => {
       window.location.href = `${window.location.origin}/pages/black-friday`
     }, 20);
   }
+
+  onMount(async () => {
+    setTimeout(() => {
+      document.querySelector(".confetti").style.display ="none"
+    }, 1200);
+  })
 </script>
 
 {#if isOpen}
@@ -54,7 +61,7 @@
         <button on:click="{close}">
           {#if btnShopNow}
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <span on:click="{handleGTM_shopnow}">COPY & USE</span>
+            <span on:click="{handleGTM_shopnow}">{success_copy}</span>
           {/if}
 
           {#if !btnShopNow}

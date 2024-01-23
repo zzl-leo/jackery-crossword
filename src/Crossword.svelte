@@ -26,6 +26,24 @@
   export let showKeyboard;
   export let keyboardStyle = "outline";
 
+  // lang 配置文案
+  export let modal_title = ""; // 订阅弹窗title
+  export let modal_email = "Email"; // Email  label
+  export let modal_email_empty = "Please enter a valid email address."; // Email empty text
+  export let modal_email_error = "The email must be a valid email address."; // Email error text
+  export let modal_email_noagree = "Please agree to the Terms of Service and Privacy policy."; // 未勾选同意提示
+  export let modal_email_policy = ""; // 隐式条款
+  export let modal_email_playnow = "PLAY NOW"; // button text
+  export let modal_correct_words;
+  export let modal_incorrect_words;
+  export let btn_reset;
+  export let btn_check;
+  export let success_title;
+  export let success_couponinfo;
+  export let success_copy;
+  export let success_des;
+  // lang 配置文案
+
   let checkModal = false
   let error_num = 0
   let correct_num = 0
@@ -81,7 +99,7 @@
     isLoaded = true;
 
     await tick();
-    document.querySelector("#crossword_subscribe_discount").innerText = document.querySelector(".crossword-section #crossword__discount").innerText
+    document.querySelector(".crossword-section #crossword__discount") && (document.querySelector("#crossword_subscribe_discount").innerText = document.querySelector(".crossword-section #crossword__discount")?.innerText)
   });
 
   function checkClues() {
@@ -180,11 +198,11 @@
   function handleEmail() {
     if(!verifyEmail(subscribe_email)) {
       subscribe_error = true
-      subscribe_error_txt = subscribe_email === "" ? "Please enter a valid email address." : "The email must be a valid email address."
+      subscribe_error_txt = subscribe_email === "" ? modal_email_empty : modal_email_error
     } else {
       subscribe_error = false
       subscribe_error_txt = ''
-      handleAgree()
+      handleAgree();
     }
     return !verifyEmail(subscribe_email)
   }
@@ -193,7 +211,7 @@
     setTimeout(() => {
       if(!subscribe_agree) {
         subscribe_error = true
-        subscribe_error_txt = 'Please agree to the Terms of Service and Privacy policy.'
+        subscribe_error_txt = modal_email_noagree
       } else {
         subscribe_error = false
         subscribe_error_txt = ''
@@ -217,7 +235,7 @@
           window.sessionStorage.setItem("__jky_cwd", '1')
           window.sessionStorage.setItem("__jky_cwd_email", subscribe_email)
           handleGameGTM({
-            button_name: "PLAY NOW"
+            button_name: modal_email_playnow
           })
         }).catch(e => {
           subscribe_error_txt = e.message || 'Server Error'
@@ -252,8 +270,8 @@
       onClear="{onClear}"
       onReveal="{onReveal}"
       onCheck="{onCheck}">
-      <Toolbar actions="{actions}" on:event="{onToolbarEvent}" />
-      <CheckModal open="{checkModal}" error_num = "{error_num}" correct_num="{correct_num}"></CheckModal>
+      <Toolbar actions="{actions}" on:event="{onToolbarEvent}" btn_reset="{btn_reset}" btn_check="{btn_check}" />
+      <CheckModal open="{checkModal}" error_num = "{error_num}" correct_num="{correct_num}" modal_correct_words="{modal_correct_words}" modal_incorrect_words="{modal_incorrect_words}"></CheckModal>
     </slot>
 
     <div class="play" class:stacked class:is-loaded="{isLoaded}">
@@ -284,15 +302,15 @@
     </div>
 
     {#if isComplete && !isRevealing && showCompleteMessage}
-      <CompletedMessage outClickClose="{false}" showCloseBtn="{false}" showConfetti="{showConfetti && !coupons_api_error}" btnShopNow="{!coupons_api_error}">
+      <CompletedMessage success_copy="{success_copy}" outClickClose="{false}" showCloseBtn="{false}" showConfetti="{showConfetti && !coupons_api_error}" btnShopNow="{!coupons_api_error}">
         <slot name="message" slot="message">
           {#if coupons_api_error === ""}
-          <div class="title_gameend">Congratulations 🎉 You have successfully filled in the word:</div>
+          <div class="title_gameend">{success_title}</div>
           <div class="coupon_gameend">
             <img src="https://cdn.shopify.com/s/files/1/0607/3866/6677/files/Frame_93.png?v=1699346042" alt="coupon">
             <div class="coupone_info">
               <div class="coupone_info_title">CODE:{coupons_code}</div>
-              <div class="coupone_info_des"><span style="color: #fd5000;">3%</span> off stackable coupon</div>
+              <div class="coupone_info_des">{@html success_couponinfo}</div>
             </div>
           </div>
           {/if}
@@ -304,10 +322,7 @@
         
         <slot name="footer" slot="footer">
           {#if coupons_api_error === ""}
-          <div class="footer_gameend">
-            This code will be sent to the email you provided.<br>
-            This code can be combined and stacked with any other offers.
-          </div>
+          <div class="footer_gameend">{@html success_des}</div>
           {/if}
         </slot>
       </CompletedMessage>
@@ -318,11 +333,13 @@
       <CompletedMessage showConfetti="{false}" outClickClose="{false}" funcClose="{subscribeModalClose}">
         <slot name="message" slot="message">
           <div class="crossword_subscribe_container">
-            <h3>
-              Subscribe to solve the crossword puzzle<br>
-              Win up to <strong id="crossword_subscribe_discount">52%</strong> off
-            </h3>
-            <input on:input="{handleEmail}" on:change="{handleEmail}" bind:value="{subscribe_email}" type="text" placeholder="Email">
+            <h3>{@html modal_title}</h3>
+            <input 
+              on:input="{handleEmail}" 
+              on:change="{handleEmail}" 
+              bind:value="{subscribe_email}" 
+              type="text" placeholder="{modal_email}"
+            >
 
             <label class="dji-checkbox">
               <span class="dji-checkbox-input">
@@ -333,9 +350,7 @@
               </span>
 
               <span class="dji-checkbox-label">
-                <span class="dji-agree">
-                  <p>I agree to Jackery's <a href="/policies/terms-of-service" title="/policies/terms-of-service">Terms of Service</a> and <a href="/policies/privacy-policy" title="/policies/privacy-policy">Privacy Policy</a></p>
-                </span>
+                <span class="dji-agree">{@html modal_email_policy}</span>
               </span>
             </label>
 
@@ -346,7 +361,7 @@
               class:loading="{subscribeLoading}"
               on:click="{handSubscribe}"
             >
-              PLAY NOW
+              {modal_email_playnow}
               {#if subscribeLoading}
               <span class="crossword_submit_loading">
                 <svg class="anticon-loading" viewBox="0 0 1024 1024" focusable="false" data-icon="loading" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"></path></svg>
@@ -584,7 +599,7 @@
   .coupon_gameend .coupone_info {
     position: absolute;
     top: 0;
-    bottom: 0;
+    min-height: 348px;
     right: 0;
     left: 0;
     display: flex;
@@ -610,20 +625,22 @@
     font-size: 20px;
   }
   .coupon_gameend img {
-    height: 280px;
+    width: 100%;
   }
   .footer_gameend {
     padding: 20px 60px;
     color: #000;
     text-align: center;
     font-family: Gilroy;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
 
   .title_gameend {
-    font-size: 18px;
+    font-size: 22px;
     text-align: center;
     font-weight: bold;
   }
@@ -639,6 +656,9 @@
     }
     .footer_gameend {
       padding: 10px 20px;
+    }
+    .coupon_gameend .coupone_info {
+      min-height: 168px;
     }
     .coupon_gameend .coupone_info .coupone_info_title {
       font-size: 16px;}

@@ -3,16 +3,18 @@
   const dispatch = createEventDispatcher();
 
   export let actions = ["clear", "reveal", "check"];
+  export let btn_reset = "REST";
+  export let btn_check = "CHECK";
 </script>
 
 <div class="toolbar">
   {#each actions as action}
     {#if action === 'clear'}
-      <button on:click="{() => dispatch('event', 'clear')}">Reset</button>
+      <button on:click="{() => dispatch('event', 'clear')}">{btn_reset}</button>
     {:else if action === 'reveal'}
-      <!-- <button on:click="{() => dispatch('event', 'reveal')}">Reveal</button> -->
+      <button on:click="{() => dispatch('event', 'reveal')}">Reveal</button>
     {:else if action === 'check'}
-      <button on:click="{() => dispatch('event', 'check')}">Check</button>
+      <button on:click="{() => dispatch('event', 'check')}">{btn_check}</button>
     {/if}
   {/each}
 </div>

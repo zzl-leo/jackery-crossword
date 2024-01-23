@@ -5,6 +5,9 @@
     export let correct_num = 0;
     export let error_num = 0;
 
+    export let modal_correct_words = "CORRECT WORDS: ";
+    export let modal_incorrect_words = "INCORRECT WORDS: ";
+
 
     let modalIn = false;
     let out = false;
@@ -32,8 +35,8 @@
     <div class="modal">
       <button class="check__close" on:click="{closeModal}">close</button>
 
-      <p class="correct_text">CORRECT WORDS: {correct_num}</p>
-      <p class="incorrect_text">INCORRECT WORDS: {error_num}</p>
+      <p class="correct_text">{modal_correct_words} {correct_num}</p>
+      <p class="incorrect_text">{modal_incorrect_words} {error_num}</p>
     </div>
   </div>
 </div>
