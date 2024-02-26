@@ -21,6 +21,8 @@ const app = new App({
 		success_couponinfo: _dom.getAttribute("data-success_couponinfo"),
 		success_copy: _dom.getAttribute("data-success_copy"),
 		success_des: _dom.getAttribute("data-success_des"),
+		shopurl: _dom.getAttribute("data-shopurl"),
+		setting_id: _dom.getAttribute("data-setting_id"),
 	}
 });
 

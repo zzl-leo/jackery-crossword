@@ -1119,7 +1119,7 @@ var app = (function () {
 
     function get_each_context$5(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[7] = list[i];
+    	child_ctx[6] = list[i];
     	return child_ctx;
     }
 
@@ -1151,7 +1151,7 @@ var app = (function () {
     			append_hydration(button, t);
 
     			if (!mounted) {
-    				dispose = listen(button, "click", /*click_handler_2*/ ctx[6]);
+    				dispose = listen(button, "click", /*click_handler_1*/ ctx[5]);
     				mounted = true;
     			}
     		},
@@ -1168,42 +1168,12 @@ var app = (function () {
 
     // (14:34) 
     function create_if_block_1$3(ctx) {
-    	let button;
-    	let t;
-    	let mounted;
-    	let dispose;
-
     	return {
-    		c() {
-    			button = element("button");
-    			t = text("Reveal");
-    			this.h();
-    		},
-    		l(nodes) {
-    			button = claim_element(nodes, "BUTTON", { class: true });
-    			var button_nodes = children(button);
-    			t = claim_text(button_nodes, "Reveal");
-    			button_nodes.forEach(detach);
-    			this.h();
-    		},
-    		h() {
-    			attr(button, "class", "svelte-1awe1n5");
-    		},
-    		m(target, anchor) {
-    			insert_hydration(target, button, anchor);
-    			append_hydration(button, t);
-
-    			if (!mounted) {
-    				dispose = listen(button, "click", /*click_handler_1*/ ctx[5]);
-    				mounted = true;
-    			}
-    		},
+    		c: noop,
+    		l: noop,
+    		m: noop,
     		p: noop,
-    		d(detaching) {
-    			if (detaching) detach(button);
-    			mounted = false;
-    			dispose();
-    		}
+    		d: noop
     	};
     }
 
@@ -1255,9 +1225,9 @@ var app = (function () {
     	let if_block_anchor;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*action*/ ctx[7] === 'clear') return create_if_block$5;
-    		if (/*action*/ ctx[7] === 'reveal') return create_if_block_1$3;
-    		if (/*action*/ ctx[7] === 'check') return create_if_block_2$2;
+    		if (/*action*/ ctx[6] === 'clear') return create_if_block$5;
+    		if (/*action*/ ctx[6] === 'reveal') return create_if_block_1$3;
+    		if (/*action*/ ctx[6] === 'check') return create_if_block_2$2;
     	}
 
     	let current_block_type = select_block_type(ctx);
@@ -1380,8 +1350,7 @@ var app = (function () {
     	let { btn_reset = "REST" } = $$props;
     	let { btn_check = "CHECK" } = $$props;
     	const click_handler = () => dispatch('event', 'clear');
-    	const click_handler_1 = () => dispatch('event', 'reveal');
-    	const click_handler_2 = () => dispatch('event', 'check');
+    	const click_handler_1 = () => dispatch('event', 'check');
 
     	$$self.$$set = $$props => {
     		if ('actions' in $$props) $$invalidate(0, actions = $$props.actions);
@@ -1389,15 +1358,7 @@ var app = (function () {
     		if ('btn_check' in $$props) $$invalidate(2, btn_check = $$props.btn_check);
     	};
 
-    	return [
-    		actions,
-    		btn_reset,
-    		btn_check,
-    		dispatch,
-    		click_handler,
-    		click_handler_1,
-    		click_handler_2
-    	];
+    	return [actions, btn_reset, btn_check, dispatch, click_handler, click_handler_1];
     }
 
     class Toolbar extends SvelteComponent {
@@ -4890,7 +4851,7 @@ var app = (function () {
     const get_message_slot_changes$1 = dirty => ({});
     const get_message_slot_context$1 = ctx => ({});
 
-    // (49:0) {#if isOpen}
+    // (51:0) {#if isOpen}
     function create_if_block$1(ctx) {
     	let div3;
     	let t0;
@@ -4908,11 +4869,11 @@ var app = (function () {
     	let mounted;
     	let dispose;
     	let if_block0 = /*showCloseBtn*/ ctx[2] && create_if_block_5$1(ctx);
-    	const message_slot_template = /*#slots*/ ctx[10].message;
-    	const message_slot = create_slot(message_slot_template, ctx, /*$$scope*/ ctx[9], get_message_slot_context$1);
+    	const message_slot_template = /*#slots*/ ctx[12].message;
+    	const message_slot = create_slot(message_slot_template, ctx, /*$$scope*/ ctx[11], get_message_slot_context$1);
     	let if_block1 = /*showConfetti*/ ctx[0] && create_if_block_2$1(ctx);
-    	const footer_slot_template = /*#slots*/ ctx[10].footer;
-    	const footer_slot = create_slot(footer_slot_template, ctx, /*$$scope*/ ctx[9], get_footer_slot_context$1);
+    	const footer_slot_template = /*#slots*/ ctx[12].footer;
+    	const footer_slot = create_slot(footer_slot_template, ctx, /*$$scope*/ ctx[11], get_footer_slot_context$1);
     	let if_block2 = /*showConfetti*/ ctx[0] && create_if_block_1$1();
 
     	return {
@@ -4962,11 +4923,12 @@ var app = (function () {
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "message svelte-1x5lstc");
-    			attr(div1, "class", "content svelte-1x5lstc");
+    			attr(div0, "class", "message svelte-83cmws");
+    			attr(div1, "class", "content svelte-83cmws");
     			attr(div2, "class", "footer");
-    			attr(div3, "class", "completed svelte-1x5lstc");
-    			attr(div4, "class", "curtain 888 svelte-1x5lstc");
+    			attr(div3, "class", "completed svelte-83cmws");
+    			toggle_class(div3, "issubscribeModal", /*subscribeModal*/ ctx[4]);
+    			attr(div4, "class", "curtain 888 svelte-83cmws");
     		},
     		m(target, anchor) {
     			insert_hydration(target, div3, anchor);
@@ -4995,7 +4957,7 @@ var app = (function () {
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen(div4, "click", /*click_handler*/ ctx[11]);
+    				dispose = listen(div4, "click", /*click_handler*/ ctx[13]);
     				mounted = true;
     			}
     		},
@@ -5014,15 +4976,15 @@ var app = (function () {
     			}
 
     			if (message_slot) {
-    				if (message_slot.p && (!current || dirty & /*$$scope*/ 512)) {
+    				if (message_slot.p && (!current || dirty & /*$$scope*/ 2048)) {
     					update_slot_base(
     						message_slot,
     						message_slot_template,
     						ctx,
-    						/*$$scope*/ ctx[9],
+    						/*$$scope*/ ctx[11],
     						!current
-    						? get_all_dirty_from_scope(/*$$scope*/ ctx[9])
-    						: get_slot_changes(message_slot_template, /*$$scope*/ ctx[9], dirty, get_message_slot_changes$1),
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[11])
+    						: get_slot_changes(message_slot_template, /*$$scope*/ ctx[11], dirty, get_message_slot_changes$1),
     						get_message_slot_context$1
     					);
     				}
@@ -5042,15 +5004,15 @@ var app = (function () {
     			}
 
     			if (footer_slot) {
-    				if (footer_slot.p && (!current || dirty & /*$$scope*/ 512)) {
+    				if (footer_slot.p && (!current || dirty & /*$$scope*/ 2048)) {
     					update_slot_base(
     						footer_slot,
     						footer_slot_template,
     						ctx,
-    						/*$$scope*/ ctx[9],
+    						/*$$scope*/ ctx[11],
     						!current
-    						? get_all_dirty_from_scope(/*$$scope*/ ctx[9])
-    						: get_slot_changes(footer_slot_template, /*$$scope*/ ctx[9], dirty, get_footer_slot_changes$1),
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[11])
+    						: get_slot_changes(footer_slot_template, /*$$scope*/ ctx[11], dirty, get_footer_slot_changes$1),
     						get_footer_slot_context$1
     					);
     				}
@@ -5075,6 +5037,10 @@ var app = (function () {
     				});
 
     				check_outros();
+    			}
+
+    			if (!current || dirty & /*subscribeModal*/ 16) {
+    				toggle_class(div3, "issubscribeModal", /*subscribeModal*/ ctx[4]);
     			}
     		},
     		i(local) {
@@ -5124,7 +5090,7 @@ var app = (function () {
     	};
     }
 
-    // (51:4) {#if showCloseBtn}
+    // (57:4) {#if showCloseBtn}
     function create_if_block_5$1(ctx) {
     	let svg;
     	let path;
@@ -5158,7 +5124,7 @@ var app = (function () {
     		},
     		h() {
     			attr(path, "d", "M799.86 166.31c.02 0 .04.02.08.06l57.69 57.7c.04.03.05.05.06.08a.12.12 0 010 .06c0 .03-.02.05-.06.09L569.93 512l287.7 287.7c.04.04.05.06.06.09a.12.12 0 010 .07c0 .02-.02.04-.06.08l-57.7 57.69c-.03.04-.05.05-.07.06a.12.12 0 01-.07 0c-.03 0-.05-.02-.09-.06L512 569.93l-287.7 287.7c-.04.04-.06.05-.09.06a.12.12 0 01-.07 0c-.02 0-.04-.02-.08-.06l-57.69-57.7c-.04-.03-.05-.05-.06-.07a.12.12 0 010-.07c0-.03.02-.05.06-.09L454.07 512l-287.7-287.7c-.04-.04-.05-.06-.06-.09a.12.12 0 010-.07c0-.02.02-.04.06-.08l57.7-57.69c.03-.04.05-.05.07-.06a.12.12 0 01.07 0c.03 0 .05.02.09.06L512 454.07l287.7-287.7c.04-.04.06-.05.09-.06a.12.12 0 01.07 0z");
-    			attr(svg, "class", "close_icon svelte-1x5lstc");
+    			attr(svg, "class", "close_icon svelte-83cmws");
     			attr(svg, "fill-rule", "evenodd");
     			attr(svg, "viewBox", "64 64 896 896");
     			attr(svg, "focusable", "false");
@@ -5173,7 +5139,7 @@ var app = (function () {
     			append_hydration(svg, path);
 
     			if (!mounted) {
-    				dispose = listen(svg, "click", /*close*/ ctx[5]);
+    				dispose = listen(svg, "click", /*close*/ ctx[6]);
     				mounted = true;
     			}
     		},
@@ -5186,7 +5152,7 @@ var app = (function () {
     	};
     }
 
-    // (60:6) {#if showConfetti}
+    // (66:6) {#if showConfetti}
     function create_if_block_2$1(ctx) {
     	let button;
     	let t;
@@ -5213,7 +5179,7 @@ var app = (function () {
     			this.h();
     		},
     		h() {
-    			attr(button, "class", "svelte-1x5lstc");
+    			attr(button, "class", "svelte-83cmws");
     		},
     		m(target, anchor) {
     			insert_hydration(target, button, anchor);
@@ -5222,7 +5188,7 @@ var app = (function () {
     			if (if_block1) if_block1.m(button, null);
 
     			if (!mounted) {
-    				dispose = listen(button, "click", /*close*/ ctx[5]);
+    				dispose = listen(button, "click", /*close*/ ctx[6]);
     				mounted = true;
     			}
     		},
@@ -5261,7 +5227,7 @@ var app = (function () {
     	};
     }
 
-    // (62:10) {#if btnShopNow}
+    // (68:10) {#if btnShopNow}
     function create_if_block_4$1(ctx) {
     	let span;
     	let t;
@@ -5282,14 +5248,14 @@ var app = (function () {
     			this.h();
     		},
     		h() {
-    			attr(span, "class", "svelte-1x5lstc");
+    			attr(span, "class", "svelte-83cmws");
     		},
     		m(target, anchor) {
     			insert_hydration(target, span, anchor);
     			append_hydration(span, t);
 
     			if (!mounted) {
-    				dispose = listen(span, "click", /*handleGTM_shopnow*/ ctx[6]);
+    				dispose = listen(span, "click", /*handleGTM_shopnow*/ ctx[7]);
     				mounted = true;
     			}
     		},
@@ -5304,7 +5270,7 @@ var app = (function () {
     	};
     }
 
-    // (67:10) {#if !btnShopNow}
+    // (73:10) {#if !btnShopNow}
     function create_if_block_3$1(ctx) {
     	let t;
 
@@ -5324,7 +5290,7 @@ var app = (function () {
     	};
     }
 
-    // (78:4) {#if showConfetti}
+    // (84:4) {#if showConfetti}
     function create_if_block_1$1(ctx) {
     	let div;
     	let confetti;
@@ -5345,7 +5311,7 @@ var app = (function () {
     			this.h();
     		},
     		h() {
-    			attr(div, "class", "confetti svelte-1x5lstc");
+    			attr(div, "class", "confetti svelte-83cmws");
     		},
     		m(target, anchor) {
     			insert_hydration(target, div, anchor);
@@ -5371,7 +5337,7 @@ var app = (function () {
     function create_fragment$3(ctx) {
     	let if_block_anchor;
     	let current;
-    	let if_block = /*isOpen*/ ctx[4] && create_if_block$1(ctx);
+    	let if_block = /*isOpen*/ ctx[5] && create_if_block$1(ctx);
 
     	return {
     		c() {
@@ -5388,11 +5354,11 @@ var app = (function () {
     			current = true;
     		},
     		p(ctx, [dirty]) {
-    			if (/*isOpen*/ ctx[4]) {
+    			if (/*isOpen*/ ctx[5]) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
 
-    					if (dirty & /*isOpen*/ 16) {
+    					if (dirty & /*isOpen*/ 32) {
     						transition_in(if_block, 1);
     					}
     				} else {
@@ -5436,11 +5402,13 @@ var app = (function () {
     	let { btnShopNow = true } = $$props;
     	let { showCloseBtn = false } = $$props;
     	let { success_copy } = $$props;
+    	let { shopurl } = $$props;
+    	let { subscribeModal = false } = $$props;
     	let isOpen = true;
 
     	function close() {
     		if (outClickClose) {
-    			$$invalidate(4, isOpen = false);
+    			$$invalidate(5, isOpen = false);
     		}
 
     		dispatch('messageClose', false);
@@ -5453,7 +5421,7 @@ var app = (function () {
 
     		setTimeout(
     			() => {
-    				window.location.href = `${window.location.origin}/pages/black-friday`;
+    				window.location.href = shopurl;
     			},
     			20
     		);
@@ -5476,17 +5444,19 @@ var app = (function () {
 
     	$$self.$$set = $$props => {
     		if ('showConfetti' in $$props) $$invalidate(0, showConfetti = $$props.showConfetti);
-    		if ('outClickClose' in $$props) $$invalidate(7, outClickClose = $$props.outClickClose);
-    		if ('funcClose' in $$props) $$invalidate(8, funcClose = $$props.funcClose);
+    		if ('outClickClose' in $$props) $$invalidate(8, outClickClose = $$props.outClickClose);
+    		if ('funcClose' in $$props) $$invalidate(9, funcClose = $$props.funcClose);
     		if ('btnShopNow' in $$props) $$invalidate(1, btnShopNow = $$props.btnShopNow);
     		if ('showCloseBtn' in $$props) $$invalidate(2, showCloseBtn = $$props.showCloseBtn);
     		if ('success_copy' in $$props) $$invalidate(3, success_copy = $$props.success_copy);
-    		if ('$$scope' in $$props) $$invalidate(9, $$scope = $$props.$$scope);
+    		if ('shopurl' in $$props) $$invalidate(10, shopurl = $$props.shopurl);
+    		if ('subscribeModal' in $$props) $$invalidate(4, subscribeModal = $$props.subscribeModal);
+    		if ('$$scope' in $$props) $$invalidate(11, $$scope = $$props.$$scope);
     	};
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*funcClose*/ 256) {
-    			funcClose && $$invalidate(4, isOpen = false);
+    		if ($$self.$$.dirty & /*funcClose*/ 512) {
+    			funcClose && $$invalidate(5, isOpen = false);
     		}
     	};
 
@@ -5495,11 +5465,13 @@ var app = (function () {
     		btnShopNow,
     		showCloseBtn,
     		success_copy,
+    		subscribeModal,
     		isOpen,
     		close,
     		handleGTM_shopnow,
     		outClickClose,
     		funcClose,
+    		shopurl,
     		$$scope,
     		slots,
     		click_handler
@@ -5512,11 +5484,13 @@ var app = (function () {
 
     		init(this, options, instance$3, create_fragment$3, safe_not_equal, {
     			showConfetti: 0,
-    			outClickClose: 7,
-    			funcClose: 8,
+    			outClickClose: 8,
+    			funcClose: 9,
     			btnShopNow: 1,
     			showCloseBtn: 2,
-    			success_copy: 3
+    			success_copy: 3,
+    			shopurl: 10,
+    			subscribeModal: 4
     		});
     	}
     }
@@ -5926,7 +5900,7 @@ var app = (function () {
     const footerPhoneSubs = (params) => post("/v1/notice/subscribe", { shopify_shop_id: shopId, ...params });
 
     // 创建组合券(需要加前缀/osconsumerapi)
-    const createCoupons = (params) => post("/osconsumerapi/v1/service/create-combinesWith-coupon", { shopShopifyId: shopId, ...params, settingId: 1000 });
+    const createCoupons = (params) => post("/osconsumerapi/v1/service/create-combinesWith-coupon", { shopShopifyId: shopId, ...params });
 
     function createClues(data) {
     	// determine if 0 or 1 based
@@ -6144,12 +6118,12 @@ var app = (function () {
     const get_toolbar_slot_changes = dirty => ({});
 
     const get_toolbar_slot_context = ctx => ({
-    	onClear: /*onClear*/ ctx[45],
-    	onReveal: /*onReveal*/ ctx[46],
-    	onCheck: /*onCheck*/ ctx[47]
+    	onClear: /*onClear*/ ctx[46],
+    	onReveal: /*onReveal*/ ctx[47],
+    	onCheck: /*onCheck*/ ctx[48]
     });
 
-    // (262:0) {#if validated}
+    // (265:0) {#if validated}
     function create_if_block(ctx) {
     	let article;
     	let t0;
@@ -6167,40 +6141,40 @@ var app = (function () {
     	let t3;
     	let article_resize_listener;
     	let current;
-    	const toolbar_slot_template = /*#slots*/ ctx[61].toolbar;
-    	const toolbar_slot = create_slot(toolbar_slot_template, ctx, /*$$scope*/ ctx[71], get_toolbar_slot_context);
+    	const toolbar_slot_template = /*#slots*/ ctx[63].toolbar;
+    	const toolbar_slot = create_slot(toolbar_slot_template, ctx, /*$$scope*/ ctx[73], get_toolbar_slot_context);
     	const toolbar_slot_or_fallback = toolbar_slot || fallback_block_3(ctx);
 
     	function clues_1_focusedCellIndex_binding(value) {
-    		/*clues_1_focusedCellIndex_binding*/ ctx[62](value);
+    		/*clues_1_focusedCellIndex_binding*/ ctx[64](value);
     	}
 
     	function clues_1_focusedCell_binding(value) {
-    		/*clues_1_focusedCell_binding*/ ctx[63](value);
+    		/*clues_1_focusedCell_binding*/ ctx[65](value);
     	}
 
     	function clues_1_focusedDirection_binding(value) {
-    		/*clues_1_focusedDirection_binding*/ ctx[64](value);
+    		/*clues_1_focusedDirection_binding*/ ctx[66](value);
     	}
 
     	let clues_1_props = {
-    		clues: /*clues*/ ctx[20],
-    		cellIndexMap: /*cellIndexMap*/ ctx[42],
-    		stacked: /*stacked*/ ctx[40],
-    		isDisableHighlight: /*isDisableHighlight*/ ctx[41],
-    		isLoaded: /*isLoaded*/ ctx[28]
+    		clues: /*clues*/ ctx[21],
+    		cellIndexMap: /*cellIndexMap*/ ctx[43],
+    		stacked: /*stacked*/ ctx[41],
+    		isDisableHighlight: /*isDisableHighlight*/ ctx[42],
+    		isLoaded: /*isLoaded*/ ctx[29]
     	};
 
-    	if (/*focusedCellIndex*/ ctx[19] !== void 0) {
-    		clues_1_props.focusedCellIndex = /*focusedCellIndex*/ ctx[19];
+    	if (/*focusedCellIndex*/ ctx[20] !== void 0) {
+    		clues_1_props.focusedCellIndex = /*focusedCellIndex*/ ctx[20];
     	}
 
-    	if (/*focusedCell*/ ctx[43] !== void 0) {
-    		clues_1_props.focusedCell = /*focusedCell*/ ctx[43];
+    	if (/*focusedCell*/ ctx[44] !== void 0) {
+    		clues_1_props.focusedCell = /*focusedCell*/ ctx[44];
     	}
 
-    	if (/*focusedDirection*/ ctx[26] !== void 0) {
-    		clues_1_props.focusedDirection = /*focusedDirection*/ ctx[26];
+    	if (/*focusedDirection*/ ctx[27] !== void 0) {
+    		clues_1_props.focusedDirection = /*focusedDirection*/ ctx[27];
     	}
 
     	clues_1 = new Clues({ props: clues_1_props });
@@ -6209,48 +6183,48 @@ var app = (function () {
     	binding_callbacks.push(() => bind(clues_1, 'focusedDirection', clues_1_focusedDirection_binding));
 
     	function puzzle_cells_binding(value) {
-    		/*puzzle_cells_binding*/ ctx[65](value);
+    		/*puzzle_cells_binding*/ ctx[67](value);
     	}
 
     	function puzzle_focusedCellIndex_binding(value) {
-    		/*puzzle_focusedCellIndex_binding*/ ctx[66](value);
+    		/*puzzle_focusedCellIndex_binding*/ ctx[68](value);
     	}
 
     	function puzzle_focusedDirection_binding(value) {
-    		/*puzzle_focusedDirection_binding*/ ctx[67](value);
+    		/*puzzle_focusedDirection_binding*/ ctx[69](value);
     	}
 
     	let puzzle_props = {
-    		clues: /*clues*/ ctx[20],
-    		focusedCell: /*focusedCell*/ ctx[43],
-    		isRevealing: /*isRevealing*/ ctx[27],
-    		isChecking: /*isChecking*/ ctx[29],
-    		isDisableHighlight: /*isDisableHighlight*/ ctx[41],
+    		clues: /*clues*/ ctx[21],
+    		focusedCell: /*focusedCell*/ ctx[44],
+    		isRevealing: /*isRevealing*/ ctx[28],
+    		isChecking: /*isChecking*/ ctx[30],
+    		isDisableHighlight: /*isDisableHighlight*/ ctx[42],
     		revealDuration: /*revealDuration*/ ctx[1],
     		showKeyboard: /*showKeyboard*/ ctx[4],
-    		stacked: /*stacked*/ ctx[40],
-    		isLoaded: /*isLoaded*/ ctx[28],
+    		stacked: /*stacked*/ ctx[41],
+    		isLoaded: /*isLoaded*/ ctx[29],
     		keyboardStyle: /*keyboardStyle*/ ctx[5]
     	};
 
-    	if (/*cells*/ ctx[21] !== void 0) {
-    		puzzle_props.cells = /*cells*/ ctx[21];
+    	if (/*cells*/ ctx[22] !== void 0) {
+    		puzzle_props.cells = /*cells*/ ctx[22];
     	}
 
-    	if (/*focusedCellIndex*/ ctx[19] !== void 0) {
-    		puzzle_props.focusedCellIndex = /*focusedCellIndex*/ ctx[19];
+    	if (/*focusedCellIndex*/ ctx[20] !== void 0) {
+    		puzzle_props.focusedCellIndex = /*focusedCellIndex*/ ctx[20];
     	}
 
-    	if (/*focusedDirection*/ ctx[26] !== void 0) {
-    		puzzle_props.focusedDirection = /*focusedDirection*/ ctx[26];
+    	if (/*focusedDirection*/ ctx[27] !== void 0) {
+    		puzzle_props.focusedDirection = /*focusedDirection*/ ctx[27];
     	}
 
     	puzzle = new Puzzle({ props: puzzle_props });
     	binding_callbacks.push(() => bind(puzzle, 'cells', puzzle_cells_binding));
     	binding_callbacks.push(() => bind(puzzle, 'focusedCellIndex', puzzle_focusedCellIndex_binding));
     	binding_callbacks.push(() => bind(puzzle, 'focusedDirection', puzzle_focusedDirection_binding));
-    	let if_block0 = /*isComplete*/ ctx[22] && !/*isRevealing*/ ctx[27] && /*showCompleteMessage*/ ctx[2] && create_if_block_3(ctx);
-    	let if_block1 = !/*isComplete*/ ctx[22] && !/*isRevealing*/ ctx[27] && !/*isSubscribe*/ ctx[44] && create_if_block_1(ctx);
+    	let if_block0 = /*isComplete*/ ctx[23] && !/*isRevealing*/ ctx[28] && /*showCompleteMessage*/ ctx[2] && create_if_block_3(ctx);
+    	let if_block1 = !/*isComplete*/ ctx[23] && !/*isRevealing*/ ctx[28] && !/*isSubscribe*/ ctx[45] && create_if_block_1(ctx);
 
     	return {
     		c() {
@@ -6287,11 +6261,11 @@ var app = (function () {
     		},
     		h() {
     			attr(div, "class", "play svelte-10vn5u1");
-    			toggle_class(div, "stacked", /*stacked*/ ctx[40]);
-    			toggle_class(div, "is-loaded", /*isLoaded*/ ctx[28]);
+    			toggle_class(div, "stacked", /*stacked*/ ctx[41]);
+    			toggle_class(div, "is-loaded", /*isLoaded*/ ctx[29]);
     			attr(article, "class", "svelte-crossword svelte-10vn5u1");
-    			attr(article, "style", /*inlineStyles*/ ctx[39]);
-    			add_render_callback(() => /*article_elementresize_handler*/ ctx[70].call(article));
+    			attr(article, "style", /*inlineStyles*/ ctx[40]);
+    			add_render_callback(() => /*article_elementresize_handler*/ ctx[72].call(article));
     		},
     		m(target, anchor) {
     			insert_hydration(target, article, anchor);
@@ -6309,100 +6283,100 @@ var app = (function () {
     			if (if_block0) if_block0.m(article, null);
     			append_hydration(article, t3);
     			if (if_block1) if_block1.m(article, null);
-    			article_resize_listener = add_iframe_resize_listener(article, /*article_elementresize_handler*/ ctx[70].bind(article));
+    			article_resize_listener = add_iframe_resize_listener(article, /*article_elementresize_handler*/ ctx[72].bind(article));
     			current = true;
     		},
     		p(ctx, dirty) {
     			if (toolbar_slot) {
-    				if (toolbar_slot.p && (!current || dirty[2] & /*$$scope*/ 512)) {
+    				if (toolbar_slot.p && (!current || dirty[2] & /*$$scope*/ 2048)) {
     					update_slot_base(
     						toolbar_slot,
     						toolbar_slot_template,
     						ctx,
-    						/*$$scope*/ ctx[71],
+    						/*$$scope*/ ctx[73],
     						!current
-    						? get_all_dirty_from_scope(/*$$scope*/ ctx[71])
-    						: get_slot_changes(toolbar_slot_template, /*$$scope*/ ctx[71], dirty, get_toolbar_slot_changes),
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[73])
+    						: get_slot_changes(toolbar_slot_template, /*$$scope*/ ctx[73], dirty, get_toolbar_slot_changes),
     						get_toolbar_slot_context
     					);
     				}
     			} else {
-    				if (toolbar_slot_or_fallback && toolbar_slot_or_fallback.p && (!current || dirty[0] & /*checkModal, error_num, correct_num, modal_correct_words, modal_incorrect_words, actions, btn_reset, btn_check*/ 58735617)) {
+    				if (toolbar_slot_or_fallback && toolbar_slot_or_fallback.p && (!current || dirty[0] & /*checkModal, error_num, correct_num, modal_correct_words, modal_incorrect_words, actions, btn_reset, btn_check*/ 117455873)) {
     					toolbar_slot_or_fallback.p(ctx, !current ? [-1, -1, -1] : dirty);
     				}
     			}
 
     			const clues_1_changes = {};
-    			if (dirty[0] & /*clues*/ 1048576) clues_1_changes.clues = /*clues*/ ctx[20];
-    			if (dirty[1] & /*cellIndexMap*/ 2048) clues_1_changes.cellIndexMap = /*cellIndexMap*/ ctx[42];
-    			if (dirty[1] & /*stacked*/ 512) clues_1_changes.stacked = /*stacked*/ ctx[40];
-    			if (dirty[1] & /*isDisableHighlight*/ 1024) clues_1_changes.isDisableHighlight = /*isDisableHighlight*/ ctx[41];
-    			if (dirty[0] & /*isLoaded*/ 268435456) clues_1_changes.isLoaded = /*isLoaded*/ ctx[28];
+    			if (dirty[0] & /*clues*/ 2097152) clues_1_changes.clues = /*clues*/ ctx[21];
+    			if (dirty[1] & /*cellIndexMap*/ 4096) clues_1_changes.cellIndexMap = /*cellIndexMap*/ ctx[43];
+    			if (dirty[1] & /*stacked*/ 1024) clues_1_changes.stacked = /*stacked*/ ctx[41];
+    			if (dirty[1] & /*isDisableHighlight*/ 2048) clues_1_changes.isDisableHighlight = /*isDisableHighlight*/ ctx[42];
+    			if (dirty[0] & /*isLoaded*/ 536870912) clues_1_changes.isLoaded = /*isLoaded*/ ctx[29];
 
-    			if (!updating_focusedCellIndex && dirty[0] & /*focusedCellIndex*/ 524288) {
+    			if (!updating_focusedCellIndex && dirty[0] & /*focusedCellIndex*/ 1048576) {
     				updating_focusedCellIndex = true;
-    				clues_1_changes.focusedCellIndex = /*focusedCellIndex*/ ctx[19];
+    				clues_1_changes.focusedCellIndex = /*focusedCellIndex*/ ctx[20];
     				add_flush_callback(() => updating_focusedCellIndex = false);
     			}
 
-    			if (!updating_focusedCell && dirty[1] & /*focusedCell*/ 4096) {
+    			if (!updating_focusedCell && dirty[1] & /*focusedCell*/ 8192) {
     				updating_focusedCell = true;
-    				clues_1_changes.focusedCell = /*focusedCell*/ ctx[43];
+    				clues_1_changes.focusedCell = /*focusedCell*/ ctx[44];
     				add_flush_callback(() => updating_focusedCell = false);
     			}
 
-    			if (!updating_focusedDirection && dirty[0] & /*focusedDirection*/ 67108864) {
+    			if (!updating_focusedDirection && dirty[0] & /*focusedDirection*/ 134217728) {
     				updating_focusedDirection = true;
-    				clues_1_changes.focusedDirection = /*focusedDirection*/ ctx[26];
+    				clues_1_changes.focusedDirection = /*focusedDirection*/ ctx[27];
     				add_flush_callback(() => updating_focusedDirection = false);
     			}
 
     			clues_1.$set(clues_1_changes);
     			const puzzle_changes = {};
-    			if (dirty[0] & /*clues*/ 1048576) puzzle_changes.clues = /*clues*/ ctx[20];
-    			if (dirty[1] & /*focusedCell*/ 4096) puzzle_changes.focusedCell = /*focusedCell*/ ctx[43];
-    			if (dirty[0] & /*isRevealing*/ 134217728) puzzle_changes.isRevealing = /*isRevealing*/ ctx[27];
-    			if (dirty[0] & /*isChecking*/ 536870912) puzzle_changes.isChecking = /*isChecking*/ ctx[29];
-    			if (dirty[1] & /*isDisableHighlight*/ 1024) puzzle_changes.isDisableHighlight = /*isDisableHighlight*/ ctx[41];
+    			if (dirty[0] & /*clues*/ 2097152) puzzle_changes.clues = /*clues*/ ctx[21];
+    			if (dirty[1] & /*focusedCell*/ 8192) puzzle_changes.focusedCell = /*focusedCell*/ ctx[44];
+    			if (dirty[0] & /*isRevealing*/ 268435456) puzzle_changes.isRevealing = /*isRevealing*/ ctx[28];
+    			if (dirty[0] & /*isChecking*/ 1073741824) puzzle_changes.isChecking = /*isChecking*/ ctx[30];
+    			if (dirty[1] & /*isDisableHighlight*/ 2048) puzzle_changes.isDisableHighlight = /*isDisableHighlight*/ ctx[42];
     			if (dirty[0] & /*revealDuration*/ 2) puzzle_changes.revealDuration = /*revealDuration*/ ctx[1];
     			if (dirty[0] & /*showKeyboard*/ 16) puzzle_changes.showKeyboard = /*showKeyboard*/ ctx[4];
-    			if (dirty[1] & /*stacked*/ 512) puzzle_changes.stacked = /*stacked*/ ctx[40];
-    			if (dirty[0] & /*isLoaded*/ 268435456) puzzle_changes.isLoaded = /*isLoaded*/ ctx[28];
+    			if (dirty[1] & /*stacked*/ 1024) puzzle_changes.stacked = /*stacked*/ ctx[41];
+    			if (dirty[0] & /*isLoaded*/ 536870912) puzzle_changes.isLoaded = /*isLoaded*/ ctx[29];
     			if (dirty[0] & /*keyboardStyle*/ 32) puzzle_changes.keyboardStyle = /*keyboardStyle*/ ctx[5];
 
-    			if (!updating_cells && dirty[0] & /*cells*/ 2097152) {
+    			if (!updating_cells && dirty[0] & /*cells*/ 4194304) {
     				updating_cells = true;
-    				puzzle_changes.cells = /*cells*/ ctx[21];
+    				puzzle_changes.cells = /*cells*/ ctx[22];
     				add_flush_callback(() => updating_cells = false);
     			}
 
-    			if (!updating_focusedCellIndex_1 && dirty[0] & /*focusedCellIndex*/ 524288) {
+    			if (!updating_focusedCellIndex_1 && dirty[0] & /*focusedCellIndex*/ 1048576) {
     				updating_focusedCellIndex_1 = true;
-    				puzzle_changes.focusedCellIndex = /*focusedCellIndex*/ ctx[19];
+    				puzzle_changes.focusedCellIndex = /*focusedCellIndex*/ ctx[20];
     				add_flush_callback(() => updating_focusedCellIndex_1 = false);
     			}
 
-    			if (!updating_focusedDirection_1 && dirty[0] & /*focusedDirection*/ 67108864) {
+    			if (!updating_focusedDirection_1 && dirty[0] & /*focusedDirection*/ 134217728) {
     				updating_focusedDirection_1 = true;
-    				puzzle_changes.focusedDirection = /*focusedDirection*/ ctx[26];
+    				puzzle_changes.focusedDirection = /*focusedDirection*/ ctx[27];
     				add_flush_callback(() => updating_focusedDirection_1 = false);
     			}
 
     			puzzle.$set(puzzle_changes);
 
-    			if (!current || dirty[1] & /*stacked*/ 512) {
-    				toggle_class(div, "stacked", /*stacked*/ ctx[40]);
+    			if (!current || dirty[1] & /*stacked*/ 1024) {
+    				toggle_class(div, "stacked", /*stacked*/ ctx[41]);
     			}
 
-    			if (!current || dirty[0] & /*isLoaded*/ 268435456) {
-    				toggle_class(div, "is-loaded", /*isLoaded*/ ctx[28]);
+    			if (!current || dirty[0] & /*isLoaded*/ 536870912) {
+    				toggle_class(div, "is-loaded", /*isLoaded*/ ctx[29]);
     			}
 
-    			if (/*isComplete*/ ctx[22] && !/*isRevealing*/ ctx[27] && /*showCompleteMessage*/ ctx[2]) {
+    			if (/*isComplete*/ ctx[23] && !/*isRevealing*/ ctx[28] && /*showCompleteMessage*/ ctx[2]) {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
 
-    					if (dirty[0] & /*isComplete, isRevealing, showCompleteMessage*/ 138412036) {
+    					if (dirty[0] & /*isComplete, isRevealing, showCompleteMessage*/ 276824068) {
     						transition_in(if_block0, 1);
     					}
     				} else {
@@ -6421,11 +6395,11 @@ var app = (function () {
     				check_outros();
     			}
 
-    			if (!/*isComplete*/ ctx[22] && !/*isRevealing*/ ctx[27] && !/*isSubscribe*/ ctx[44]) {
+    			if (!/*isComplete*/ ctx[23] && !/*isRevealing*/ ctx[28] && !/*isSubscribe*/ ctx[45]) {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
 
-    					if (dirty[0] & /*isComplete, isRevealing*/ 138412032) {
+    					if (dirty[0] & /*isComplete, isRevealing*/ 276824064) {
     						transition_in(if_block1, 1);
     					}
     				} else {
@@ -6444,8 +6418,8 @@ var app = (function () {
     				check_outros();
     			}
 
-    			if (!current || dirty[1] & /*inlineStyles*/ 256) {
-    				attr(article, "style", /*inlineStyles*/ ctx[39]);
+    			if (!current || dirty[1] & /*inlineStyles*/ 512) {
+    				attr(article, "style", /*inlineStyles*/ ctx[40]);
     			}
     		},
     		i(local) {
@@ -6477,7 +6451,7 @@ var app = (function () {
     	};
     }
 
-    // (272:26)        
+    // (275:26)        
     function fallback_block_3(ctx) {
     	let toolbar;
     	let t;
@@ -6492,13 +6466,13 @@ var app = (function () {
     			}
     		});
 
-    	toolbar.$on("event", /*onToolbarEvent*/ ctx[48]);
+    	toolbar.$on("event", /*onToolbarEvent*/ ctx[49]);
 
     	checkmodal = new CheckModal({
     			props: {
-    				open: /*checkModal*/ ctx[23],
-    				error_num: /*error_num*/ ctx[24],
-    				correct_num: /*correct_num*/ ctx[25],
+    				open: /*checkModal*/ ctx[24],
+    				error_num: /*error_num*/ ctx[25],
+    				correct_num: /*correct_num*/ ctx[26],
     				modal_correct_words: /*modal_correct_words*/ ctx[10],
     				modal_incorrect_words: /*modal_incorrect_words*/ ctx[11]
     			}
@@ -6528,9 +6502,9 @@ var app = (function () {
     			if (dirty[0] & /*btn_check*/ 8192) toolbar_changes.btn_check = /*btn_check*/ ctx[13];
     			toolbar.$set(toolbar_changes);
     			const checkmodal_changes = {};
-    			if (dirty[0] & /*checkModal*/ 8388608) checkmodal_changes.open = /*checkModal*/ ctx[23];
-    			if (dirty[0] & /*error_num*/ 16777216) checkmodal_changes.error_num = /*error_num*/ ctx[24];
-    			if (dirty[0] & /*correct_num*/ 33554432) checkmodal_changes.correct_num = /*correct_num*/ ctx[25];
+    			if (dirty[0] & /*checkModal*/ 16777216) checkmodal_changes.open = /*checkModal*/ ctx[24];
+    			if (dirty[0] & /*error_num*/ 33554432) checkmodal_changes.error_num = /*error_num*/ ctx[25];
+    			if (dirty[0] & /*correct_num*/ 67108864) checkmodal_changes.correct_num = /*correct_num*/ ctx[26];
     			if (dirty[0] & /*modal_correct_words*/ 1024) checkmodal_changes.modal_correct_words = /*modal_correct_words*/ ctx[10];
     			if (dirty[0] & /*modal_incorrect_words*/ 2048) checkmodal_changes.modal_incorrect_words = /*modal_incorrect_words*/ ctx[11];
     			checkmodal.$set(checkmodal_changes);
@@ -6554,18 +6528,19 @@ var app = (function () {
     	};
     }
 
-    // (304:4) {#if isComplete && !isRevealing && showCompleteMessage}
+    // (307:4) {#if isComplete && !isRevealing && showCompleteMessage}
     function create_if_block_3(ctx) {
     	let completedmessage;
     	let current;
 
     	completedmessage = new CompletedMessage({
     			props: {
+    				shopurl: /*shopurl*/ ctx[18],
     				success_copy: /*success_copy*/ ctx[16],
-    				outClickClose: false,
-    				showCloseBtn: false,
-    				showConfetti: /*showConfetti*/ ctx[3] && !/*coupons_api_error*/ ctx[37],
-    				btnShopNow: !/*coupons_api_error*/ ctx[37],
+    				outClickClose: !!/*coupons_api_error*/ ctx[38],
+    				showCloseBtn: !!/*coupons_api_error*/ ctx[38],
+    				showConfetti: /*showConfetti*/ ctx[3] && !/*coupons_api_error*/ ctx[38],
+    				btnShopNow: !/*coupons_api_error*/ ctx[38],
     				$$slots: {
     					footer: [create_footer_slot],
     					message: [create_message_slot_1]
@@ -6587,11 +6562,14 @@ var app = (function () {
     		},
     		p(ctx, dirty) {
     			const completedmessage_changes = {};
+    			if (dirty[0] & /*shopurl*/ 262144) completedmessage_changes.shopurl = /*shopurl*/ ctx[18];
     			if (dirty[0] & /*success_copy*/ 65536) completedmessage_changes.success_copy = /*success_copy*/ ctx[16];
-    			if (dirty[0] & /*showConfetti*/ 8 | dirty[1] & /*coupons_api_error*/ 64) completedmessage_changes.showConfetti = /*showConfetti*/ ctx[3] && !/*coupons_api_error*/ ctx[37];
-    			if (dirty[1] & /*coupons_api_error*/ 64) completedmessage_changes.btnShopNow = !/*coupons_api_error*/ ctx[37];
+    			if (dirty[1] & /*coupons_api_error*/ 128) completedmessage_changes.outClickClose = !!/*coupons_api_error*/ ctx[38];
+    			if (dirty[1] & /*coupons_api_error*/ 128) completedmessage_changes.showCloseBtn = !!/*coupons_api_error*/ ctx[38];
+    			if (dirty[0] & /*showConfetti*/ 8 | dirty[1] & /*coupons_api_error*/ 128) completedmessage_changes.showConfetti = /*showConfetti*/ ctx[3] && !/*coupons_api_error*/ ctx[38];
+    			if (dirty[1] & /*coupons_api_error*/ 128) completedmessage_changes.btnShopNow = !/*coupons_api_error*/ ctx[38];
 
-    			if (dirty[0] & /*success_des, success_couponinfo, success_title*/ 180224 | dirty[1] & /*coupons_api_error, coupons_code*/ 192 | dirty[2] & /*$$scope*/ 512) {
+    			if (dirty[0] & /*success_des, success_couponinfo, success_title*/ 180224 | dirty[1] & /*coupons_api_error, coupons_code*/ 384 | dirty[2] & /*$$scope*/ 2048) {
     				completedmessage_changes.$$scope = { dirty, ctx };
     			}
 
@@ -6612,7 +6590,7 @@ var app = (function () {
     	};
     }
 
-    // (307:10) {#if coupons_api_error === ""}
+    // (310:10) {#if coupons_api_error === ""}
     function create_if_block_6(ctx) {
     	let div0;
     	let t0;
@@ -6639,7 +6617,7 @@ var app = (function () {
     			div3 = element("div");
     			div1 = element("div");
     			t3 = text("CODE:");
-    			t4 = text(/*coupons_code*/ ctx[38]);
+    			t4 = text(/*coupons_code*/ ctx[39]);
     			t5 = space();
     			div2 = element("div");
     			this.h();
@@ -6659,7 +6637,7 @@ var app = (function () {
     			div1 = claim_element(div3_nodes, "DIV", { class: true });
     			var div1_nodes = children(div1);
     			t3 = claim_text(div1_nodes, "CODE:");
-    			t4 = claim_text(div1_nodes, /*coupons_code*/ ctx[38]);
+    			t4 = claim_text(div1_nodes, /*coupons_code*/ ctx[39]);
     			div1_nodes.forEach(detach);
     			t5 = claim_space(div3_nodes);
     			div2 = claim_element(div3_nodes, "DIV", { class: true });
@@ -6671,7 +6649,7 @@ var app = (function () {
     		},
     		h() {
     			attr(div0, "class", "title_gameend svelte-10vn5u1");
-    			if (!src_url_equal(img.src, img_src_value = "https://cdn.shopify.com/s/files/1/0607/3866/6677/files/Frame_93.png?v=1699346042")) attr(img, "src", img_src_value);
+    			if (!src_url_equal(img.src, img_src_value = "https://cdn.shopify.com/s/files/1/0550/0524/9633/files/coupon_s_code.png?v=1706604693")) attr(img, "src", img_src_value);
     			attr(img, "alt", "coupon");
     			attr(img, "class", "svelte-10vn5u1");
     			attr(div1, "class", "coupone_info_title svelte-10vn5u1");
@@ -6696,7 +6674,7 @@ var app = (function () {
     		},
     		p(ctx, dirty) {
     			if (dirty[0] & /*success_title*/ 16384) set_data(t0, /*success_title*/ ctx[14]);
-    			if (dirty[1] & /*coupons_code*/ 128) set_data(t4, /*coupons_code*/ ctx[38]);
+    			if (dirty[1] & /*coupons_code*/ 256) set_data(t4, /*coupons_code*/ ctx[39]);
     			if (dirty[0] & /*success_couponinfo*/ 32768) div2.innerHTML = /*success_couponinfo*/ ctx[15];		},
     		d(detaching) {
     			if (detaching) detach(div0);
@@ -6706,7 +6684,7 @@ var app = (function () {
     	};
     }
 
-    // (318:10) {#if coupons_api_error !== ""}
+    // (321:10) {#if coupons_api_error !== ""}
     function create_if_block_5(ctx) {
     	let div;
     	let t;
@@ -6714,13 +6692,13 @@ var app = (function () {
     	return {
     		c() {
     			div = element("div");
-    			t = text(/*coupons_api_error*/ ctx[37]);
+    			t = text(/*coupons_api_error*/ ctx[38]);
     			this.h();
     		},
     		l(nodes) {
     			div = claim_element(nodes, "DIV", { class: true });
     			var div_nodes = children(div);
-    			t = claim_text(div_nodes, /*coupons_api_error*/ ctx[37]);
+    			t = claim_text(div_nodes, /*coupons_api_error*/ ctx[38]);
     			div_nodes.forEach(detach);
     			this.h();
     		},
@@ -6732,7 +6710,7 @@ var app = (function () {
     			append_hydration(div, t);
     		},
     		p(ctx, dirty) {
-    			if (dirty[1] & /*coupons_api_error*/ 64) set_data(t, /*coupons_api_error*/ ctx[37]);
+    			if (dirty[1] & /*coupons_api_error*/ 128) set_data(t, /*coupons_api_error*/ ctx[38]);
     		},
     		d(detaching) {
     			if (detaching) detach(div);
@@ -6740,12 +6718,12 @@ var app = (function () {
     	};
     }
 
-    // (306:44)            
+    // (309:44)            
     function fallback_block_2(ctx) {
     	let t;
     	let if_block1_anchor;
-    	let if_block0 = /*coupons_api_error*/ ctx[37] === "" && create_if_block_6(ctx);
-    	let if_block1 = /*coupons_api_error*/ ctx[37] !== "" && create_if_block_5(ctx);
+    	let if_block0 = /*coupons_api_error*/ ctx[38] === "" && create_if_block_6(ctx);
+    	let if_block1 = /*coupons_api_error*/ ctx[38] !== "" && create_if_block_5(ctx);
 
     	return {
     		c() {
@@ -6767,7 +6745,7 @@ var app = (function () {
     			insert_hydration(target, if_block1_anchor, anchor);
     		},
     		p(ctx, dirty) {
-    			if (/*coupons_api_error*/ ctx[37] === "") {
+    			if (/*coupons_api_error*/ ctx[38] === "") {
     				if (if_block0) {
     					if_block0.p(ctx, dirty);
     				} else {
@@ -6780,7 +6758,7 @@ var app = (function () {
     				if_block0 = null;
     			}
 
-    			if (/*coupons_api_error*/ ctx[37] !== "") {
+    			if (/*coupons_api_error*/ ctx[38] !== "") {
     				if (if_block1) {
     					if_block1.p(ctx, dirty);
     				} else {
@@ -6802,11 +6780,11 @@ var app = (function () {
     	};
     }
 
-    // (306:8) 
+    // (309:8) 
     function create_message_slot_1(ctx) {
     	let current;
-    	const message_slot_template = /*#slots*/ ctx[61].message;
-    	const message_slot = create_slot(message_slot_template, ctx, /*$$scope*/ ctx[71], get_message_slot_context);
+    	const message_slot_template = /*#slots*/ ctx[63].message;
+    	const message_slot = create_slot(message_slot_template, ctx, /*$$scope*/ ctx[73], get_message_slot_context);
     	const message_slot_or_fallback = message_slot || fallback_block_2(ctx);
 
     	return {
@@ -6825,20 +6803,20 @@ var app = (function () {
     		},
     		p(ctx, dirty) {
     			if (message_slot) {
-    				if (message_slot.p && (!current || dirty[2] & /*$$scope*/ 512)) {
+    				if (message_slot.p && (!current || dirty[2] & /*$$scope*/ 2048)) {
     					update_slot_base(
     						message_slot,
     						message_slot_template,
     						ctx,
-    						/*$$scope*/ ctx[71],
+    						/*$$scope*/ ctx[73],
     						!current
-    						? get_all_dirty_from_scope(/*$$scope*/ ctx[71])
-    						: get_slot_changes(message_slot_template, /*$$scope*/ ctx[71], dirty, get_message_slot_changes),
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[73])
+    						: get_slot_changes(message_slot_template, /*$$scope*/ ctx[73], dirty, get_message_slot_changes),
     						get_message_slot_context
     					);
     				}
     			} else {
-    				if (message_slot_or_fallback && message_slot_or_fallback.p && (!current || dirty[0] & /*success_couponinfo, success_title*/ 49152 | dirty[1] & /*coupons_api_error, coupons_code*/ 192)) {
+    				if (message_slot_or_fallback && message_slot_or_fallback.p && (!current || dirty[0] & /*success_couponinfo, success_title*/ 49152 | dirty[1] & /*coupons_api_error, coupons_code*/ 384)) {
     					message_slot_or_fallback.p(ctx, !current ? [-1, -1, -1] : dirty);
     				}
     			}
@@ -6858,7 +6836,7 @@ var app = (function () {
     	};
     }
 
-    // (324:10) {#if coupons_api_error === ""}
+    // (327:10) {#if coupons_api_error === ""}
     function create_if_block_4(ctx) {
     	let div;
 
@@ -6888,10 +6866,10 @@ var app = (function () {
     	};
     }
 
-    // (323:42)            
+    // (326:42)            
     function fallback_block_1(ctx) {
     	let if_block_anchor;
-    	let if_block = /*coupons_api_error*/ ctx[37] === "" && create_if_block_4(ctx);
+    	let if_block = /*coupons_api_error*/ ctx[38] === "" && create_if_block_4(ctx);
 
     	return {
     		c() {
@@ -6907,7 +6885,7 @@ var app = (function () {
     			insert_hydration(target, if_block_anchor, anchor);
     		},
     		p(ctx, dirty) {
-    			if (/*coupons_api_error*/ ctx[37] === "") {
+    			if (/*coupons_api_error*/ ctx[38] === "") {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -6927,11 +6905,11 @@ var app = (function () {
     	};
     }
 
-    // (323:8) 
+    // (326:8) 
     function create_footer_slot(ctx) {
     	let current;
-    	const footer_slot_template = /*#slots*/ ctx[61].footer;
-    	const footer_slot = create_slot(footer_slot_template, ctx, /*$$scope*/ ctx[71], get_footer_slot_context);
+    	const footer_slot_template = /*#slots*/ ctx[63].footer;
+    	const footer_slot = create_slot(footer_slot_template, ctx, /*$$scope*/ ctx[73], get_footer_slot_context);
     	const footer_slot_or_fallback = footer_slot || fallback_block_1(ctx);
 
     	return {
@@ -6950,20 +6928,20 @@ var app = (function () {
     		},
     		p(ctx, dirty) {
     			if (footer_slot) {
-    				if (footer_slot.p && (!current || dirty[2] & /*$$scope*/ 512)) {
+    				if (footer_slot.p && (!current || dirty[2] & /*$$scope*/ 2048)) {
     					update_slot_base(
     						footer_slot,
     						footer_slot_template,
     						ctx,
-    						/*$$scope*/ ctx[71],
+    						/*$$scope*/ ctx[73],
     						!current
-    						? get_all_dirty_from_scope(/*$$scope*/ ctx[71])
-    						: get_slot_changes(footer_slot_template, /*$$scope*/ ctx[71], dirty, get_footer_slot_changes),
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[73])
+    						: get_slot_changes(footer_slot_template, /*$$scope*/ ctx[73], dirty, get_footer_slot_changes),
     						get_footer_slot_context
     					);
     				}
     			} else {
-    				if (footer_slot_or_fallback && footer_slot_or_fallback.p && (!current || dirty[0] & /*success_des*/ 131072 | dirty[1] & /*coupons_api_error*/ 64)) {
+    				if (footer_slot_or_fallback && footer_slot_or_fallback.p && (!current || dirty[0] & /*success_des*/ 131072 | dirty[1] & /*coupons_api_error*/ 128)) {
     					footer_slot_or_fallback.p(ctx, !current ? [-1, -1, -1] : dirty);
     				}
     			}
@@ -6983,7 +6961,7 @@ var app = (function () {
     	};
     }
 
-    // (331:4) {#if !isComplete && !isRevealing && !isSubscribe}
+    // (334:4) {#if !isComplete && !isRevealing && !isSubscribe}
     function create_if_block_1(ctx) {
     	let completedmessage;
     	let current;
@@ -6992,7 +6970,8 @@ var app = (function () {
     			props: {
     				showConfetti: false,
     				outClickClose: false,
-    				funcClose: /*subscribeModalClose*/ ctx[35],
+    				funcClose: /*subscribeModalClose*/ ctx[36],
+    				subscribeModal: !/*isSubscribe*/ ctx[45],
     				$$slots: { message: [create_message_slot] },
     				$$scope: { ctx }
     			}
@@ -7011,9 +6990,9 @@ var app = (function () {
     		},
     		p(ctx, dirty) {
     			const completedmessage_changes = {};
-    			if (dirty[1] & /*subscribeModalClose*/ 16) completedmessage_changes.funcClose = /*subscribeModalClose*/ ctx[35];
+    			if (dirty[1] & /*subscribeModalClose*/ 32) completedmessage_changes.funcClose = /*subscribeModalClose*/ ctx[36];
 
-    			if (dirty[0] & /*modal_email_playnow, modal_email_policy, modal_email, modal_title*/ 960 | dirty[1] & /*subscribeLoading, subscribe_error, subscribe_error_txt, subscribe_agree, subscribe_email*/ 47 | dirty[2] & /*$$scope*/ 512) {
+    			if (dirty[0] & /*modal_email_playnow, modal_email_policy, modal_email, modal_title*/ 960 | dirty[1] & /*subscribeLoading, subscribe_error, subscribe_error_txt, subscribe_agree, subscribe_email*/ 94 | dirty[2] & /*$$scope*/ 2048) {
     				completedmessage_changes.$$scope = { dirty, ctx };
     			}
 
@@ -7034,7 +7013,7 @@ var app = (function () {
     	};
     }
 
-    // (365:14) {#if subscribeLoading}
+    // (368:14) {#if subscribeLoading}
     function create_if_block_2(ctx) {
     	let span;
     	let svg;
@@ -7096,7 +7075,7 @@ var app = (function () {
     	};
     }
 
-    // (334:44)            
+    // (337:44)            
     function fallback_block(ctx) {
     	let div2;
     	let h3;
@@ -7151,7 +7130,7 @@ var app = (function () {
     	let path27;
     	let mounted;
     	let dispose;
-    	let if_block = /*subscribeLoading*/ ctx[36] && create_if_block_2();
+    	let if_block = /*subscribeLoading*/ ctx[37] && create_if_block_2();
 
     	return {
     		c() {
@@ -7171,7 +7150,7 @@ var app = (function () {
     			span2 = element("span");
     			t4 = space();
     			div0 = element("div");
-    			t5 = text(/*subscribe_error_txt*/ ctx[34]);
+    			t5 = text(/*subscribe_error_txt*/ ctx[35]);
     			t6 = space();
     			div1 = element("div");
     			t7 = text(/*modal_email_playnow*/ ctx[9]);
@@ -7247,7 +7226,7 @@ var app = (function () {
     			t4 = claim_space(div2_nodes);
     			div0 = claim_element(div2_nodes, "DIV", { class: true });
     			var div0_nodes = children(div0);
-    			t5 = claim_text(div0_nodes, /*subscribe_error_txt*/ ctx[34]);
+    			t5 = claim_text(div0_nodes, /*subscribe_error_txt*/ ctx[35]);
     			div0_nodes.forEach(detach);
     			t6 = claim_space(div2_nodes);
     			div1 = claim_element(div2_nodes, "DIV", { class: true });
@@ -7515,9 +7494,9 @@ var app = (function () {
     			attr(span3, "class", "dji-checkbox-label");
     			attr(label, "class", "dji-checkbox svelte-10vn5u1");
     			attr(div0, "class", "error__tips svelte-10vn5u1");
-    			toggle_class(div0, "active", /*subscribe_error*/ ctx[33]);
+    			toggle_class(div0, "active", /*subscribe_error*/ ctx[34]);
     			attr(div1, "class", "crossword_subscribe_submit svelte-10vn5u1");
-    			toggle_class(div1, "loading", /*subscribeLoading*/ ctx[36]);
+    			toggle_class(div1, "loading", /*subscribeLoading*/ ctx[37]);
     			attr(path0, "fill-rule", "evenodd");
     			attr(path0, "clip-rule", "evenodd");
     			attr(path0, "d", "M84.3672 20.2232C83.8654 19.3658 83.8488 18.3209 84.1549 17.3752C86.6335 9.69678 75.7514 8.42302 72.3299 7.30917C68.7595 6.14569 70.4909 0.0332954 63.6727 0.00021073C56.8572 -0.0328739 55.9226 3.84079 55.5973 3.84079C55.1203 3.84079 58.3047 9.53687 58.3047 9.53687C58.3047 9.53687 61.6931 9.51757 63.6534 15.6713C65.6164 21.8278 65.0402 25.5499 70.4137 29.1285C75.7872 32.7072 88.7757 21.5356 88.7757 21.5356C86.2668 22.3296 84.9985 21.3067 84.3644 20.2232H84.3672Z");
@@ -7640,12 +7619,12 @@ var app = (function () {
     			h3.innerHTML = /*modal_title*/ ctx[6];
     			append_hydration(div2, t0);
     			append_hydration(div2, input0);
-    			set_input_value(input0, /*subscribe_email*/ ctx[31]);
+    			set_input_value(input0, /*subscribe_email*/ ctx[32]);
     			append_hydration(div2, t1);
     			append_hydration(div2, label);
     			append_hydration(label, span1);
     			append_hydration(span1, input1);
-    			input1.checked = /*subscribe_agree*/ ctx[32];
+    			input1.checked = /*subscribe_agree*/ ctx[33];
     			append_hydration(span1, t2);
     			append_hydration(span1, span0);
     			append_hydration(span0, i);
@@ -7694,12 +7673,12 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(input0, "input", /*handleEmail*/ ctx[49]),
-    					listen(input0, "change", /*handleEmail*/ ctx[49]),
-    					listen(input0, "input", /*input0_input_handler*/ ctx[68]),
-    					listen(input1, "change", /*handleAgree*/ ctx[50]),
-    					listen(input1, "change", /*input1_change_handler*/ ctx[69]),
-    					listen(div1, "click", /*handSubscribe*/ ctx[51])
+    					listen(input0, "input", /*handleEmail*/ ctx[50]),
+    					listen(input0, "change", /*handleEmail*/ ctx[50]),
+    					listen(input0, "input", /*input0_input_handler*/ ctx[70]),
+    					listen(input1, "change", /*handleAgree*/ ctx[51]),
+    					listen(input1, "change", /*input1_change_handler*/ ctx[71]),
+    					listen(div1, "click", /*handSubscribe*/ ctx[52])
     				];
 
     				mounted = true;
@@ -7711,23 +7690,23 @@ var app = (function () {
     				attr(input0, "placeholder", /*modal_email*/ ctx[7]);
     			}
 
-    			if (dirty[1] & /*subscribe_email*/ 1 && input0.value !== /*subscribe_email*/ ctx[31]) {
-    				set_input_value(input0, /*subscribe_email*/ ctx[31]);
+    			if (dirty[1] & /*subscribe_email*/ 2 && input0.value !== /*subscribe_email*/ ctx[32]) {
+    				set_input_value(input0, /*subscribe_email*/ ctx[32]);
     			}
 
-    			if (dirty[1] & /*subscribe_agree*/ 2) {
-    				input1.checked = /*subscribe_agree*/ ctx[32];
+    			if (dirty[1] & /*subscribe_agree*/ 4) {
+    				input1.checked = /*subscribe_agree*/ ctx[33];
     			}
 
-    			if (dirty[0] & /*modal_email_policy*/ 256) span2.innerHTML = /*modal_email_policy*/ ctx[8];			if (dirty[1] & /*subscribe_error_txt*/ 8) set_data(t5, /*subscribe_error_txt*/ ctx[34]);
+    			if (dirty[0] & /*modal_email_policy*/ 256) span2.innerHTML = /*modal_email_policy*/ ctx[8];			if (dirty[1] & /*subscribe_error_txt*/ 16) set_data(t5, /*subscribe_error_txt*/ ctx[35]);
 
-    			if (dirty[1] & /*subscribe_error*/ 4) {
-    				toggle_class(div0, "active", /*subscribe_error*/ ctx[33]);
+    			if (dirty[1] & /*subscribe_error*/ 8) {
+    				toggle_class(div0, "active", /*subscribe_error*/ ctx[34]);
     			}
 
     			if (dirty[0] & /*modal_email_playnow*/ 512) set_data(t7, /*modal_email_playnow*/ ctx[9]);
 
-    			if (/*subscribeLoading*/ ctx[36]) {
+    			if (/*subscribeLoading*/ ctx[37]) {
     				if (if_block) ; else {
     					if_block = create_if_block_2();
     					if_block.c();
@@ -7738,8 +7717,8 @@ var app = (function () {
     				if_block = null;
     			}
 
-    			if (dirty[1] & /*subscribeLoading*/ 32) {
-    				toggle_class(div1, "loading", /*subscribeLoading*/ ctx[36]);
+    			if (dirty[1] & /*subscribeLoading*/ 64) {
+    				toggle_class(div1, "loading", /*subscribeLoading*/ ctx[37]);
     			}
     		},
     		d(detaching) {
@@ -7751,11 +7730,11 @@ var app = (function () {
     	};
     }
 
-    // (334:8) 
+    // (337:8) 
     function create_message_slot(ctx) {
     	let current;
-    	const message_slot_template = /*#slots*/ ctx[61].message;
-    	const message_slot = create_slot(message_slot_template, ctx, /*$$scope*/ ctx[71], get_message_slot_context_1);
+    	const message_slot_template = /*#slots*/ ctx[63].message;
+    	const message_slot = create_slot(message_slot_template, ctx, /*$$scope*/ ctx[73], get_message_slot_context_1);
     	const message_slot_or_fallback = message_slot || fallback_block(ctx);
 
     	return {
@@ -7774,20 +7753,20 @@ var app = (function () {
     		},
     		p(ctx, dirty) {
     			if (message_slot) {
-    				if (message_slot.p && (!current || dirty[2] & /*$$scope*/ 512)) {
+    				if (message_slot.p && (!current || dirty[2] & /*$$scope*/ 2048)) {
     					update_slot_base(
     						message_slot,
     						message_slot_template,
     						ctx,
-    						/*$$scope*/ ctx[71],
+    						/*$$scope*/ ctx[73],
     						!current
-    						? get_all_dirty_from_scope(/*$$scope*/ ctx[71])
-    						: get_slot_changes(message_slot_template, /*$$scope*/ ctx[71], dirty, get_message_slot_changes_1),
+    						? get_all_dirty_from_scope(/*$$scope*/ ctx[73])
+    						: get_slot_changes(message_slot_template, /*$$scope*/ ctx[73], dirty, get_message_slot_changes_1),
     						get_message_slot_context_1
     					);
     				}
     			} else {
-    				if (message_slot_or_fallback && message_slot_or_fallback.p && (!current || dirty[0] & /*modal_email_playnow, modal_email_policy, modal_email, modal_title*/ 960 | dirty[1] & /*subscribeLoading, subscribe_error, subscribe_error_txt, subscribe_agree, subscribe_email*/ 47)) {
+    				if (message_slot_or_fallback && message_slot_or_fallback.p && (!current || dirty[0] & /*modal_email_playnow, modal_email_policy, modal_email, modal_title*/ 960 | dirty[1] & /*subscribeLoading, subscribe_error, subscribe_error_txt, subscribe_agree, subscribe_email*/ 94)) {
     					message_slot_or_fallback.p(ctx, !current ? [-1, -1, -1] : dirty);
     				}
     			}
@@ -7810,7 +7789,7 @@ var app = (function () {
     function create_fragment$1(ctx) {
     	let if_block_anchor;
     	let current;
-    	let if_block = /*validated*/ ctx[30] && create_if_block(ctx);
+    	let if_block = /*validated*/ ctx[31] && create_if_block(ctx);
 
     	return {
     		c() {
@@ -7827,11 +7806,11 @@ var app = (function () {
     			current = true;
     		},
     		p(ctx, dirty) {
-    			if (/*validated*/ ctx[30]) {
+    			if (/*validated*/ ctx[31]) {
     				if (if_block) {
     					if_block.p(ctx, dirty);
 
-    					if (dirty[0] & /*validated*/ 1073741824) {
+    					if (dirty[1] & /*validated*/ 1) {
     						transition_in(if_block, 1);
     					}
     				} else {
@@ -7906,6 +7885,8 @@ var app = (function () {
     	let { success_couponinfo } = $$props;
     	let { success_copy } = $$props;
     	let { success_des } = $$props;
+    	let { shopurl } = $$props;
+    	let { setting_id } = $$props;
 
     	// lang 配置文案
     	let checkModal = false;
@@ -7938,14 +7919,14 @@ var app = (function () {
 
     	const onDataUpdate = () => {
     		originalClues = createClues(data);
-    		$$invalidate(30, validated = validateClues(originalClues));
-    		$$invalidate(20, clues = originalClues.map(d => ({ ...d })));
-    		$$invalidate(21, cells = createCells(originalClues));
+    		$$invalidate(31, validated = validateClues(originalClues));
+    		$$invalidate(21, clues = originalClues.map(d => ({ ...d })));
+    		$$invalidate(22, cells = createCells(originalClues));
     		reset();
     	};
 
     	onMount(async () => {
-    		$$invalidate(28, isLoaded = true);
+    		$$invalidate(29, isLoaded = true);
     		await tick();
     		document.querySelector(".crossword-section #crossword__discount") && (document.querySelector("#crossword_subscribe_discount").innerText = document.querySelector(".crossword-section #crossword__discount")?.innerText);
     	});
@@ -7983,17 +7964,17 @@ var app = (function () {
     	}
 
     	function reset() {
-    		$$invalidate(27, isRevealing = false);
-    		$$invalidate(29, isChecking = false);
-    		$$invalidate(19, focusedCellIndex = 0);
-    		$$invalidate(26, focusedDirection = "across");
+    		$$invalidate(28, isRevealing = false);
+    		$$invalidate(30, isChecking = false);
+    		$$invalidate(20, focusedCellIndex = 0);
+    		$$invalidate(27, focusedDirection = "across");
     	}
 
     	function onClear() {
     		reset();
     		if (revealTimeout) clearTimeout(revealTimeout);
 
-    		$$invalidate(21, cells = cells.map(cell => ({
+    		$$invalidate(22, cells = cells.map(cell => ({
     			...cell,
     			value: cell.show ? cell.answer : ""
     		})));
@@ -8002,34 +7983,34 @@ var app = (function () {
     	function onReveal() {
     		if (revealed) return true;
     		reset();
-    		$$invalidate(21, cells = cells.map(cell => ({ ...cell, value: cell.answer })));
+    		$$invalidate(22, cells = cells.map(cell => ({ ...cell, value: cell.answer })));
     		startReveal();
     	}
 
     	function onCheck() {
-    		$$invalidate(29, isChecking = true);
+    		$$invalidate(30, isChecking = true);
     		const res = getCheckRes() || { error: '', correct: '' };
-    		$$invalidate(24, error_num = res.error.length);
-    		$$invalidate(25, correct_num = res.correct.length);
-    		$$invalidate(23, checkModal = true);
+    		$$invalidate(25, error_num = res.error.length);
+    		$$invalidate(26, correct_num = res.correct.length);
+    		$$invalidate(24, checkModal = true);
 
     		setTimeout(
     			() => {
-    				$$invalidate(29, isChecking = false);
-    				$$invalidate(23, checkModal = false);
+    				$$invalidate(30, isChecking = false);
+    				$$invalidate(24, checkModal = false);
     			},
     			3500
     		);
     	}
 
     	function startReveal() {
-    		$$invalidate(27, isRevealing = true);
-    		$$invalidate(29, isChecking = false);
+    		$$invalidate(28, isRevealing = true);
+    		$$invalidate(30, isChecking = false);
     		if (revealTimeout) clearTimeout(revealTimeout);
 
     		revealTimeout = setTimeout(
     			() => {
-    				$$invalidate(27, isRevealing = false);
+    				$$invalidate(28, isRevealing = false);
     			},
     			revealDuration + 250
     		);
@@ -8041,14 +8022,14 @@ var app = (function () {
 
     	function handleEmail() {
     		if (!verifyEmail(subscribe_email)) {
-    			$$invalidate(33, subscribe_error = true);
+    			$$invalidate(34, subscribe_error = true);
 
-    			$$invalidate(34, subscribe_error_txt = subscribe_email === ""
+    			$$invalidate(35, subscribe_error_txt = subscribe_email === ""
     			? modal_email_empty
     			: modal_email_error);
     		} else {
-    			$$invalidate(33, subscribe_error = false);
-    			$$invalidate(34, subscribe_error_txt = '');
+    			$$invalidate(34, subscribe_error = false);
+    			$$invalidate(35, subscribe_error_txt = '');
     			handleAgree();
     		}
 
@@ -8059,11 +8040,11 @@ var app = (function () {
     		setTimeout(
     			() => {
     				if (!subscribe_agree) {
-    					$$invalidate(33, subscribe_error = true);
-    					$$invalidate(34, subscribe_error_txt = modal_email_noagree);
+    					$$invalidate(34, subscribe_error = true);
+    					$$invalidate(35, subscribe_error_txt = modal_email_noagree);
     				} else {
-    					$$invalidate(33, subscribe_error = false);
-    					$$invalidate(34, subscribe_error_txt = '');
+    					$$invalidate(34, subscribe_error = false);
+    					$$invalidate(35, subscribe_error_txt = '');
     					handleEmail();
     				}
     			},
@@ -8078,17 +8059,17 @@ var app = (function () {
     		setTimeout(
     			() => {
     				if (!subscribe_error) {
-    					$$invalidate(36, subscribeLoading = true);
+    					$$invalidate(37, subscribeLoading = true);
 
     					footerPhoneSubs({ email: subscribe_email, tags: "CP_games" }).then(() => {
-    						$$invalidate(35, subscribeModalClose = true);
-    						$$invalidate(36, subscribeLoading = false);
+    						$$invalidate(36, subscribeModalClose = true);
+    						$$invalidate(37, subscribeLoading = false);
     						window.sessionStorage.setItem("__jky_cwd", '1');
     						window.sessionStorage.setItem("__jky_cwd_email", subscribe_email);
     						handleGameGTM({ button_name: modal_email_playnow });
     					}).catch(e => {
-    						$$invalidate(34, subscribe_error_txt = e.message || 'Server Error');
-    						$$invalidate(36, subscribeLoading = false);
+    						$$invalidate(35, subscribe_error_txt = e.message || 'Server Error, please try again later.');
+    						$$invalidate(37, subscribeLoading = false);
     					});
     				}
     			},
@@ -8100,75 +8081,77 @@ var app = (function () {
     		const email = window.sessionStorage.getItem("__jky_cwd_email") || false;
     		if (!isComplete || !email) return;
 
-    		createCoupons({ email }).then(res => {
-    			$$invalidate(38, coupons_code = res.data);
+    		createCoupons({ email, settingId: setting_id }).then(res => {
+    			$$invalidate(39, coupons_code = res.data);
     		}).catch(e => {
-    			$$invalidate(37, coupons_api_error = e.message);
+    			$$invalidate(38, coupons_api_error = e.message === "Faield to fetch"
+    			? "Coupon unavailable, please try again later."
+    			: e.message);
     		});
     	}
 
     	function clues_1_focusedCellIndex_binding(value) {
     		focusedCellIndex = value;
-    		$$invalidate(19, focusedCellIndex);
+    		$$invalidate(20, focusedCellIndex);
     	}
 
     	function clues_1_focusedCell_binding(value) {
     		focusedCell = value;
-    		(($$invalidate(43, focusedCell), $$invalidate(21, cells)), $$invalidate(19, focusedCellIndex));
+    		(($$invalidate(44, focusedCell), $$invalidate(22, cells)), $$invalidate(20, focusedCellIndex));
     	}
 
     	function clues_1_focusedDirection_binding(value) {
     		focusedDirection = value;
-    		$$invalidate(26, focusedDirection);
+    		$$invalidate(27, focusedDirection);
     	}
 
     	function puzzle_cells_binding(value) {
     		cells = value;
-    		$$invalidate(21, cells);
+    		$$invalidate(22, cells);
     	}
 
     	function puzzle_focusedCellIndex_binding(value) {
     		focusedCellIndex = value;
-    		$$invalidate(19, focusedCellIndex);
+    		$$invalidate(20, focusedCellIndex);
     	}
 
     	function puzzle_focusedDirection_binding(value) {
     		focusedDirection = value;
-    		$$invalidate(26, focusedDirection);
+    		$$invalidate(27, focusedDirection);
     	}
 
     	function input0_input_handler() {
     		subscribe_email = this.value;
-    		$$invalidate(31, subscribe_email);
+    		$$invalidate(32, subscribe_email);
     	}
 
     	function input1_change_handler() {
     		subscribe_agree = this.checked;
-    		$$invalidate(32, subscribe_agree);
+    		$$invalidate(33, subscribe_agree);
     	}
 
     	function article_elementresize_handler() {
     		width = this.offsetWidth;
-    		$$invalidate(18, width);
+    		$$invalidate(19, width);
     	}
 
     	$$self.$$set = $$props => {
-    		if ('data' in $$props) $$invalidate(53, data = $$props.data);
+    		if ('data' in $$props) $$invalidate(54, data = $$props.data);
     		if ('actions' in $$props) $$invalidate(0, actions = $$props.actions);
-    		if ('theme' in $$props) $$invalidate(54, theme = $$props.theme);
+    		if ('theme' in $$props) $$invalidate(55, theme = $$props.theme);
     		if ('revealDuration' in $$props) $$invalidate(1, revealDuration = $$props.revealDuration);
-    		if ('breakpoint' in $$props) $$invalidate(55, breakpoint = $$props.breakpoint);
-    		if ('revealed' in $$props) $$invalidate(52, revealed = $$props.revealed);
-    		if ('disableHighlight' in $$props) $$invalidate(56, disableHighlight = $$props.disableHighlight);
+    		if ('breakpoint' in $$props) $$invalidate(56, breakpoint = $$props.breakpoint);
+    		if ('revealed' in $$props) $$invalidate(53, revealed = $$props.revealed);
+    		if ('disableHighlight' in $$props) $$invalidate(57, disableHighlight = $$props.disableHighlight);
     		if ('showCompleteMessage' in $$props) $$invalidate(2, showCompleteMessage = $$props.showCompleteMessage);
     		if ('showConfetti' in $$props) $$invalidate(3, showConfetti = $$props.showConfetti);
     		if ('showKeyboard' in $$props) $$invalidate(4, showKeyboard = $$props.showKeyboard);
     		if ('keyboardStyle' in $$props) $$invalidate(5, keyboardStyle = $$props.keyboardStyle);
     		if ('modal_title' in $$props) $$invalidate(6, modal_title = $$props.modal_title);
     		if ('modal_email' in $$props) $$invalidate(7, modal_email = $$props.modal_email);
-    		if ('modal_email_empty' in $$props) $$invalidate(57, modal_email_empty = $$props.modal_email_empty);
-    		if ('modal_email_error' in $$props) $$invalidate(58, modal_email_error = $$props.modal_email_error);
-    		if ('modal_email_noagree' in $$props) $$invalidate(59, modal_email_noagree = $$props.modal_email_noagree);
+    		if ('modal_email_empty' in $$props) $$invalidate(58, modal_email_empty = $$props.modal_email_empty);
+    		if ('modal_email_error' in $$props) $$invalidate(59, modal_email_error = $$props.modal_email_error);
+    		if ('modal_email_noagree' in $$props) $$invalidate(60, modal_email_noagree = $$props.modal_email_noagree);
     		if ('modal_email_policy' in $$props) $$invalidate(8, modal_email_policy = $$props.modal_email_policy);
     		if ('modal_email_playnow' in $$props) $$invalidate(9, modal_email_playnow = $$props.modal_email_playnow);
     		if ('modal_correct_words' in $$props) $$invalidate(10, modal_correct_words = $$props.modal_correct_words);
@@ -8179,51 +8162,53 @@ var app = (function () {
     		if ('success_couponinfo' in $$props) $$invalidate(15, success_couponinfo = $$props.success_couponinfo);
     		if ('success_copy' in $$props) $$invalidate(16, success_copy = $$props.success_copy);
     		if ('success_des' in $$props) $$invalidate(17, success_des = $$props.success_des);
-    		if ('$$scope' in $$props) $$invalidate(71, $$scope = $$props.$$scope);
+    		if ('shopurl' in $$props) $$invalidate(18, shopurl = $$props.shopurl);
+    		if ('setting_id' in $$props) $$invalidate(61, setting_id = $$props.setting_id);
+    		if ('$$scope' in $$props) $$invalidate(73, $$scope = $$props.$$scope);
     	};
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty[1] & /*data*/ 4194304) {
+    		if ($$self.$$.dirty[1] & /*data*/ 8388608) {
     			(onDataUpdate());
     		}
 
-    		if ($$self.$$.dirty[0] & /*cells, focusedCellIndex*/ 2621440) {
-    			$$invalidate(43, focusedCell = cells[focusedCellIndex] || {});
+    		if ($$self.$$.dirty[0] & /*cells, focusedCellIndex*/ 5242880) {
+    			$$invalidate(44, focusedCell = cells[focusedCellIndex] || {});
     		}
 
-    		if ($$self.$$.dirty[0] & /*cells*/ 2097152) {
-    			$$invalidate(42, cellIndexMap = fromPairs(cells.map(cell => [cell.id, cell.index])));
+    		if ($$self.$$.dirty[0] & /*cells*/ 4194304) {
+    			$$invalidate(43, cellIndexMap = fromPairs(cells.map(cell => [cell.id, cell.index])));
     		}
 
-    		if ($$self.$$.dirty[0] & /*cells*/ 2097152) {
-    			$$invalidate(60, percentCorrect = cells.filter(d => d.answer === d.value).length / cells.length);
+    		if ($$self.$$.dirty[0] & /*cells*/ 4194304) {
+    			$$invalidate(62, percentCorrect = cells.filter(d => d.answer === d.value).length / cells.length);
     		}
 
-    		if ($$self.$$.dirty[1] & /*percentCorrect*/ 536870912) {
-    			$$invalidate(22, isComplete = percentCorrect == 1);
+    		if ($$self.$$.dirty[2] & /*percentCorrect*/ 1) {
+    			$$invalidate(23, isComplete = percentCorrect == 1);
     		}
 
-    		if ($$self.$$.dirty[0] & /*isComplete*/ 4194304 | $$self.$$.dirty[1] & /*disableHighlight*/ 33554432) {
-    			$$invalidate(41, isDisableHighlight = isComplete && disableHighlight);
+    		if ($$self.$$.dirty[0] & /*isComplete*/ 8388608 | $$self.$$.dirty[1] & /*disableHighlight*/ 67108864) {
+    			$$invalidate(42, isDisableHighlight = isComplete && disableHighlight);
     		}
 
-    		if ($$self.$$.dirty[0] & /*cells*/ 2097152) {
-    			($$invalidate(20, clues = checkClues()));
+    		if ($$self.$$.dirty[0] & /*cells*/ 4194304) {
+    			($$invalidate(21, clues = checkClues()));
     		}
 
-    		if ($$self.$$.dirty[0] & /*cells, clues*/ 3145728) {
-    			($$invalidate(52, revealed = !clues.filter(d => !d.isCorrect).length));
+    		if ($$self.$$.dirty[0] & /*cells, clues*/ 6291456) {
+    			($$invalidate(53, revealed = !clues.filter(d => !d.isCorrect).length));
     		}
 
-    		if ($$self.$$.dirty[0] & /*width*/ 262144 | $$self.$$.dirty[1] & /*breakpoint*/ 16777216) {
-    			$$invalidate(40, stacked = width < breakpoint);
+    		if ($$self.$$.dirty[0] & /*width*/ 524288 | $$self.$$.dirty[1] & /*breakpoint*/ 33554432) {
+    			$$invalidate(41, stacked = width < breakpoint);
     		}
 
-    		if ($$self.$$.dirty[1] & /*theme*/ 8388608) {
-    			$$invalidate(39, inlineStyles = themes[theme]);
+    		if ($$self.$$.dirty[1] & /*theme*/ 16777216) {
+    			$$invalidate(40, inlineStyles = themes[theme]);
     		}
 
-    		if ($$self.$$.dirty[0] & /*isComplete*/ 4194304) {
+    		if ($$self.$$.dirty[0] & /*isComplete*/ 8388608) {
     			(handleComplete());
     		}
     	};
@@ -8247,6 +8232,7 @@ var app = (function () {
     		success_couponinfo,
     		success_copy,
     		success_des,
+    		shopurl,
     		width,
     		focusedCellIndex,
     		clues,
@@ -8289,6 +8275,7 @@ var app = (function () {
     		modal_email_empty,
     		modal_email_error,
     		modal_email_noagree,
+    		setting_id,
     		percentCorrect,
     		slots,
     		clues_1_focusedCellIndex_binding,
@@ -8315,22 +8302,22 @@ var app = (function () {
     			create_fragment$1,
     			safe_not_equal,
     			{
-    				data: 53,
+    				data: 54,
     				actions: 0,
-    				theme: 54,
+    				theme: 55,
     				revealDuration: 1,
-    				breakpoint: 55,
-    				revealed: 52,
-    				disableHighlight: 56,
+    				breakpoint: 56,
+    				revealed: 53,
+    				disableHighlight: 57,
     				showCompleteMessage: 2,
     				showConfetti: 3,
     				showKeyboard: 4,
     				keyboardStyle: 5,
     				modal_title: 6,
     				modal_email: 7,
-    				modal_email_empty: 57,
-    				modal_email_error: 58,
-    				modal_email_noagree: 59,
+    				modal_email_empty: 58,
+    				modal_email_error: 59,
+    				modal_email_noagree: 60,
     				modal_email_policy: 8,
     				modal_email_playnow: 9,
     				modal_correct_words: 10,
@@ -8340,7 +8327,9 @@ var app = (function () {
     				success_title: 14,
     				success_couponinfo: 15,
     				success_copy: 16,
-    				success_des: 17
+    				success_des: 17,
+    				shopurl: 18,
+    				setting_id: 61
     			},
     			null,
     			[-1, -1, -1]
@@ -8471,6 +8460,8 @@ var app = (function () {
     				success_couponinfo: /*success_couponinfo*/ ctx[12],
     				success_copy: /*success_copy*/ ctx[13],
     				success_des: /*success_des*/ ctx[14],
+    				shopurl: /*shopurl*/ ctx[15],
+    				setting_id: /*setting_id*/ ctx[16],
     				data: jac
     			}
     		});
@@ -8520,6 +8511,8 @@ var app = (function () {
     			if (dirty & /*success_couponinfo*/ 4096) crossword_changes.success_couponinfo = /*success_couponinfo*/ ctx[12];
     			if (dirty & /*success_copy*/ 8192) crossword_changes.success_copy = /*success_copy*/ ctx[13];
     			if (dirty & /*success_des*/ 16384) crossword_changes.success_des = /*success_des*/ ctx[14];
+    			if (dirty & /*shopurl*/ 32768) crossword_changes.shopurl = /*shopurl*/ ctx[15];
+    			if (dirty & /*setting_id*/ 65536) crossword_changes.setting_id = /*setting_id*/ ctx[16];
     			crossword.$set(crossword_changes);
     		},
     		i(local) {
@@ -8554,6 +8547,8 @@ var app = (function () {
     	let { success_couponinfo } = $$props;
     	let { success_copy } = $$props;
     	let { success_des } = $$props;
+    	let { shopurl } = $$props;
+    	let { setting_id } = $$props;
 
     	window.fbAsyncInit = function () {
     		FB.init({
@@ -8581,6 +8576,8 @@ var app = (function () {
     		if ('success_couponinfo' in $$props) $$invalidate(12, success_couponinfo = $$props.success_couponinfo);
     		if ('success_copy' in $$props) $$invalidate(13, success_copy = $$props.success_copy);
     		if ('success_des' in $$props) $$invalidate(14, success_des = $$props.success_des);
+    		if ('shopurl' in $$props) $$invalidate(15, shopurl = $$props.shopurl);
+    		if ('setting_id' in $$props) $$invalidate(16, setting_id = $$props.setting_id);
     	};
 
     	return [
@@ -8598,7 +8595,9 @@ var app = (function () {
     		success_title,
     		success_couponinfo,
     		success_copy,
-    		success_des
+    		success_des,
+    		shopurl,
+    		setting_id
     	];
     }
 
@@ -8621,7 +8620,9 @@ var app = (function () {
     			success_title: 11,
     			success_couponinfo: 12,
     			success_copy: 13,
-    			success_des: 14
+    			success_des: 14,
+    			shopurl: 15,
+    			setting_id: 16
     		});
     	}
     }
@@ -8647,6 +8648,8 @@ var app = (function () {
     		success_couponinfo: _dom.getAttribute("data-success_couponinfo"),
     		success_copy: _dom.getAttribute("data-success_copy"),
     		success_des: _dom.getAttribute("data-success_des"),
+    		shopurl: _dom.getAttribute("data-shopurl"),
+    		setting_id: _dom.getAttribute("data-setting_id"),
     	}
     });
 

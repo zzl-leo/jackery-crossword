@@ -16,6 +16,8 @@
   export let success_couponinfo;
   export let success_copy; 
   export let success_des; 
+  export let shopurl; 
+  export let setting_id; 
 
   window.fbAsyncInit = function () {
 		FB.init({
@@ -46,6 +48,8 @@
       success_couponinfo="{success_couponinfo}"
       success_copy="{success_copy}"
       success_des="{success_des}"
+      shopurl="{shopurl}"
+      setting_id="{setting_id}"
       data="{jac}" />
   </section>
 </article>
