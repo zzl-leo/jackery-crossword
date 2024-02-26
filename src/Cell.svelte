@@ -137,7 +137,7 @@
   }
 
   g.is-focused rect {
-    fill: #F99B2F;
+    fill: #fd5000;
   }
 
   text {

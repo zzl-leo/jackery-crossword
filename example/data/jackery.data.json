@@ -1,15 +1,14 @@
 [{
-	"clue": "露营帐篷", "answer": "Camping", "direction": "across", "x": 11, "y": 4, "uncheck": [1, 2]
+	"clue": "露营帐篷", "answer": "Camping", "direction": "down", "x": 16, "y": 8, "uncheck": [1, 2]
 },{
-	"clue": "NO.1", "answer": "GlobalLeadingBrand", "direction": "across", "x": 0, "y": 6, "uncheck": [1,2,3,4,5,6,9,13,14,15,16,17,18]
+	"clue": "户外探索", "answer": "Explorer", "direction": "down", "x": 18, "y": 5, "uncheck": [5]
 },{
-	"clue": "电池护盾", "answer": "Chargeshield", "direction": "across", "x": 6, "y": 1, "uncheck": [1, 3, 7]
+	"clue": "太阳能", "answer": "Solargenerator", "direction": "across", "x": 6, "y": 9, "uncheck": [1,2,11,13]
+},{
+	"clue": "TRA", "answer": "Tragbarepowerstation", "direction": "down", "x": 7, "y": 0, "uncheck": [1,2,10,11,12,13,14,15,16,17,18,19,20]
 },
 {
-	"clue": "电池快充", "answer": "Fastcharging", "direction": "down", "x": 8, "y": 0, "uncheck": [1,5,6,7,8,9,10,11,12]
-},
-{
-	"clue": "家庭", "answer": "Homebackup", "direction": "down", "x": 3, "y": 2, "uncheck": [1,2,5,6,7,8,9,10]
+	"clue": "STR", "answer": "Stromversorgung", "direction": "across", "x": 0, "y": 1, "uncheck": [4,8]
 },{
-	"clue": "Jackery产品", "answer": "SolarGenerator", "direction": "down", "x": 12, "y": 1, "uncheck": [1,2,3,4,5,6]
+	"clue": "Jackery产品", "answer": "Solarpanel", "direction": "down", "x": 3, "y": 0, "uncheck": [1,2]
 }]

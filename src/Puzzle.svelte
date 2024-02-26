@@ -42,7 +42,9 @@
 
   onMount(() => {
     isMobile = checkMobile();
-    onFocusCell(14)
+
+    // 初始选中
+    onFocusCell(5)
   });
 
   function updateSecondarilyFocusedCells() {
@@ -264,13 +266,12 @@
   }
 
   svg {
-    width: 100%;
+    width: 90%;
     display: block;
     font-size: 1px;
     background: var(--main-color);
     border: 4px solid var(--main-color);
     box-sizing: border-box;
-
 
     background: transparent;
     border: 2px solid transparent;
@@ -299,6 +300,7 @@
       overflow: hidden;
       border-radius: 8px;
       padding: 70px 38px 14px 10px;
+      width: 100%;
     }
 
 
