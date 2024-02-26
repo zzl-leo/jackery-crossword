@@ -8167,11 +8167,11 @@ var app = (function () {
     			attr_dev(div, "class", "play svelte-10vn5u1");
     			toggle_class(div, "stacked", /*stacked*/ ctx[41]);
     			toggle_class(div, "is-loaded", /*isLoaded*/ ctx[29]);
-    			add_location(div, file$1, 279, 4, 8165);
+    			add_location(div, file$1, 279, 4, 8174);
     			attr_dev(article, "class", "svelte-crossword svelte-10vn5u1");
     			attr_dev(article, "style", /*inlineStyles*/ ctx[40]);
     			add_render_callback(() => /*article_elementresize_handler*/ ctx[72].call(article));
-    			add_location(article, file$1, 265, 2, 7626);
+    			add_location(article, file$1, 265, 2, 7635);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, article, anchor);
@@ -8588,19 +8588,19 @@ var app = (function () {
     		},
     		h: function hydrate() {
     			attr_dev(div0, "class", "title_gameend svelte-10vn5u1");
-    			add_location(div0, file$1, 310, 10, 9370);
+    			add_location(div0, file$1, 310, 10, 9379);
     			if (!src_url_equal(img.src, img_src_value = "https://cdn.shopify.com/s/files/1/0550/0524/9633/files/coupon_s_code.png?v=1706604693")) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "coupon");
     			attr_dev(img, "class", "svelte-10vn5u1");
-    			add_location(img, file$1, 312, 12, 9470);
+    			add_location(img, file$1, 312, 12, 9479);
     			attr_dev(div1, "class", "coupone_info_title svelte-10vn5u1");
-    			add_location(div1, file$1, 314, 14, 9634);
+    			add_location(div1, file$1, 314, 14, 9643);
     			attr_dev(div2, "class", "coupone_info_des svelte-10vn5u1");
-    			add_location(div2, file$1, 315, 14, 9706);
+    			add_location(div2, file$1, 315, 14, 9715);
     			attr_dev(div3, "class", "coupone_info svelte-10vn5u1");
-    			add_location(div3, file$1, 313, 12, 9593);
+    			add_location(div3, file$1, 313, 12, 9602);
     			attr_dev(div4, "class", "coupon_gameend svelte-10vn5u1");
-    			add_location(div4, file$1, 311, 10, 9429);
+    			add_location(div4, file$1, 311, 10, 9438);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div0, anchor);
@@ -8659,7 +8659,7 @@ var app = (function () {
     		},
     		h: function hydrate() {
     			attr_dev(div, "class", "title_gameend svelte-10vn5u1");
-    			add_location(div, file$1, 321, 12, 9875);
+    			add_location(div, file$1, 321, 12, 9884);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div, anchor);
@@ -8839,7 +8839,7 @@ var app = (function () {
     		},
     		h: function hydrate() {
     			attr_dev(div, "class", "footer_gameend svelte-10vn5u1");
-    			add_location(div, file$1, 327, 10, 10063);
+    			add_location(div, file$1, 327, 10, 10072);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div, anchor);
@@ -9081,7 +9081,7 @@ var app = (function () {
     		},
     		h: function hydrate() {
     			attr_dev(path, "d", "M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z");
-    			add_location(path, file$1, 369, 171, 11947);
+    			add_location(path, file$1, 369, 171, 11956);
     			attr_dev(svg, "class", "anticon-loading svelte-10vn5u1");
     			attr_dev(svg, "viewBox", "0 0 1024 1024");
     			attr_dev(svg, "focusable", "false");
@@ -9090,9 +9090,9 @@ var app = (function () {
     			attr_dev(svg, "height", "1em");
     			attr_dev(svg, "fill", "currentColor");
     			attr_dev(svg, "aria-hidden", "true");
-    			add_location(svg, file$1, 369, 16, 11792);
+    			add_location(svg, file$1, 369, 16, 11801);
     			attr_dev(span, "class", "crossword_submit_loading svelte-10vn5u1");
-    			add_location(span, file$1, 368, 14, 11736);
+    			add_location(span, file$1, 368, 14, 11745);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, span, anchor);
@@ -9522,178 +9522,178 @@ var app = (function () {
     		},
     		h: function hydrate() {
     			attr_dev(h3, "class", "svelte-10vn5u1");
-    			add_location(h3, file$1, 338, 12, 10552);
+    			add_location(h3, file$1, 338, 12, 10561);
     			attr_dev(input0, "type", "text");
     			attr_dev(input0, "placeholder", /*modal_email*/ ctx[7]);
     			attr_dev(input0, "class", "svelte-10vn5u1");
-    			add_location(input0, file$1, 339, 12, 10593);
+    			add_location(input0, file$1, 339, 12, 10602);
     			attr_dev(input1, "type", "checkbox");
     			attr_dev(input1, "class", "dji-checkbox-original svelte-10vn5u1");
-    			add_location(input1, file$1, 348, 16, 10902);
+    			add_location(input1, file$1, 348, 16, 10911);
     			set_style(i, "font-size", "12px");
     			attr_dev(i, "class", "font-bold iconfont jackery-icon-checkbox");
-    			add_location(i, file$1, 350, 18, 11083);
+    			add_location(i, file$1, 350, 18, 11092);
     			attr_dev(span0, "class", "dji-checkbox-inner");
-    			add_location(span0, file$1, 349, 16, 11031);
+    			add_location(span0, file$1, 349, 16, 11040);
     			attr_dev(span1, "class", "dji-checkbox-input");
-    			add_location(span1, file$1, 347, 14, 10852);
+    			add_location(span1, file$1, 347, 14, 10861);
     			attr_dev(span2, "class", "dji-agree");
-    			add_location(span2, file$1, 355, 16, 11276);
+    			add_location(span2, file$1, 355, 16, 11285);
     			attr_dev(span3, "class", "dji-checkbox-label");
-    			add_location(span3, file$1, 354, 14, 11226);
+    			add_location(span3, file$1, 354, 14, 11235);
     			attr_dev(label, "class", "dji-checkbox svelte-10vn5u1");
-    			add_location(label, file$1, 346, 12, 10809);
+    			add_location(label, file$1, 346, 12, 10818);
     			attr_dev(div0, "class", "error__tips svelte-10vn5u1");
     			toggle_class(div0, "active", /*subscribe_error*/ ctx[34]);
-    			add_location(div0, file$1, 359, 12, 11390);
+    			add_location(div0, file$1, 359, 12, 11399);
     			attr_dev(div1, "class", "crossword_subscribe_submit svelte-10vn5u1");
     			toggle_class(div1, "loading", /*subscribeLoading*/ ctx[37]);
-    			add_location(div1, file$1, 361, 12, 11489);
+    			add_location(div1, file$1, 361, 12, 11498);
     			attr_dev(path0, "fill-rule", "evenodd");
     			attr_dev(path0, "clip-rule", "evenodd");
     			attr_dev(path0, "d", "M84.3672 20.2232C83.8654 19.3658 83.8488 18.3209 84.1549 17.3752C86.6335 9.69678 75.7514 8.42302 72.3299 7.30917C68.7595 6.14569 70.4909 0.0332954 63.6727 0.00021073C56.8572 -0.0328739 55.9226 3.84079 55.5973 3.84079C55.1203 3.84079 58.3047 9.53687 58.3047 9.53687C58.3047 9.53687 61.6931 9.51757 63.6534 15.6713C65.6164 21.8278 65.0402 25.5499 70.4137 29.1285C75.7872 32.7072 88.7757 21.5356 88.7757 21.5356C86.2668 22.3296 84.9985 21.3067 84.3644 20.2232H84.3672Z");
     			attr_dev(path0, "fill", "#5C3420");
-    			add_location(path0, file$1, 376, 14, 12532);
+    			add_location(path0, file$1, 376, 14, 12541);
     			attr_dev(path1, "fill-rule", "evenodd");
     			attr_dev(path1, "clip-rule", "evenodd");
     			attr_dev(path1, "d", "M56.0108 171.39C56.0108 171.39 61.1059 137.324 54.5275 123.842L58.12 77.6279L36.5791 79.114L51.095 171.66L56.0108 171.393V171.39Z");
     			attr_dev(path1, "fill", "#E3633D");
-    			add_location(path1, file$1, 377, 14, 13079);
+    			add_location(path1, file$1, 377, 14, 13088);
     			attr_dev(path2, "fill-rule", "evenodd");
     			attr_dev(path2, "clip-rule", "evenodd");
     			attr_dev(path2, "d", "M50.935 170.053L46.6588 173.166C45.8179 173.935 41.2329 175.429 41.2329 175.429C40.7752 176.386 41.6685 176.888 42.4267 177.014L55.9611 176.73C55.9611 176.73 59.0849 176.082 56.314 170.058C53.852 171.145 51.5774 171.925 50.935 170.05V170.053Z");
     			attr_dev(path2, "fill", "#4A2A1A");
-    			add_location(path2, file$1, 378, 14, 13290);
+    			add_location(path2, file$1, 378, 14, 13299);
     			attr_dev(path3, "fill-rule", "evenodd");
     			attr_dev(path3, "clip-rule", "evenodd");
     			attr_dev(path3, "d", "M35.0793 86.3373L39.4879 125.383L46.6176 164.712H59.0685C59.0685 164.712 58.3654 157.05 58.5391 154.886C58.7128 152.722 61.0012 133.24 56.1956 123.795L57.406 85.116L35.0793 86.3401V86.3373Z");
     			attr_dev(path3, "fill", "#C9D9B9");
-    			add_location(path3, file$1, 379, 14, 13614);
+    			add_location(path3, file$1, 379, 14, 13623);
     			attr_dev(path4, "fill-rule", "evenodd");
     			attr_dev(path4, "clip-rule", "evenodd");
     			attr_dev(path4, "d", "M71.9355 128.234L91.8746 165.242C95.7455 166.642 95.9909 164.392 94.8991 160.795C90.3251 145.187 92.3322 135.661 79.4568 121.746L71.9355 128.234Z");
     			attr_dev(path4, "fill", "#E3633D");
-    			add_location(path4, file$1, 380, 14, 13885);
+    			add_location(path4, file$1, 380, 14, 13894);
     			attr_dev(path5, "fill-rule", "evenodd");
     			attr_dev(path5, "clip-rule", "evenodd");
     			attr_dev(path5, "d", "M52.7629 83.2027L64.5218 121.746C65.0043 123.555 66.0988 126.152 66.959 127.815L85.9303 161.404L95.9164 155.664C95.9164 155.664 94.0388 151.013 93.628 148.961C91.2322 137.04 88.6516 131.848 79.3134 118.642L75.1916 79.114L65.0015 79.5221L52.7657 83.2027H52.7629Z");
     			attr_dev(path5, "fill", "#C9D9B9");
-    			add_location(path5, file$1, 381, 14, 14112);
+    			add_location(path5, file$1, 381, 14, 14121);
     			attr_dev(path6, "fill-rule", "evenodd");
     			attr_dev(path6, "clip-rule", "evenodd");
     			attr_dev(path6, "d", "M91.6815 165.145L91.5299 170.433C91.6264 171.569 90.0024 176.113 90.0024 176.113C90.4794 177.058 91.4251 176.659 91.9875 176.137L100.038 165.255C100.038 165.255 101.436 162.385 94.9734 160.896C94.3283 163.51 93.5535 165.785 91.6787 165.148L91.6815 165.145Z");
     			attr_dev(path6, "fill", "#4A2A1A");
-    			add_location(path6, file$1, 382, 14, 14455);
+    			add_location(path6, file$1, 382, 14, 14464);
     			attr_dev(path7, "d", "M23.7476 34.957C18.2225 28.5634 16.4139 25.8615 11.0128 19.3135L5.20093 20.0027C14.0731 34.764 14.3213 40.7303 20.6542 44.4303C28.0073 41.8414 24.6906 36.7105 23.7449 34.9543L23.7476 34.957Z");
     			attr_dev(path7, "fill", "#C95836");
-    			add_location(path7, file$1, 383, 14, 14793);
+    			add_location(path7, file$1, 383, 14, 14802);
     			attr_dev(path8, "d", "M10.9964 19.3326L7.82308 16.4846C7.18896 15.9166 6.37287 15.5913 5.52094 15.5748L2.07186 15.5031C0.869781 15.4783 0.0123394 16.661 0.412113 17.7969L4.60008 21.1523C5.5237 21.8912 6.76989 22.2854 8.09052 22.2496L10.2879 22.1917L10.9964 19.3354V19.3326Z");
     			attr_dev(path8, "fill", "#C95836");
-    			add_location(path8, file$1, 384, 14, 15025);
+    			add_location(path8, file$1, 384, 14, 15034);
     			attr_dev(path9, "fill-rule", "evenodd");
     			attr_dev(path9, "clip-rule", "evenodd");
     			attr_dev(path9, "d", "M44.8721 19.6499C44.8721 19.6499 17.1995 37.2565 18.6277 40.9206L19.2149 42.5555C19.9786 44.6785 22.5344 45.5194 24.4092 44.2621L38.3764 34.8937L41.1363 33.1347L44.8721 19.6499Z");
     			attr_dev(path9, "fill", "#C95836");
-    			add_location(path9, file$1, 385, 14, 15318);
+    			add_location(path9, file$1, 385, 14, 15327);
     			attr_dev(path10, "fill-rule", "evenodd");
     			attr_dev(path10, "clip-rule", "evenodd");
     			attr_dev(path10, "d", "M67.3973 54.7278L37.9574 56.9693C33.1684 58.7283 35.0818 86.3374 35.0818 86.3374L54.4391 87.2335C63.4326 87.046 74.0694 94.0986 75.1887 79.114C76.468 61.9844 67.3973 54.7278 67.3973 54.7278Z");
     			attr_dev(path10, "fill", "#C9D9B9");
-    			add_location(path10, file$1, 386, 14, 15577);
+    			add_location(path10, file$1, 386, 14, 15586);
     			attr_dev(path11, "fill-rule", "evenodd");
     			attr_dev(path11, "clip-rule", "evenodd");
     			attr_dev(path11, "d", "M44.8723 19.6498L55.6717 18.2686L58.6383 18.354L69.9478 22.1615C73.7635 23.9977 75.5694 28.3897 74.1633 32.3985L71.5441 45.3235C74.5769 55.0201 76.1649 61.8218 75.7624 71.8382C59.8514 77.9423 37.886 77.8871 32.7661 70.6113C33.4002 50.5647 37.2298 32.6273 44.8723 19.6498Z");
     			attr_dev(path11, "fill", "#8CA671");
-    			add_location(path11, file$1, 387, 14, 15849);
+    			add_location(path11, file$1, 387, 14, 15858);
     			attr_dev(path12, "d", "M49.7797 19.0515C49.7797 19.0515 46.3307 27.8575 52.3548 28.1801C58.379 28.4999 61.5744 19.3492 61.5744 19.3492L57.1576 17.4441L49.7797 19.0515Z");
     			attr_dev(path12, "fill", "#C95836");
-    			add_location(path12, file$1, 388, 14, 16202);
+    			add_location(path12, file$1, 388, 14, 16211);
     			attr_dev(path13, "fill-rule", "evenodd");
     			attr_dev(path13, "clip-rule", "evenodd");
     			attr_dev(path13, "d", "M7.07593 24.2623L12.6921 20.3639L23.304 32.7458L41.2359 21.089C41.2359 21.089 43.1686 19.8648 44.8724 19.647C46.5763 19.4292 39.4686 35.1306 39.4686 35.1306L25.9949 45.0175C25.9949 45.0175 19.9845 48.7726 16.869 42.9028C13.7563 37.033 7.07593 24.2623 7.07593 24.2623Z");
     			attr_dev(path13, "fill", "#8CA671");
-    			add_location(path13, file$1, 389, 14, 16388);
+    			add_location(path13, file$1, 389, 14, 16397);
     			attr_dev(path14, "d", "M38.0513 35.9827L40.5409 29.6084");
     			attr_dev(path14, "stroke", "#3A6B26");
     			attr_dev(path14, "stroke-width", "0.725106");
     			attr_dev(path14, "stroke-linecap", "round");
     			attr_dev(path14, "stroke-linejoin", "round");
-    			add_location(path14, file$1, 390, 14, 16737);
+    			add_location(path14, file$1, 390, 14, 16746);
     			attr_dev(path15, "fill-rule", "evenodd");
     			attr_dev(path15, "clip-rule", "evenodd");
     			attr_dev(path15, "d", "M80.1929 55.4225C84.0059 54.0826 87.8244 55.1606 89.6854 59.3789L94.3779 81.6063L89.7406 80.9694L83.5868 65.1577L80.1929 55.4225Z");
     			attr_dev(path15, "fill", "#C95836");
-    			add_location(path15, file$1, 391, 14, 16884);
+    			add_location(path15, file$1, 391, 14, 16893);
     			attr_dev(path16, "d", "M89.5588 80.3603L90.8519 84.2698C91.1111 85.05 91.6404 85.7007 92.3462 86.1032L95.2025 87.7299C96.1978 88.2951 97.4826 87.6554 97.6922 86.4892L95.7898 81.6781C95.3707 80.6167 94.5133 79.7124 93.3912 79.1444L91.5219 78.1987L89.5588 80.3575V80.3603Z");
     			attr_dev(path16, "fill", "#C95836");
-    			add_location(path16, file$1, 392, 14, 17095);
+    			add_location(path16, file$1, 392, 14, 17104);
     			attr_dev(path17, "fill-rule", "evenodd");
     			attr_dev(path17, "clip-rule", "evenodd");
     			attr_dev(path17, "d", "M73.4851 25.4011L87.6205 51.2044L93.7549 74.882L86.3605 78.3338L78.0728 55.8583L69.7024 41.6126L73.4851 25.4011Z");
     			attr_dev(path17, "fill", "#8CA671");
-    			add_location(path17, file$1, 393, 14, 17384);
+    			add_location(path17, file$1, 393, 14, 17393);
     			attr_dev(path18, "d", "M56.7191 97.0735C56.3718 95.0305 53.3555 85.334 53.3555 85.334H50.3035");
     			attr_dev(path18, "stroke", "#939C89");
     			attr_dev(path18, "stroke-width", "0.675479");
     			attr_dev(path18, "stroke-linecap", "round");
     			attr_dev(path18, "stroke-linejoin", "round");
-    			add_location(path18, file$1, 394, 14, 17578);
+    			add_location(path18, file$1, 394, 14, 17587);
     			attr_dev(path19, "d", "M71.1361 43.6003L67.1494 34.1574L67.4334 32.2495");
     			attr_dev(path19, "stroke", "#3A6B26");
     			attr_dev(path19, "stroke-width", "0.725106");
     			attr_dev(path19, "stroke-linecap", "round");
     			attr_dev(path19, "stroke-linejoin", "round");
-    			add_location(path19, file$1, 395, 14, 17763);
+    			add_location(path19, file$1, 395, 14, 17772);
     			attr_dev(path20, "fill-rule", "evenodd");
     			attr_dev(path20, "clip-rule", "evenodd");
     			attr_dev(path20, "d", "M52.9118 3.25635C52.9118 3.25635 47.0035 3.25635 48.5502 10.0966C50.0803 16.8569 56.7882 9.61688 56.7882 9.61688L52.9118 3.25635Z");
     			attr_dev(path20, "fill", "#5C3420");
-    			add_location(path20, file$1, 396, 14, 17926);
+    			add_location(path20, file$1, 396, 14, 17935);
     			attr_dev(path21, "fill-rule", "evenodd");
     			attr_dev(path21, "clip-rule", "evenodd");
     			attr_dev(path21, "d", "M51.572 12.5394C51.572 12.5394 51.9497 16.8239 52.2613 20.3722C52.344 21.3179 52.9092 22.1478 53.7418 22.542C54.5717 22.939 55.5394 22.837 56.2728 22.2801C56.5127 22.0981 56.747 21.9189 56.9676 21.7508C57.9712 20.9871 58.4564 19.6857 58.2138 18.4064C57.5907 15.1311 56.4575 9.16479 56.4575 9.16479L51.572 12.5367V12.5394Z");
     			attr_dev(path21, "fill", "#C95836");
-    			add_location(path21, file$1, 397, 14, 18137);
+    			add_location(path21, file$1, 397, 14, 18146);
     			attr_dev(path22, "fill-rule", "evenodd");
     			attr_dev(path22, "clip-rule", "evenodd");
     			attr_dev(path22, "d", "M51.7043 14.4665L52.0104 17.0361C53.8107 16.606 54.8722 15.0152 55.7793 13.179L51.7043 14.4665Z");
     			attr_dev(path22, "fill", "#873B24");
-    			add_location(path22, file$1, 398, 14, 18540);
+    			add_location(path22, file$1, 398, 14, 18549);
     			attr_dev(path23, "fill-rule", "evenodd");
     			attr_dev(path23, "clip-rule", "evenodd");
     			attr_dev(path23, "d", "M58.1172 8.67659C58.4287 7.52138 57.7836 6.32206 56.678 5.99673C55.4952 5.64934 54.0064 5.21373 52.8236 4.8691C51.7153 4.54376 50.7338 5.28265 50.254 6.37445C49.6888 7.66199 49.1319 10.5155 48.972 12.6385C48.881 13.835 49.4572 15.1309 50.5656 15.4562C51.7484 15.8036 55.6055 15.6657 56.5429 13.5593C57.257 11.9575 57.6595 10.3777 58.1172 8.67659Z");
     			attr_dev(path23, "fill", "#C95836");
-    			add_location(path23, file$1, 399, 14, 18717);
+    			add_location(path23, file$1, 399, 14, 18726);
     			attr_dev(path24, "fill-rule", "evenodd");
     			attr_dev(path24, "clip-rule", "evenodd");
     			attr_dev(path24, "d", "M49.6612 11.8997L51.5939 12.4235C51.5939 12.4235 51.2135 13.791 50.3119 13.4243C49.4103 13.0576 49.6612 11.8997 49.6612 11.8997Z");
     			attr_dev(path24, "fill", "white");
-    			add_location(path24, file$1, 400, 14, 19145);
+    			add_location(path24, file$1, 400, 14, 19154);
     			attr_dev(path25, "fill-rule", "evenodd");
     			attr_dev(path25, "clip-rule", "evenodd");
     			attr_dev(path25, "d", "M51.2246 4.60457C51.2246 4.60457 53.1518 10.9017 55.3905 11.5468C56.5402 11.8777 56.3748 13.5678 57.2433 14.2708C58.8175 15.5446 61.8503 11.0892 61.6077 9.07927C61.2493 6.11543 60.5131 4.96298 57.1688 3.46039C55.1258 2.54229 52.7493 1.38984 51.2246 4.60457Z");
     			attr_dev(path25, "fill", "#5C3420");
-    			add_location(path25, file$1, 401, 14, 19353);
+    			add_location(path25, file$1, 401, 14, 19362);
     			attr_dev(path26, "fill-rule", "evenodd");
     			attr_dev(path26, "clip-rule", "evenodd");
     			attr_dev(path26, "d", "M58.1087 13.6255C57.5573 14.4278 56.5951 14.6897 55.961 14.2155C55.3269 13.7385 55.258 12.7046 55.8094 11.9023C56.3608 11.1 57.323 10.8381 57.9571 11.3123C58.5912 11.7893 58.6602 12.8232 58.1087 13.6255Z");
     			attr_dev(path26, "fill", "#C95836");
-    			add_location(path26, file$1, 402, 14, 19692);
+    			add_location(path26, file$1, 402, 14, 19701);
     			attr_dev(path27, "d", "M56.7083 2.90063C57.5436 3.52649 58.7126 4.70926 58.7126 4.70926");
     			attr_dev(path27, "stroke", "#BFAB9E");
     			attr_dev(path27, "stroke-width", "0.802303");
     			attr_dev(path27, "stroke-linecap", "round");
     			attr_dev(path27, "stroke-linejoin", "round");
-    			add_location(path27, file$1, 403, 14, 19977);
+    			add_location(path27, file$1, 403, 14, 19986);
     			attr_dev(svg, "class", "crossword_subscribe_icon svelte-10vn5u1");
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "width", "101");
     			attr_dev(svg, "height", "178");
     			attr_dev(svg, "viewBox", "0 0 101 178");
     			attr_dev(svg, "fill", "none");
-    			add_location(svg, file$1, 375, 12, 12385);
+    			add_location(svg, file$1, 375, 12, 12394);
     			attr_dev(div2, "class", "crossword_subscribe_container svelte-10vn5u1");
-    			add_location(div2, file$1, 337, 10, 10496);
+    			add_location(div2, file$1, 337, 10, 10505);
     		},
     		m: function mount(target, anchor) {
     			insert_hydration_dev(target, div2, anchor);
@@ -9986,7 +9986,7 @@ var app = (function () {
     	let { modal_title = "" } = $$props;
     	let { modal_email = "Email" } = $$props;
     	let { modal_email_empty = "Please enter a valid email address." } = $$props;
-    	let { modal_email_error = "The email must be a valid email address." } = $$props;
+    	let { modal_email_error = "Die E-Mail muss eine gültige E-Mail-Adresse sein." } = $$props;
     	let { modal_email_noagree = "Please agree to the Terms of Service and Privacy policy." } = $$props;
     	let { modal_email_policy = "" } = $$props;
     	let { modal_email_playnow = "PLAY NOW" } = $$props;

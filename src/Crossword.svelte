@@ -30,7 +30,7 @@
   export let modal_title = ""; // 订阅弹窗title
   export let modal_email = "Email"; // Email  label
   export let modal_email_empty = "Please enter a valid email address."; // Email empty text
-  export let modal_email_error = "The email must be a valid email address."; // Email error text
+  export let modal_email_error = "Die E-Mail muss eine gültige E-Mail-Adresse sein."; // Email error text
   export let modal_email_noagree = "Please agree to the Terms of Service and Privacy policy."; // 未勾选同意提示
   export let modal_email_policy = ""; // 隐式条款
   export let modal_email_playnow = "PLAY NOW"; // button text
