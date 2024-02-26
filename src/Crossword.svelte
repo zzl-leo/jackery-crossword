@@ -42,6 +42,8 @@
   export let success_couponinfo;
   export let success_copy;
   export let success_des;
+  export let shopurl;
+  export let setting_id;
   // lang 配置文案
 
   let checkModal = false
@@ -238,7 +240,7 @@
             button_name: modal_email_playnow
           })
         }).catch(e => {
-          subscribe_error_txt = e.message || 'Server Error'
+          subscribe_error_txt = e.message || 'Server Error, please try again later.'
           subscribeLoading = false
         })
       }
@@ -250,11 +252,12 @@
     if(!isComplete || !email) return
 
     createCoupons({
-      email
+      email,
+      settingId: setting_id
     }).then(res => {
       coupons_code = res.data
     }).catch(e => {
-      coupons_api_error = e.message
+      coupons_api_error = e.message === "Faield to fetch" ? "Coupon unavailable, please try again later." : e.message
     })
   }
 </script>
@@ -302,12 +305,12 @@
     </div>
 
     {#if isComplete && !isRevealing && showCompleteMessage}
-      <CompletedMessage success_copy="{success_copy}" outClickClose="{false}" showCloseBtn="{false}" showConfetti="{showConfetti && !coupons_api_error}" btnShopNow="{!coupons_api_error}">
+      <CompletedMessage shopurl="{shopurl}" success_copy="{success_copy}" outClickClose="{!!coupons_api_error}" showCloseBtn="{!!coupons_api_error}" showConfetti="{showConfetti && !coupons_api_error}" btnShopNow="{!coupons_api_error}">
         <slot name="message" slot="message">
           {#if coupons_api_error === ""}
           <div class="title_gameend">{success_title}</div>
           <div class="coupon_gameend">
-            <img src="https://cdn.shopify.com/s/files/1/0607/3866/6677/files/Frame_93.png?v=1699346042" alt="coupon">
+            <img src="https://cdn.shopify.com/s/files/1/0550/0524/9633/files/coupon_s_code.png?v=1706604693" alt="coupon">
             <div class="coupone_info">
               <div class="coupone_info_title">CODE:{coupons_code}</div>
               <div class="coupone_info_des">{@html success_couponinfo}</div>
@@ -330,7 +333,7 @@
 
     {#if !isComplete && !isRevealing && !isSubscribe}
       <!-- svelte-ignore a11y-click-events-have-key-events -->
-      <CompletedMessage showConfetti="{false}" outClickClose="{false}" funcClose="{subscribeModalClose}">
+      <CompletedMessage showConfetti="{false}" outClickClose="{false}" funcClose="{subscribeModalClose}" subscribeModal="{!isSubscribe}">
         <slot name="message" slot="message">
           <div class="crossword_subscribe_container">
             <h3>{@html modal_title}</h3>

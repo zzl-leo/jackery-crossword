@@ -12,7 +12,7 @@
     {#if action === 'clear'}
       <button on:click="{() => dispatch('event', 'clear')}">{btn_reset}</button>
     {:else if action === 'reveal'}
-      <button on:click="{() => dispatch('event', 'reveal')}">Reveal</button>
+      <!-- <button on:click="{() => dispatch('event', 'reveal')}">Reveal</button> -->
     {:else if action === 'check'}
       <button on:click="{() => dispatch('event', 'check')}">{btn_check}</button>
     {/if}
