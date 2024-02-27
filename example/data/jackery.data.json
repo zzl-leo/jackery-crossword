@@ -1,14 +1,14 @@
 [{
-	"clue": "露营帐篷", "answer": "Camping", "direction": "down", "x": 16, "y": 8, "uncheck": [1, 2]
+	"clue": "露营帐篷", "answer": "Camping", "direction": "across", "x": 12, "y": 6, "uncheck": [3]
 },{
-	"clue": "户外探索", "answer": "Explorer", "direction": "down", "x": 18, "y": 5, "uncheck": [5]
+	"clue": "NO.1", "answer": "Leadermondial", "direction": "down", "x": 14, "y": 0, "uncheck": [7,12]
 },{
-	"clue": "太阳能", "answer": "Solargenerator", "direction": "across", "x": 6, "y": 9, "uncheck": [1,2,11,13]
+	"clue": "太阳能", "answer": "Énergiesolaire", "direction": "across", "x": 4, "y": 11, "uncheck": [3,11,14]
 },{
-	"clue": "TRA", "answer": "Tragbarepowerstation", "direction": "down", "x": 7, "y": 0, "uncheck": [1,2,10,11,12,13,14,15,16,17,18,19,20]
+	"clue": "电池技术", "answer": "Stationélectrique", "direction": "down", "x": 6, "y": 2, "uncheck": [1,10,14,17]
 },
 {
-	"clue": "STR", "answer": "Stromversorgung", "direction": "across", "x": 0, "y": 1, "uncheck": [4,8]
+	"clue": "电池", "answer": "Garantielongue", "direction": "across", "x": 0, "y": 15, "uncheck": [7]
 },{
-	"clue": "Jackery产品", "answer": "Solarpanel", "direction": "down", "x": 3, "y": 0, "uncheck": [1,2]
+	"clue": "快充", "answer": "Rechargerapide", "direction": "across", "x": 5, "y": 18, "uncheck": [2]
 }]

@@ -79,8 +79,8 @@
   }
 
   function createSocialDom(flag, num) {
-    const shareDom = `<h3 id="xxl" class="tips_modal__title">BRAUCHEN SIE MEHR HINWEISE?</h3>
-    <div class="tips_modal__subtitle">Klicken Sie auf den Button unten, um dieses Spiel in sozialen Netzwerken zu teilen und beantworten zu lassen.</div>
+    const shareDom = `<h3 id="xxl" class="tips_modal__title">Besoin de plus d'indices?</h3>
+    <div class="tips_modal__subtitle">Cliquez sur le bouton ci-dessous pour partager ce jeu sur les réseaux sociaux et obtenir les réponses.</div>
     <ul class="tips_modal__socials">
       <li>
         <div data-url="https://www.jackery.com/pages/crossword?utm_source=facebook&utm_medium=organic&utm_campaign=bfcm2023&utm_term=game" data-type="facebook">
@@ -176,23 +176,7 @@
     position: absolute;
     background-repeat: no-repeat;
     background-size: cover;
-
     cursor: pointer;
-  }
-
-  .clue--down--2 {
-    top: 140px;
-    left: 280px;
-    background-image: url('https://cdn.shopify.com/s/files/1/0572/7217/2741/files/Vector.png?v=1708926083');
-    width: 89px;
-    height: 87px;
-  }
-  .clue--across--3 {
-    top: 210px;
-    left: 590px;
-    background-image: url('https://cdn.shopify.com/s/files/1/0572/7217/2741/files/stations.png?v=1708926083');
-    width: 159px;
-    height: 143px;
   }
   .clue--down--5 {
     top: 760px;
@@ -208,19 +192,48 @@
     width: 62px;
     background-image: url("https://cdn.shopify.com/s/files/1/0572/7217/2741/files/5_dac20b30-f1a5-4f40-8399-ed739bb3bbc4.png?v=1708926084");
   }
-  .clue--across--6 {
-    top: 460px;
-    right: 50px;
+
+  .clue--down--1 {
+    top: 200px;
+    left: 450px;
+    background-image: url('https://www.jackery.com/cdn/shop/files/c1495b36ce3b67e4c4a05acbcf689d20.png?v=1698645099');
+    width: 108px;
+    height: 122px;
+  }
+  .clue--down--2 {
+    top: 290px;
+    left: 100px;
+    background-image: url('https://cdn.shopify.com/s/files/1/0572/7217/2741/files/stations.png?v=1708926083');
+    width: 160px;
+    height: 145px;
+  }
+  .clue--across--3 {
+    top: 360px;
+    right: 100px;
+    height: 92px;
+    width: 243px;
+    background-image: url('https://www.jackery.com/cdn/shop/files/1_2_48b91050-cb67-456f-b336-4007dfd8ee2b.png?v=1698821609');
+  }
+  .clue--across--4 {
+    top: 580px;
+    right: 100px;
     height: 144px;
     width: 169px;
     background-image: url('https://www.jackery.com/cdn/shop/files/image.png?v=1698645099');
   }
-  .clue--down--1 {
-    top: 600px;
-    left: 86px;
-    background-image: url('https://cdn.shopify.com/s/files/1/0572/7217/2741/files/Group.png?v=1708926083');
-    width: 152px;
-    height: 68px;
+  .clue--across--5 {
+    top: 750px;
+    left: 0px;
+    height: 78px;
+    width: 50px;
+    background-image: url('https://www.jackery.com/cdn/shop/files/Frame.png?v=1698645099');
+  }
+  .clue--across--6 {
+    top: 880px;
+    right: 160px;
+    height: 59px;
+    width: 61px;
+    background-image: url('https://www.jackery.com/cdn/shop/files/Layer_1.png?v=1698645100');
   }
 
 
@@ -263,24 +276,31 @@
   }
 
   .clue--down--1 button {
-    left: -20px;
-    top: -20px;
+    right: 10px;
+    top: -16px;
   }
   .clue--down--4 button {
     top: -5px;
     right: -10px;
   }
   .clue--across--6 button {
-    right: 5px;
-    top: -25px;
+    right: -10px;
+    top: -15px;
   }
-  .clue--down--5 button {
+  .clue--across--3 button {
     left: 30px;
     top: 10px;
   }
   .clue--down--2 button {
     top: 0;
-    right: -24px;
+    right: 16px;
+  }
+  .clue--across--5 button {
+    right: -8px;
+    top: -8px;
+  }
+  .clue--across--4 button {
+    right: -15px;
   }
 
   strong {
@@ -339,40 +359,41 @@
 
   @media only screen and (max-width: 1024px) {
     .clue--down--1 {
-      top: 225px;
-      left: 20px;
-      width: 71px;
-      height: 31px;
+      top: 60px;
+      left: 170px;
+      width: 49px;
+      height: 57px;
     }
     .clue--across--3 {
-      top: 30px;
+      top: 110px;
       left: 240px;
-      width: 85px;
-      height: 94px;
+      width: 128px;
+      height: 49px;
     }
     .clue--down--2 {
-      top: 20px;
-      left: 100px;
+      top: 100px;
+      left: 50px;
       width: 42px;
       height: 41px;
   }
-    .clue--down--4 {
-      top: 264px;
-      left: 280px;
-      height: 107px;
-      width: 33px;
+    .clue--across--4 {
+      top: 220px;
+      left: 286px;
+      height: 60px;
+      width: 75px;
     }
-    .clue--down--5 {
-      top: 290px;
-      right: 55px;
-      height: 49px;
-      width: 128px;
+    .clue--across--5 {
+      top: 280px;
+      right: unset;
+      left: -20px;
+      height: 41px;
+      width: 27px;
     }
     .clue--across--6 {
-      top: 180px;
-      right: -30px;
-      width: 64px;
-      height: 53px;
+      top: 330px;
+      right: -20px;
+      width: 51px;
+      height: 42px;
     }
 
     button {
@@ -386,22 +407,28 @@
     }
     .clue--down--1 button {
       top: -6px;
-      left: -16px;
+      left: unset;
+      right: -5px;
     }
     .clue--down--2 button {
-      right: -15px;
+      right: -6px;
     }
     .clue--down--4 button {
       top: -5px;
       right: -10px;
     }
-    .clue--down--5 button {
-      top: 8px;
-      left: 10px;
+    .clue--across--5 button {
+      top: 0;
+      right: -4px;
     }
     .clue--across--6 button {
       top: -10px;
       right: -4px;
+    }
+    .clue--across--3 button {
+      right: unset;
+      left: 10px;
+      top: 0;
     }
     .hide__mobile {
       display: none;

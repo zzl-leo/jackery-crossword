@@ -41,10 +41,11 @@
   );
 
   onMount(() => {
+    console.log("cells", cells)
     isMobile = checkMobile();
 
     // 初始选中
-    onFocusCell(5)
+    onFocusCell(0)
   });
 
   function updateSecondarilyFocusedCells() {
