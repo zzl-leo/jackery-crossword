@@ -6453,7 +6453,7 @@ var app = (function () {
     	};
     }
 
-    // (275:26)        
+    // (275:26)         
     function fallback_block_3(ctx) {
     	let toolbar;
     	let t;
@@ -6720,7 +6720,7 @@ var app = (function () {
     	};
     }
 
-    // (309:44)            
+    // (309:44)             
     function fallback_block_2(ctx) {
     	let t;
     	let if_block1_anchor;
@@ -6868,7 +6868,7 @@ var app = (function () {
     	};
     }
 
-    // (326:42)            
+    // (326:42)             
     function fallback_block_1(ctx) {
     	let if_block_anchor;
     	let if_block = /*coupons_api_error*/ ctx[38] === "" && create_if_block_4(ctx);
@@ -7027,7 +7027,7 @@ var app = (function () {
     			span = element("span");
     			svg = svg_element("svg");
     			path = svg_element("path");
-    			t = text("\n                Loading");
+    			t = text("\r\n                Loading");
     			this.h();
     		},
     		l(nodes) {
@@ -7049,7 +7049,7 @@ var app = (function () {
     			path = claim_svg_element(svg_nodes, "path", { d: true });
     			children(path).forEach(detach);
     			svg_nodes.forEach(detach);
-    			t = claim_text(span_nodes, "\n                Loading");
+    			t = claim_text(span_nodes, "\r\n                Loading");
     			span_nodes.forEach(detach);
     			this.h();
     		},
@@ -7077,7 +7077,7 @@ var app = (function () {
     	};
     }
 
-    // (337:44)            
+    // (337:44)             
     function fallback_block(ctx) {
     	let div2;
     	let h3;
@@ -8348,7 +8348,9 @@ var app = (function () {
     		y: 8,
     		uncheck: [
     			1,
-    			2
+    			3,
+    			4,
+    			7
     		]
     	},
     	{
@@ -8358,7 +8360,11 @@ var app = (function () {
     		x: 18,
     		y: 5,
     		uncheck: [
-    			5
+    			1,
+    			2,
+    			3,
+    			7,
+    			8
     		]
     	},
     	{
@@ -8369,9 +8375,12 @@ var app = (function () {
     		y: 9,
     		uncheck: [
     			1,
-    			2,
-    			11,
-    			13
+    			4,
+    			5,
+    			6,
+    			10,
+    			12,
+    			14
     		]
     	},
     	{
@@ -8383,15 +8392,13 @@ var app = (function () {
     		uncheck: [
     			1,
     			2,
-    			10,
-    			11,
+    			4,
+    			5,
+    			8,
+    			9,
     			12,
     			13,
     			14,
-    			15,
-    			16,
-    			17,
-    			18,
     			19,
     			20
     		]
@@ -8403,8 +8410,16 @@ var app = (function () {
     		x: 0,
     		y: 1,
     		uncheck: [
-    			4,
-    			8
+    			1,
+    			2,
+    			5,
+    			6,
+    			7,
+    			8,
+    			12,
+    			13,
+    			14,
+    			15
     		]
     	},
     	{
@@ -8415,7 +8430,11 @@ var app = (function () {
     		y: 0,
     		uncheck: [
     			1,
-    			2
+    			3,
+    			5,
+    			6,
+    			9,
+    			10
     		]
     	}
     ];
