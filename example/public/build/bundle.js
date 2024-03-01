@@ -3682,7 +3682,7 @@ var app = (function () {
     var tips = [
     	{
     		title: "WORT:  SOLARPANEL",
-    		des: ""
+    		des: "Vorrichtung zur direkten Umwandlung von Sonnenlicht in elektrische Energie"
     	},
     	{
     		title: "WORT:  TRAGBARE POWERSTATION",
@@ -3690,7 +3690,7 @@ var app = (function () {
     	},
     	{
     		title: "WORT: STROMVERSORGUNG",
-    		des: ""
+    		des: "Bereitstellung von elektrischer Energie durch tragbare Jackery-Power-Stationen für den Außeneinsatz und Notfälle"
     	},
     	{
     		title: "WORT:  EXPLORER",
@@ -3939,7 +3939,7 @@ var app = (function () {
     				break;
     			case 'whatsapp':
     				const _shared_ws_url = `${window.location.origin}/pages/crossword?utm_source=whatsapp&utm_medium=organic&utm_campaign=bfcm2023&utm_term=game`;
-    				_url = `https://api.whatsapp.com/send?url=${encodeURIComponent(_shared_ws_url)}`;
+    				_url = `https://api.whatsapp.com/send?text=${encodeURIComponent(_shared_ws_url)}`;
     				handleCrosswordGTM({ position: answer, method: "Whatsapp" });
     				break;
     			case 'messenger':
