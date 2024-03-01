@@ -48,7 +48,7 @@
         break;
       case 'whatsapp':
         const _shared_ws_url = `${window.location.origin}/pages/crossword?utm_source=whatsapp&utm_medium=organic&utm_campaign=bfcm2023&utm_term=game`
-        _url = `https://api.whatsapp.com/send?url=${encodeURIComponent(_shared_ws_url)}`
+        _url = `https://api.whatsapp.com/send?text=${encodeURIComponent(_shared_ws_url)}`
         handleCrosswordGTM({
           position: answer,
           method: "Whatsapp"
